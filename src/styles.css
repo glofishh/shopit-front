@@ -1,0 +1,340 @@
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+/**
+* view product/add to cart buttons
+*/
+
+.btn{
+  border-radius:1px;
+}
+
+.btn-outline-primary{
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-primary:hover{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-primary:focus{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-primary:active{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
+  outline: 0 none;
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+  outline: 0 none;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):focus{
+box-shadow: 0 0 5px #fff;
+}
+
+.btn-outline-warning{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-warning:hover{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-warning:focus{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-warning:active{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
+  outline: 0 none;
+}
+.btn-outline-warning:not(:disabled):not(.disabled):active{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+outline: 0 none;
+}
+
+.btn-outline-warning:not(:disabled):not(.disabled):focus{
+box-shadow: 0 0 5px #fff;
+}
+
+.btn-outline-danger{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-danger:hover{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-danger:focus{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+}
+
+.btn-outline-danger:active{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
+  outline: 0 none;
+}
+.btn-outline-danger:not(:disabled):not(.disabled):active{
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  font-size: 12px;
+outline: 0 none;
+}
+
+.btn-outline-danger:not(:disabled):not(.disabled):focus{
+box-shadow: 0 0 5px #fff;
+}
+
+/* 
+.btn-outline-primary {
+  color: #ffffff;
+  border-color: #000;
+  font-size: 10px;
+}
+
+.btn-outline-warning {
+  color: #ffffff;
+  border-color: #000;
+  font-size: 10px;
+} */
+
+
+
+/**
+* instock badge
+*/
+.badge-primary {
+  background-color: #eef4f6;
+  color: #a0b0b4;
+  font-weight: normal;
+}
+
+/**
+*background of navigationtab
+*/
+.bg-primary {
+  background-color: #c9dce1!important;
+}
+.nav-tabs .nav-link {
+  border: 0px solid transparent;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+/**
+*searchbar
+*/
+.input-group-text {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: .375rem .75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e4edf0;
+  border: 1px solid #dee2e6;
+  border-radius: .25rem;
+}
+
+/**
+ * border radius
+ */
+
+.btn,
+.jumbotron,
+.nav :hover {
+    border-radius: 0px;
+}
+
+/* cart badge */
+
+.cart-badge,
+.cart-badge:hover {
+    border: radius 0%;
+    padding: 1px;
+    font-size: 10px;
+    font-style: italic;
+    color: #fff;
+    background: #c9dce1;
+}
+
+/**
+ * single product page - product name
+ */
+
+.name {
+    background: #c9dce1;
+    color: #000;
+    font-weight: bold;
+
+}
+
+/* black shade form 10-1 */
+.black-10 {
+    background: #fffaf9;
+}
+.black-9 {
+    background: #fff8f7;
+}
+.black-8 {
+    background: #fff3f0;
+}
+.black-7 {
+    background: #f8d8d8;
+}
+.black-6 {
+    background: #bfbfbf;
+}
+.black-5 {
+    background: #b3b3b3;
+}
+
+/**
+ * product image on card
+ */
+
+.product-img {
+    min-height: 100px;
+}
+
+.jumbotron h2 {
+    margin-top: -20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .jumbotron h2 {
+        margin-top: 10px;
+    }
+}
+
+/**
+ * jumbotron animation
+ */
+
+.jumbotron {
+    width: 30wh;
+    height: 30vh;
+    color: #000;
+    background: linear-gradient(-45deg, #f9fbfc, #f4f8f9, #eef4f6, #e9f1f3, #e4edf0);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-moz-keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
