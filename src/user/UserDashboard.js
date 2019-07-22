@@ -47,9 +47,9 @@ const Dashboard = () => {
       <div className="card mb-5">
         <h3 className="card-header">user info</h3>
         <ul className="list-group">
-          <li className="list-group-item">{name}</li>
-          <li className="list-group-item">{email}</li>
-          <li className="list-group-item">{role === 1 ? 'admin' : 'user'}</li>
+          <li className="list-group-item">Name: {name}</li>
+          <li className="list-group-item">Email: {email}</li>
+          <li className="list-group-item">Role: {role === 1 ? 'admin' : 'user'}</li>
         </ul>
       </div>
     );

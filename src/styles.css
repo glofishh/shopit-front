@@ -21,6 +21,7 @@ a {
     color: #000 !important;
 }
 
+
 /************************
 ******NAVIGATION/MENU.JS
 *************************/
@@ -111,6 +112,7 @@ a {
 
 .card{
   border: none;
+  border-radius: 0;
 }
 
 .card-body{
@@ -359,7 +361,7 @@ box-shadow: 0 0 5px #fff;
 
 
 .jumbotron h2 {
-    margin-top: -20px;
+    margin-top: 20px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -368,13 +370,26 @@ box-shadow: 0 0 5px #fff;
     }
 }
 
+
 /**
  * jumbotron animation
  */
 
+.splash {
+
+}
+.carousel-container {
+  object-fit: none;
+  /* margin: auto; */
+  height: 50vh;
+  overflow: hidden;
+  
+}
+
+
 .jumbotron {
     width: 30wh;
-    height: 50vh;
+    height: 10vh;
     color: #000;
     background: linear-gradient(-45deg, #f9fbfc, #f4f8f9, #eef4f6, #e9f1f3, #e4edf0);
     background-size: 400% 400%;

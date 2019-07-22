@@ -60,7 +60,7 @@ const Shop = () => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-warning mb-5">
+        <button onClick={loadMore} className="btn btn-outline-primary mb-5">
           load more
         </button>
       )

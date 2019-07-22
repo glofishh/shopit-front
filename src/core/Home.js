@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
+import LayoutHome from './LayoutHome';
 import { getProducts } from './apiCore';
 import Card from './Card';
 
@@ -37,7 +37,7 @@ const Home = () => {
 
 
   return (
-    <Layout
+    <LayoutHome
         title="Home Page"
         description="Shopit E-commerce App"
         className="container-fluid"
@@ -60,7 +60,7 @@ const Home = () => {
                 </div>
             ))}
         </div>
-    </Layout>
+    </LayoutHome>
   );
 };
 
