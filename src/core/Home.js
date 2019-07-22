@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from './Layout';
 import { getProducts } from './apiCore';
 import Card from './Card';
-import Search from './Search';
+
 
 const Home = () => {
   const [productsBySell, setProductsbySell] = useState([]);
@@ -42,9 +42,9 @@ const Home = () => {
         description="Shopit E-commerce App"
         className="container-fluid"
     >
-      <Search />
-        <h2 className="mb-4">new arrivals</h2>
-        <div className="row">
+
+        <h2 className="menu-header text-uppercase mb-4">new arrivals</h2>
+        <div className="row no-gutters">
             {productsByArrival.map((product, i) => (
                 <div key={i} className="col-3 mb-3">
                     <Card product={product} />
@@ -52,7 +52,7 @@ const Home = () => {
             ))}
         </div>
 
-        <h2 className="mb-4">best sellers</h2>
+        <h2 className="menu-header text-uppercase mb-4">best sellers</h2>
         <div className="row">
             {productsBySell.map((product, i) => (
                 <div key={i} className="col-3 mb-3">

@@ -81,45 +81,102 @@ const Search = () => {
   };
 
   const searchForm = () => (
-    <form onSubmit={searchSubmit}>
-      <span className="input-group-text">
-        <div className="input-group input-group-lg">
-          <div className="input-group-prepend">
-            <select className="btn mr-2" onChange={handleChange('category')}>
-              <option value="all">search all</option>
-              {categories.map((c, i) => (
-                <option key={i} value={c._id}>
-                  {c.name}
-                </option>
-              ))}
-            </select> 
+
+      <form onSubmit={searchSubmit}>
+
+
+        <span className="input-group">
+          <div className="input-group input-group-md">
+
+
+            <div className="input-group-prepend">
+              <div className="input-group-text bg-transparent border-right-0 rounded-0">
+            
+                <select
+                  className="btn mr-2"
+                  onChange={handleChange('category')}
+                >
+                  <option value="all">SEARCH ALL</option>
+                  {categories.map((c, i) => (
+                    <option key={i} value={c._id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+
+            
+              <input
+                type="search"
+                className="form-control py-2 border-left-0 border rounded-0"
+                onChange={handleChange('search')}
+                placeholder=""
+              />
+              <div className="input-group-append">
+                <button className="btn btn-outline-secondary border-left-0 border text-uppercase" type="button">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+
+
           </div>
+        </span>
 
-          <input
-            type="search"
-            className="form-control"
-            onChange={handleChange('search')}
-            placeholder="search by name"
-          />
-        </div>
-        <div
-          className="btn input-group-append"
-          style={{ border: 'none' }}
-        >
-          <button className="input-group-text">search</button>
-        </div>
-      </span>
-    </form>
-  );
 
-  return (
-    <div className="row">
-      <div className="container mb-3">{searchForm()}</div>
-      <div className="container mb-3">
-        {searchedProducts(results)}
+
+      </form>
+    );
+    return (
+      <div className="row">
+        <div className="container mb-3">{searchForm()}</div>
+        <div className="container mb-3">
+          {searchedProducts(results)}
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Search;
+
+
+// const searchForm = () => (
+//   <form onSubmit={searchSubmit}>
+//     <span className="input-group-text">
+//       <div className="input-group input-group-lg">
+//         <div className="input-group-prepend">
+//           <select className="btn mr-2" onChange={handleChange('category')}>
+//             <option value="all">search all</option>
+//             {categories.map((c, i) => (
+//               <option key={i} value={c._id}>
+//                 {c.name}
+//               </option>
+//             ))}
+//           </select> 
+//         </div>
+
+//         <input
+//           type="search"
+//           className="form-control"
+//           onChange={handleChange('search')}
+//           placeholder="search by name"
+//         />
+//       </div>
+//       <div
+//         className="btn input-group-append"
+//         style={{ border: 'none' }}
+//       >
+//         <button className="input-group-text">search</button>
+//       </div>
+//     </span>
+//   </form>
+// );
+// return (
+//   <div className="row">
+//     <div className="container mb-3">{searchForm()}</div>
+//     <div className="container mb-3">
+//       {searchedProducts(results)}
+//     </div>
+//   </div>
+// );

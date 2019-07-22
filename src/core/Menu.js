@@ -2,120 +2,151 @@ import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
 import { itemTotal } from './cartHelpers';
+import Search from './Search';
 
 
 const isActive = (history, path) => {
   if(history.location.pathname === path) {
-    return {color: '#ff9900'};
-  } else {
     return {color: '#ffffff'};
+  } else {
+    return {color: '#000000'};
   }
 };
 
 const Menu = ({ history }) => (
-  <div>
-    <ul className="nav nav-tabs bg-primary">
-      <li className="nav-item">
-        <Link
-          className="nav-link"
-          style={isActive(history, "/")}
-          to="/"
-        >
-          home
-        </Link>
-      </li>
+    <nav className="navbar navbar-expand-md align-items-lg-start fixed-top">
+      <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="nav nav-tabs border-bottom-0">
+          <ul class="navbar-nav mr-auto nav nav-tabs border-bottom-0">
+            <li className="nav-item text-uppercase font-weight-bold">
+              <Search />
+            </li>
 
-      <li className="nav-item">
-        <Link
-          className="nav-link"
-          style={isActive(history, "/shop")}
-          to="/shop"
-        >
-          shop
-        </Link>
-      </li>
+          </ul>
+      </ul>
+    </div>
 
-      {isAuthenticated() && isAuthenticated().user.role === 0 && (
-        <li className="nav-item">
-          <Link
-            className="nav-link"
-            style={isActive(history, "/user/dashboard")}
-            to="/user/dashboard"
-          >
-            dashboard
-          </Link>
-        </li>
-      )}
-      
-      {isAuthenticated() && isAuthenticated().user.role === 1 && (
-        <li className="nav-item">
-          <Link
-            className="nav-link"
-            style={isActive(history, "/admin/dashboard")}
-            to="/admin/dashboard"
-          >
-            dashboard
-          </Link>
-        </li>
-      )}
+        <div class="mx-auto order-0">
+        <ul class="navbar-nav ml-auto">
+          <div className="menu-header text-uppercase">
+            <li className="nav-item-main text-uppercase">
+              <Link
+                className="nav-link"
+                style={isActive(history, "/")}
+                to="/"
+              >
+                home
+              </Link>
+            </li>
+          </div>
+          </ul>
+        </div>
+    
 
-      {!isAuthenticated() && (
-        <Fragment>
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              style={isActive(history, "/signin")}
-              to="/signin"
-            >
-              signin
-            </Link>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+            <li className="nav-item text-uppercase font-weight-bold">
+              <Link
+                className="nav-link"
+                style={isActive(history, "/shop")}
+                to="/shop"
+              >
+                shop
+              </Link>
+            </li>
+        {isAuthenticated() && isAuthenticated().user.role === 0 && (
+            <li className="nav-item text-uppercase font-weight-bold">
+              <Link
+                className="nav-link"
+                style={isActive(history, "/user/dashboard")}
+                to="/user/dashboard"
+              >
+                dashboard
+              </Link>
+            </li>
+          )}
+          
+          {isAuthenticated() && isAuthenticated().user.role === 1 && (
+            <li className="nav-item text-uppercase font-weight-bold">
+              <Link
+                className="nav-link"
+                style={isActive(history, "/admin/dashboard")}
+                to="/admin/dashboard"
+              >
+                dashboard
+              </Link>
+            </li>
+          )}
+
+          {!isAuthenticated() && (
+            <Fragment>
+              <li className="nav-item text-uppercase font-weight-bold">
+                <Link
+                  className="nav-link"
+                  style={isActive(history, "/signin")}
+                  to="/signin"
+                >
+                  signin
+                </Link>
+              </li>
+
+              <li className="nav-item text-uppercase font-weight-bold">
+                <Link
+                  className="nav-link"
+                  style={isActive(history, "/signup")}
+                  to="/signup"
+                >
+                  signup
+                </Link>
+              </li>
+            </Fragment>
+          )}
+
+          {isAuthenticated() && (
+            <li className="nav-item text-uppercase font-weight-bold">
+              <span
+                className="nav-link"
+                style={{ cursor: "pointer", color: "#b4c6ca" }}
+                onClick={() =>
+                  signout(() => {
+                    history.push("/");
+                  })
+                }
+              >
+                hi, {isAuthenticated().user.name}
+              </span>
+            </li>
+          )}
+
+          <li className="nav-item text-uppercase font-weight-bold">
+              <Link
+                className="nav-link"
+                style={isActive(history, "/dashboard")}
+                to="/dashboard"
+              >
+                <i class="fas fa-heart"></i>
+              </Link>
           </li>
 
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              style={isActive(history, "/signup")}
-              to="/signup"
-            >
-              signup
-            </Link>
+          <li className="nav-item text-uppercase font-weight-bold">
+              <Link
+                className="nav-link"
+                style={isActive(history, "/cart")}
+                to="/cart"
+              >
+                cart{' '}
+
+                  {/* <small className="cart-badge"> */}
+                    {itemTotal()}
+                  {/* </small> */}
+
+              </Link>
           </li>
-        </Fragment>
-      )}
 
-      {isAuthenticated() && (
-        <li className="nav-item">
-          <span
-            className="nav-link"
-            style={{ cursor: "pointer", color: "#ffffff" }}
-            onClick={() =>
-              signout(() => {
-                history.push("/");
-              })
-            }
-          >
-            signout
-          </span>
-        </li>
-      )}
+        </ul>
+    </div>
+  </nav>
 
-      <li className="nav-item">
-        <Link
-          className="nav-link"
-          style={isActive(history, "/cart")}
-          to="/cart"
-        >
-          cart{' '}
-          <sup>
-            <small className="cart-badge">
-              {itemTotal()}
-            </small>
-          </sup>
-        </Link>
-      </li>
-
-    </ul>
-  </div>
 );
 
 export default withRouter(Menu);

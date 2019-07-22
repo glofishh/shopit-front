@@ -93,33 +93,42 @@ const Card = ({
   };
 
   return (
-    <div className="card">
-      <div className="card-header name">{product.name}</div>
-      <div className="card-body">
-      {shouldRedirect(redirect)}
-        <center>
-          <ShowImage item={product} url="product" />
-        </center>
-          <p className="lead mt-2">
-            {product.description.substring(0, 100)}
-          </p>
-          <p className="black-10">${product.price}</p>
-          <p className="black-9">
-            category: {product.category && product.category.name}
-          </p>
-          <p className="black-8">
-            added on {moment(product.createdAt).fromNow()}
-          </p>
+    <div className="card-group">
+      <div className="card">
+        {/* <div className="card-header name">{product.name}</div> */}
+        <div className="card-body">
+        {shouldRedirect(redirect)}
+          <Link to={`/product/${product._id}`}>
+            <ShowImage item={product} url="product" />
+          </Link>
+            <div className="black-4 text-uppercase">
+              <Link to={`/product/${product._id}`}>
+                {product.name}
+              </Link>
+            </div>
+            <p className="lead">
+              <Link to={`/product/${product._id}`}>
+                {product.description.substring(0, 80)}...
+              </Link>
+            </p>
+              <div className="black-10">${product.price}</div>
+              <div className="black-9">
+                in: {product.category && product.category.name}
+              </div>
+              <div className="black-8 mb-2">
+                uploaded {moment(product.createdAt).fromNow()}
+              </div>
 
-          {showStock(product.quantity)}
-          <br />
+              {showStock(product.quantity)}
+              <br />
 
-          {showViewButton(showViewProductButton)}
-          {showAddToCart(showAddToCartButton)}
-          {showRemoveButton(showRemoveProductButton)}
-          {showCartUpdateOptions(cartUpdate)}
+              {showViewButton(showViewProductButton)}
+              {showAddToCart(showAddToCartButton)}
+              {showRemoveButton(showRemoveProductButton)}
+              {showCartUpdateOptions(cartUpdate)}
 
 
+        </div>
       </div>
     </div>
   );
