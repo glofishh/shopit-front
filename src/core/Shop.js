@@ -60,9 +60,9 @@ const Shop = () => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-outline-primary mb-5">
-          load more
-        </button>
+        <div className="mb-5 text-uppercase" onClick={loadMore}>
+          <h5>load more</h5>
+        </div>
       )
     );
   };
@@ -107,7 +107,7 @@ const Shop = () => {
 
         <div className="row">
           <div className="col-4">
-            <h4>Filter By Categories</h4>
+            <h4>FILTER BY CATEGORY</h4>
             <ul>
               <Checkbox
                 categories={categories}
@@ -117,7 +117,7 @@ const Shop = () => {
               />
             </ul>
 
-            <h4>Filter By Price Range</h4>
+            <h4>FILTER BY PRICE RANGE</h4>
             <div>
               <RadioBox
                 prices={prices}

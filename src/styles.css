@@ -264,7 +264,6 @@ box-shadow: 0 0 5px #fff;
   background-color: #fff;
   color: #000;
   border-color: #000;
-  font-size: 12px;
 }
 
 .btn-outline-secondary:hover{
@@ -470,9 +469,8 @@ checkout buttons
   font-family: ProximaNova-Semibold;
   font-size: 12px;
   letter-spacing: 1px;
-  color: #000;
-  border: #000;
 }
+
 .form-group {
   font-family: ProximaNova-Regular;
   font-size: 12px;
@@ -487,6 +485,19 @@ checkout buttons
   border: none;
   box-shadow: none;
 }
+
+.form-check-label {
+  font-family: ProximaNova-Regular;
+  font-size: 12px;
+}
+
+/**
+* THE CHECKBOX 
+* AND THE RADIO BOOXXX
+*/
+
+
+
 
 /**
  * border radius
