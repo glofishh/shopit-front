@@ -16,8 +16,8 @@ const isActive = (history, path) => {
 const Menu = ({ history }) => (
     <nav className="navbar navbar-expand-md align-items-lg-start fixed-top">
       <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="nav nav-tabs border-bottom-0">
-          <ul class="navbar-nav mr-auto nav nav-tabs border-bottom-0">
+        <ul className="nav nav-tabs border-bottom-0">
+          <ul className="navbar-nav mr-auto nav nav-tabs border-bottom-0">
             <li className="nav-item text-uppercase font-weight-bold">
               <Search />
             </li>
@@ -26,8 +26,8 @@ const Menu = ({ history }) => (
       </ul>
     </div>
 
-        <div class="mx-auto order-0">
-        <ul class="navbar-nav ml-auto">
+        <div className="mx-auto order-0">
+        <ul className="navbar-nav ml-auto">
           <div className="menu-header text-uppercase">
             <li className="nav-item-main text-uppercase">
               <Link
@@ -43,8 +43,8 @@ const Menu = ({ history }) => (
         </div>
     
 
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
+    <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul className="navbar-nav ml-auto">
             <li className="nav-item text-uppercase font-weight-bold">
               <Link
                 className="nav-link"
@@ -124,7 +124,7 @@ const Menu = ({ history }) => (
                 style={isActive(history, "/dashboard")}
                 to="/dashboard"
               >
-                <i class="fas fa-heart"></i>
+                <i className="fas fa-heart"></i>
               </Link>
           </li>
 

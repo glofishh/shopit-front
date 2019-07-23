@@ -124,34 +124,37 @@ const Checkout = ({ products }) => {
   };
 
   const showDropIn = () => (
-    <div onBlur={() => setData({ ...data, error: '' })}>
-      {data.clientToken !== null && products.length > 0 ? (
-        <div>
-          <div className="gorm-group mb-3">
-            <label className="text-muted">shipping address:</label>
-            <textarea
-              onChange={handleAddress}
-              className="form-control"
-              value={data.address}
-              placeholder="enter your shipping address"
+  
+      <div onBlur={() => setData({ ...data, error: '' })}>
+        {data.clientToken !== null && products.length > 0 ? (
+          <div>
+            <div className="form-group mb-3">
+              <label className="black-5 text-uppercase">Shipping Address:</label>
+              <textarea
+                onChange={handleAddress}
+                className="form-control border rounded-0"
+                value={data.address}
+                placeholder="Enter your shipping address"
+              />
+            </div>
+          <div className="payment-module">
+            <DropIn
+              options={{
+                authorization: data.clientToken,
+                paypal: {
+                  flow: 'vault'
+                }
+              }}
+              onInstance={instance => (data.instance = instance)}
             />
+            <button onClick={buy} className="btn btn-purchase text-uppercase">
+              Complete Purchase
+            </button>
           </div>
 
-          <DropIn
-            options={{
-              authorization: data.clientToken,
-              paypal: {
-                flow: 'vault'
-              }
-            }}
-            onInstance={instance => (data.instance = instance)}
-          />
-          <button onClick={buy} className="btn btn-success btn-block">
-            pay
-          </button>
-        </div>
-      ) : null}
-    </div>
+          </div>
+        ) : null}
+      </div>
   );
 
   const showError = error => (
@@ -168,7 +171,7 @@ const Checkout = ({ products }) => {
       className="alert alert-info"
       style={{ display: success ? '' : 'none' }}
     >
-      your payment was successful. thank you for your order!
+      Your payment was successful. Thanks for your order!
     </div>
   );
 
@@ -177,7 +180,7 @@ const Checkout = ({ products }) => {
 
   return (
     <div>
-      <h2>estimated total: ${getTotal()}</h2>
+      <h2>ESTIMATED TOTAL: ${getTotal()}</h2>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
       {showError(data.error)}

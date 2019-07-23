@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import { getCart } from './cartHelpers';
-import Card from './Card';
+import CheckoutDetails from './CheckoutDetails';
 import Checkout from './Checkout';
+
 
 
 const Cart = () => {
@@ -16,14 +17,13 @@ const Cart = () => {
   const showItems = items => {
     return (
       <div>
-        <h2>
-          you currently have {`${items.length}`} items in your cart
-          <br />
-          <Link to="/shop">continue shopping</Link>
-        </h2>
+        You have {`${items.length}`} {`${items.length === 1 ? `item` : `items`}`} in your cart.
+        <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
+
         <hr />
+        
         {items.map((product, i) => (
-          <Card 
+          <CheckoutDetails 
             key={i}
             product={product}
             showAddToCartButton={false}
@@ -35,29 +35,38 @@ const Cart = () => {
     );
   };
 
+
   const noItemsMessage = () => (
-    <h2>
-      your cart is currently empty.
-      <br/> <Link to="/shop">continue shopping</Link>
-    </h2>
+    <div>
+      Your cart is currently empty.
+      <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
+    </div>
   );
+
+  const oneItemMessage = () => (
+    <div>
+      You have 1 item in your bag.
+      <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
+    </div>
+  )
 
   return (
     <Layout
       title="shopping cart"
       description="manage your items"
-      className="container-fluid"
+      className="container"
     >
+      <div className="container-cart">
+        <h2 className="mb-4">YOUR CART<hr /></h2>
+        <div className="row">
+          <div className="col-6">
+            {items.length > 0 ? showItems(items) : noItemsMessage()}
+          </div>
 
-      <div className="row">
-        <div className="col-6">
-        {items.length > 0 ? showItems(items) : noItemsMessage()}
-        </div>
+          <div className="col-6">
 
-        <div className="col-6">
-          <h2 className="mb-4">your cart summary</h2>
-          <hr />
-          <Checkout products={items} />
+            <Checkout products={items} />
+          </div>
         </div>
       </div>
     </Layout>

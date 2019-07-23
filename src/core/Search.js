@@ -52,13 +52,13 @@ const Search = () => {
 
   const searchMessage = (searched, results) => {
     if (searched && results.length === 1) {
-      return `your search returned ${results.length} product`;
+      return `Your search returned ${results.length} product`;
     }
     if (searched && results.length > 0) {
-      return `your search returned ${results.length} products`;
+      return `Your search returned ${results.length} products`;
     }
     if (searched && results.length < 1) {
-      return `no products found`;
+      return `No products found`;
     }
   };
 
@@ -83,12 +83,8 @@ const Search = () => {
   const searchForm = () => (
 
       <form onSubmit={searchSubmit}>
-
-
         <span className="input-group">
           <div className="input-group input-group-md">
-
-
             <div className="input-group-prepend">
               <div className="input-group-text bg-transparent border-right-0 rounded-0">
             
@@ -96,7 +92,7 @@ const Search = () => {
                   className="btn mr-2"
                   onChange={handleChange('category')}
                 >
-                  <option value="all">SEARCH ALL</option>
+                  <option value="all">Search All</option>
                   {categories.map((c, i) => (
                     <option key={i} value={c._id}>
                       {c.name}
@@ -106,8 +102,6 @@ const Search = () => {
               </div>
             </div>
 
-
-            
               <input
                 type="search"
                 className="form-control py-2 border-left-0 border rounded-0"
@@ -116,22 +110,17 @@ const Search = () => {
               />
               <div className="input-group-append">
                 <button className="btn btn-outline-secondary border-left-0 border text-uppercase" type="button">
-                  <i class="fas fa-search"></i>
+                  <i className="fas fa-search"></i>
                 </button>
               </div>
-
-
           </div>
         </span>
-
-
-
       </form>
     );
     return (
       <div className="row">
-        <div className="container mb-3">{searchForm()}</div>
-        <div className="container mb-3">
+        <div className="container-search mb-3 ml-2">{searchForm()}</div>
+        <div className="container-search mb-3">
           {searchedProducts(results)}
         </div>
       </div>
@@ -139,44 +128,3 @@ const Search = () => {
 };
 
 export default Search;
-
-
-// const searchForm = () => (
-//   <form onSubmit={searchSubmit}>
-//     <span className="input-group-text">
-//       <div className="input-group input-group-lg">
-//         <div className="input-group-prepend">
-//           <select className="btn mr-2" onChange={handleChange('category')}>
-//             <option value="all">search all</option>
-//             {categories.map((c, i) => (
-//               <option key={i} value={c._id}>
-//                 {c.name}
-//               </option>
-//             ))}
-//           </select> 
-//         </div>
-
-//         <input
-//           type="search"
-//           className="form-control"
-//           onChange={handleChange('search')}
-//           placeholder="search by name"
-//         />
-//       </div>
-//       <div
-//         className="btn input-group-append"
-//         style={{ border: 'none' }}
-//       >
-//         <button className="input-group-text">search</button>
-//       </div>
-//     </span>
-//   </form>
-// );
-// return (
-//   <div className="row">
-//     <div className="container mb-3">{searchForm()}</div>
-//     <div className="container mb-3">
-//       {searchedProducts(results)}
-//     </div>
-//   </div>
-// );

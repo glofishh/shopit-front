@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     <Layout
       title="admin dashboard"
       description={`welcome back, ${name}!`}
-      className="container-fluid"
+      className="container"
     >
       <div className="row">
         <div className="col-3">{adminLinks()}</div>

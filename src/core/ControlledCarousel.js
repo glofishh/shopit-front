@@ -14,8 +14,8 @@ const ControlledCarousel = () => {
   return (
     <Carousel
       style={{
-        height: "100%",
-        width: "100%"
+        height: "100%"
+        // width: "100%"
       }}
       activeIndex={index}
       direction={direction}
@@ -29,14 +29,14 @@ const ControlledCarousel = () => {
           position="absolute"
           top="0"
           left="0"
-          min-width="100%"
-          max-width="none"
+          // min-width="100%"
+          // max-width="none"
           height="550"
           object-fit="cover"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>PRE-FALL '19 COLLECTION</h3>
+          <h6>Nulla vitae elit libero, a pharetra augue mollis interdum.</h6>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -54,8 +54,8 @@ const ControlledCarousel = () => {
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>SUMMER SALE</h3>
+          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h6>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -73,10 +73,10 @@ const ControlledCarousel = () => {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
+          <h3>SHOP NEW ARRIVALS</h3>
+          <h6>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          </h6>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

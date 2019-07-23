@@ -105,7 +105,7 @@ const Profile = ({ match }) => {
     <Layout
       title="My Profile"
       description="Update your profile"
-      className="container-fluid"
+      className="container"
     >
   
       <h2 className="mb-4">Update Profile</h2>

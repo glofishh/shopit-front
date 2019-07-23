@@ -37,7 +37,7 @@ const ManageProducts = () => {
     <Layout
       title="Manage Products"
       description="perform CRUD on products"
-      className="container-fluid"
+      className="container"
     >
       <div className="row">
         <div className="col-12">
