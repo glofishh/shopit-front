@@ -435,6 +435,10 @@ box-shadow: 0 0 5px #fff;
 *searchbar/dropdown/update
 */
 
+.input-group-md {
+  width: 275px;
+}
+
 /*
 checkout buttons
 */
@@ -467,8 +471,8 @@ checkout buttons
 
 .input-group, .input-group-text, .input-group-prepend, .form-control {
   font-family: ProximaNova-Semibold;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 16px;
+  letter-spacing: 2px;
 }
 
 .form-group {

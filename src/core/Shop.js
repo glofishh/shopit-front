@@ -28,7 +28,7 @@ const Shop = () => {
   };
 
   const loadFilteredResults = newFilters => {
-    //console.log(newFilters);
+    // console.log(newFilters);
     getFilteredProducts(skip, limit, newFilters)
     .then(data => {
       if (data.error) {
@@ -43,7 +43,7 @@ const Shop = () => {
 
   const loadMore = () => {
     let toSkip = skip + limit;
-    //console.log(newFilters);
+    // console.log(newFilters);
     getFilteredProducts(toSkip, limit, myFilters.filters)
     .then(data => {
       if (data.error) {

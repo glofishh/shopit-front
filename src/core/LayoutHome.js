@@ -10,7 +10,6 @@ const LayoutHome = ({ title = 'Title', description = 'Description', className, c
         <ControlledCarousel />
     </div>
       <Menu />
-    free shipping on all orders
     <div className="homepage-container">
       <div className={className}>{children}</div>
     </div>

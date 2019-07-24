@@ -37,6 +37,7 @@ const Search = () => {
         } else {
           setData({ ...data, results: response, searched: true });
         };
+        console.log('**SEARCHJS** ' + typeof results);
       });
     };
   };
@@ -128,3 +129,9 @@ const Search = () => {
 };
 
 export default Search;
+
+  // const shouldRedirect = redirect => {
+  //   if (redirect) {
+  //     return <Redirect to="/shop/search" />;
+  //   }
+  // };

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
 import { itemTotal } from './cartHelpers';
-import Search from './Search';
+import SearchBar from './SearchBar';
 
 
 const isActive = (history, path) => {
@@ -19,7 +19,7 @@ const Menu = ({ history }) => (
         <ul className="nav nav-tabs border-bottom-0">
           <ul className="navbar-nav mr-auto nav nav-tabs border-bottom-0">
             <li className="nav-item text-uppercase font-weight-bold">
-              <Search />
+              <SearchBar />
             </li>
 
           </ul>
