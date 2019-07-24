@@ -120,11 +120,11 @@ const ProductDetails = ({
               {showCartUpdateOptions(cartUpdate)}
               <br /><br />
               <hr />
-              <div className="black-9">
+              <div className="in-category">
                 In: {product.category && product.category.name}
               </div>
-              <div className="black-8 mb-2">
-                uploaded {moment(product.createdAt).fromNow()}
+              <div className="in-category mb-2">
+                Uploaded {moment(product.createdAt).fromNow()}
               </div>
 
 

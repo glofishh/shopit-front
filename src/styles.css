@@ -49,8 +49,8 @@ h4 {
 
 h3 {
   font-family: ProximaNova-Semibold;
-  font-size: 30px;
-  letter-spacing: 3px;
+  font-size: 56px;
+  letter-spacing: 5px;
 }
 
 h2 {
@@ -80,7 +80,7 @@ h2 {
 .navbar {
   background-color: #fff;
   height: 54px;
-
+  padding: .75rem .75rem;
 }
 
 .nav-tabs .nav-link{
@@ -119,23 +119,23 @@ h2 {
 
 /* black shade form 10-1 */
 .black-10 {
-  background: #fffaf9;
+  background: #f7fafa;
   font-family: 'ProximaNova-Regular', sans-serif !important;
 }
 .black-9 {
-  background: #fff8f7;
+  background: #f7fafa;
   font-family: 'ProximaNova-Regular', sans-serif !important;
 }
 .black-8 {
-  background: #fff3f0;
+  background: #f7fafa;
   font-family: 'ProximaNova-Regular', sans-serif !important;
 }
 .black-7 {
-  background: #f8d8d8;
+  background: #f7fafa;
   font-family: 'ProximaNova-Regular', sans-serif !important;
 }
 .black-6 {
-  background: #bfbfbf;
+  background: #f7fafa;
   font-family: 'ProximaNova-Regular', sans-serif !important;
 }
 .black-5 {
@@ -162,6 +162,26 @@ h2 {
   padding: 0;
 }
 
+.card-dashboard{
+  /* border: 1px solid #000; */
+  border-radius: 0;
+  padding: 0;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  position: relative;
+}
+
+.card-header {
+  padding: .75rem .75rem;
+  margin-bottom: 0;
+  background-color: #f7fafa;
+
+  border-bottom: 1px #000!important;
+}
+
 .card-body{
   padding-right: 15px;
   padding-left: 15px;
@@ -179,6 +199,13 @@ p.details-lead {
   font-family: ProximaNova-Regular;
   font-size: 16px;
 }
+
+.in-category {
+  font-size: 12px;
+}
+/**
+ * signin
+ */
 
 
 /**
@@ -417,9 +444,9 @@ box-shadow: 0 0 5px #fff;
 * instock badge
 */
 .badge-primary {
-  background-color: #eef4f6;
-  color: #a0b0b4;
-  font-weight: normal;
+  background-color: #f7fafa;
+  color: #000;
+  font-size: 12px;
 }
 
 /**
@@ -448,6 +475,22 @@ checkout buttons
   flex-direction: row;
   /* border: 1px solid #000; */
   width: 100%;
+}
+
+.alert {
+  color: #000;
+    background-color: #fff;
+    border-color: #fff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    width: 50%;
+    padding: .75rem .75rem;
+    border: 1px solid #000!important;
+    margin-bottom: 3vh;
+}
+
+.input-group-md .border{
+  /* border: 1px solid #000!important; */
 }
 
 
@@ -495,6 +538,16 @@ checkout buttons
   font-size: 12px;
 }
 
+/*ADMIN USER DASHBOARD LINKS*/
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: .75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0!important;
+}
+
 /**
 * THE CHECKBOX 
 * AND THE RADIO BOOXXX
@@ -531,33 +584,21 @@ checkout buttons
 
 .splash {
   margin: auto;
-  align-content: flex-start;
-  /* display: flex;
-  flex: 1; */
+  align-content: stretch;
   flex-direction: column;
-  justify-content: center;
-
 }
 .carousel-container {
   margin-top: 4vh;
-  object-fit: none;
-  width: 100%;
-  /* margin: auto; */
-  display: block;
-  overflow: hidden;
-  flex: block;
-  object-fit: cover;
 }
 
 .homepage-container {
-  margin-top: 1vh;
-  flex-shrink: 0;
+  margin-top: 6vh;
   flex: block;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px;
+  padding-left: 15px; */
   margin-right: auto;
   margin-left: auto;
 }

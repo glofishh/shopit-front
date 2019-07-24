@@ -43,35 +43,39 @@ const Signup = () => {
   const signUpForm = () => (
     <form>
       <div className="form-group">
-        <label className="text-muted">name</label>
+        <label className="black-5 text-uppercase">name</label>
         <input
           onChange={handleChange('name')}
           type="text"
           className="form-control"
           value={name}
+          style={{width: "50%"}}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">email</label>
+        <label className="black-5 text-uppercase">email</label>
         <input
           onChange={handleChange('email')}
           type="email"
           className="form-control"
           value={email}
+          style={{width: "50%"}}
         />
       </div>
 
       <div className="form-group">
-        <label className="text-muted">password</label>
+        <label className="black-5 text-uppercase">password</label>
         <input
           onChange={handleChange('password')}
           type="password"
           className="form-control"
           value={password}
+          style={{width: "50%"}}
         />
       </div>
-      <button onClick={clickSubmit} className="btn btn-primary">submit</button>
+      <br /><br />
+      <button onClick={clickSubmit} className="btn btn-add text-uppercase" style={{width: "50%"}}>submit</button>
 
     </form>
   );

@@ -40,43 +40,49 @@ const Signin = () => {
 
 
   const signUpForm = () => (
-    <form>
-      <div className="form-group">
-        <label className="text-muted">email</label>
-        <input
-          onChange={handleChange('email')}
-          type="email"
-          className="form-control"
-          value={email}
-        />
-      </div>
 
-      <div className="form-group">
-        <label className="text-muted">password</label>
-        <input
-          onChange={handleChange('password')}
-          type="password"
-          className="form-control"
-          value={password}
-        />
-      </div>
-      <button onClick={clickSubmit} className="btn btn-primary">submit</button>
+    <form>
+
+        <div className="form-group">
+              <label className="black-5 text-uppercase">email</label>
+              <input
+                onChange={handleChange('email')}
+                type="email"
+                className="form-control border rounded-0"
+                value={email}
+                style={{width: "50%"}}
+              />
+        </div>
+
+        <div className="form-group">
+          <label className="black-5 text-uppercase">password</label>
+          <input
+            onChange={handleChange('password')}
+            type="password"
+            className="form-control border rounded-0"
+            value={password}
+            style={{width: "50%"}}
+          />
+        </div>
+        <br /><br />
+        <button onClick={clickSubmit} className="btn btn-add text-uppercase" style={{width: "50%"}}>submit</button>
 
     </form>
+
   );
   
   const showError = () => (
     <div
-      className="alert alert-danger"
+      className="alert border rounded-0"
       style={{ display: error ? '' : 'none' }}
     >
-      {error}
+      <i class="fas fa-exclamation-triangle"></i> {error}
     </div>
   );
 
   const showLoading = () => (
     loading && (
-      <div className="alert alert-info">
+      <div className="alert border rounded-0">
         <h2>Loading...</h2>
       </div>)
   );
@@ -100,10 +106,10 @@ const Signin = () => {
       description="Sign into Shopit E-commerce App"
       className="container col-md-8 offset-md-2"
     >
-      {showLoading()}
-      {showError()}
-      {signUpForm()}
-      {redirectUser()}
+        {showLoading()}
+        {showError()}
+        {signUpForm()}
+        {redirectUser()}
     </Layout>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 
 const SearchBar = ({ search }) => {
@@ -44,7 +45,7 @@ const SearchBar = ({ search }) => {
   // };
 
   return (
-    <div className="container-search mt-1">
+    <div className="container-search">
       <form className="search">
         <span className="input-group-search">
           <div className="input-group input-group-md">
@@ -67,6 +68,13 @@ const SearchBar = ({ search }) => {
                   >
                     <i className="fas fa-search"></i>
                   </button>
+                  {/* <Redirect
+                    to={{
+                      pathname: "/search",
+                      search: "?utm=your+face",
+                      state: { referrer: currentLocation }
+                    }}
+                  /> */}
               </div>
           </div>
         </span>

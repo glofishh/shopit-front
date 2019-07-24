@@ -86,7 +86,7 @@ const Menu = ({ history }) => (
                   style={isActive(history, "/signin")}
                   to="/signin"
                 >
-                  signin
+                  sign in
                 </Link>
               </li>
 

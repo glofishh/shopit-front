@@ -10,29 +10,29 @@ const AdminDashboard = () => {
   const adminLinks = () => {
     return (
       <div className="card">
-        <h4 className="card-header">Admin Links</h4>
-        <ul className="list-group text-uppercase">
+        <h2 className="text-uppercase">Admin Links</h2>
+        <ul className="list-group">
 
-          <li className="list-group-item">
-            <Link className="nav-link" to="/create/category">
+          <li className="list-group-item black-5 text-uppercase">
+            <Link to="/create/category">
               create new category
             </Link>
           </li>
 
-          <li className="list-group-item">
-          <Link className="nav-link" to="/create/product">
+          <li className="list-group-item black-5 text-uppercase">
+          <Link to="/create/product">
             upload new product
           </Link>
           </li>
 
-          <li className="list-group-item">
-          <Link className="nav-link" to="/admin/orders">
+          <li className="list-group-item black-5 text-uppercase">
+          <Link to="/admin/orders">
             view orders
           </Link>
           </li>
 
-          <li className="list-group-item">
-          <Link className="nav-link" to="/admin/products">
+          <li className="list-group-item black-5 text-uppercase">
+          <Link to="/admin/products">
             manage products
           </Link>
           </li>
@@ -44,12 +44,18 @@ const AdminDashboard = () => {
 
   const adminInfo = () => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header">User Info</h3>
+      <div className="card-dashboard mb-5">
+        <h2 className="text-uppercase">Admin Info</h2>
         <ul className="list-group">
-          <li className="list-group-item">Name: {name}</li>
-          <li className="list-group-item">Email: {email}</li>
-          <li className="list-group-item">Role: {role === 1 ? 'admin' : 'user'}</li>
+          <li className="list-group-item border rounded-0">
+            <div className="black-5 text-uppercase">Name:</div> {name}
+          </li>
+          <li className="list-group-item border rounded-0">
+            <div className="black-5 text-uppercase">Email:</div> {email}
+          </li>
+          <li className="list-group-item border rounded-0">
+            <div className="black-5 text-uppercase">Role:</div> {role === 1 ? 'admin' : 'user'}
+          </li>
         </ul>
       </div>
     );
@@ -61,10 +67,28 @@ const AdminDashboard = () => {
       description={`welcome back, ${name}!`}
       className="container"
     >
-      <div className="row">
-        <div className="col-3">{adminLinks()}</div>
-        <div className="col-9">
-          {adminInfo()}
+
+      <div className="container-cart">
+      <h2 className="mb-4">YOUR DASHBOARD<hr /></h2>
+        <div className="row">
+          <div className="col-3">
+            {adminLinks()}
+          <hr />
+          <br />
+            <h2 className="text-uppercase">update profile</h2>
+          <br />
+          <hr />
+          <br />
+          <h2 className="text-uppercase">switch accounts</h2>
+          <br />
+          <hr />
+          <br />
+          </div>
+
+          
+            <div className="col-4 ml-5">
+              {adminInfo()}
+            </div>
         </div>
       </div>
     </Layout>
