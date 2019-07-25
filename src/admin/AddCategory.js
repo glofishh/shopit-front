@@ -36,17 +36,18 @@ const AddCategory = () => {
   const newCategoryForm = () => (
     <form onSubmit={clickSubmit}>
       <div className="form-group">
-        <label className="text-muted">name</label>
+        <label className="black-5 text-uppercase">name</label>
         <input
           type="text"
-          className="form-control"
+          className="form-control border rounded-0"
           onChange={handleChange}
           value={name}
           autoFocus
           required
+          style={{width: "50%"}}
         />
       </div>
-      <button className="btn btn-outline-primary">
+      <button className="btn btn-add text-uppercase" style={{width: "50%"}}>
           create category
       </button>
     </form>
@@ -60,13 +61,13 @@ const AddCategory = () => {
 
   const showError = () => {
     if (error) {
-      return <h3 className="text-danger">{name} already exists</h3>;
+      return <h3 className="text-danger"><i class="fas fa-exclamation-triangle"></i> {name} already exists</h3>;
     }
   };
 
   const goBack = () => (
-    <div className="mt-5">
-      <Link to="/admin/dashboard" className="text-warning">
+    <div className="black-5 text-uppercase mt-5">
+      <Link to="/admin/dashboard">
         go back to dashboard
       </Link>
     </div>
@@ -75,14 +76,17 @@ const AddCategory = () => {
   return (
     <Layout
       title="add a new category"
-      description={`welcome back, ${user.name}! add your category`}
+      className="container"
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          {showSuccess()}
-          {showError()}
-          {newCategoryForm()}
-          {goBack()}
+      <div className="container-create">
+      <h2 className="mb-4 text-uppercase">{`add another category`}<hr /></h2>
+        <div className="row">
+          <div className="col-md-8 offset-md-2">
+            {showSuccess()}
+            {showError()}
+            {newCategoryForm()}
+            {goBack()}
+          </div>
         </div>
       </div>
     </Layout>

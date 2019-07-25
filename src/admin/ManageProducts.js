@@ -33,39 +33,51 @@ const ManageProducts = () => {
     loadProducts();
   }, []);
 
+  const goBack = () => (
+    <div className="black-5 text-uppercase mt-5">
+      <Link to="/admin/dashboard">
+        go back to dashboard
+      </Link>
+    </div>
+  );
+
   return (
     <Layout
       title="Manage Products"
       description="perform CRUD on products"
       className="container"
     >
-      <div className="row">
-        <div className="col-12">
-          <h2 className="text-center">
-            {products.length} products total
-          </h2>
-          <hr />
-          <ul className="list-group">
-            {products.map((p, i) => (
-              <li
-                key={i}
-                className="list-group-item d-flex justify-content-between align-items-center"
-              >
-                <strong>{p.name}</strong>
-                <Link to={`/admin/product/update/${p._id}`}>
-                  <span className="badge badge-warning badge-pill">
-                    update
-                  </span>
-                </Link>
-                <span
-                  onClick={() => destroy(p._id)}
-                  className="badge badge-danger badge-pill"
-                >
-                  delete
-                </span>
-              </li>
-            ))}
-          </ul>
+      <div className="container-create">
+      <h2 className="mb-4 text-uppercase">{`manage products in system`}<hr /></h2>
+        <div className="row">
+          <div className="col-12">
+            <div className="text-left">
+              There are {products.length} products total.
+            </div>
+            <br />
+            <div className="col-8">
+                <ul className="list-group">
+                  {products.map((p, i) => (
+                    <li
+                      key={i}
+                      className="list-group-item d-flex justify-content-space-between align-items-center"
+                    >
+                      <div className="black-5 text-uppercase">{i+1}. {p.name}</div>...........
+                      <Link to={`/admin/product/update/${p._id}`}>
+                        Edit Item <i class="far fa-edit"></i>
+                      </Link>...............
+                      <Link
+                        onClick={() => destroy(p._id)}
+                      >
+                        Delete Item <i class="far fa-trash-alt"></i>
+                      </Link>
+
+                    </li>
+                  ))}
+                </ul>
+                {goBack()}<br /><br />
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

@@ -58,44 +58,69 @@ const Profile = ({ match }) => {
 
     const redirectUser = success => {
       if (success) {
-        return <Redirect to="/cart" />
+        return <Redirect to="/" />
       }
     };
+
+    const goBack = () => (
+      <div className="mt-5">
+        {isAuthenticated() && isAuthenticated().user.role === 0 && (
+          <div className="black-5 text-uppercase">
+            <Link
+              to="/user/dashboard"
+            >
+              go back to dashboard
+            </Link>
+          </div>
+        )}
+        {isAuthenticated() && isAuthenticated().user.role === 1 && (
+          <div className="black-5 text-uppercase">
+            <Link
+              to="/admin/dashboard"
+            >
+              go back to dashboard
+            </Link>
+          </div>
+        )}
+      </div>
+    );
+
 
   const profileUpdate = (name, email, password) => (
     <form>
 
       <div className="form-group">
-        <label className="text-muted">Name</label>
+        <label className="black-5 text-uppercase">Name</label>
         <input
           type="text"
           onChange={handleChange('name')}
-          className="form-control"
+          className="form-control border rounded-0"
           value={name}
+          style={{width: "50%"}}
         />
       </div>
-
       <div className="form-group">
-        <label className="text-muted">Email</label>
+        <label className="black-5 text-uppercase">Email</label>
         <input
           type="email"
           onChange={handleChange('email')}
-          className="form-control"
+          className="form-control border rounded-0"
           value={email}
+          style={{width: "50%"}}
         />
       </div>
-
       <div className="form-group">
-        <label className="text-muted">Password</label>
+        <label className="black-5 text-uppercase">Password</label>
         <input
           type="password"
           onChange={handleChange('password')}
-          className="form-control"
+          className="form-control border rounded-0"
           value={password}
+          style={{width: "50%"}}
         />
       </div>
-
-      <button onClick={clickSubmit} className="btn btn-primary">
+      <br /><br />
+      <button onClick={clickSubmit} className="btn btn-add text-uppercase" style={{width: "50%"}}>
         update profile
       </button>
     </form>
@@ -108,9 +133,10 @@ const Profile = ({ match }) => {
       className="container"
     >
   
-      <h2 className="mb-4">Update Profile</h2>
+      <h2 className="mb-4 text-uppercase">Update Profile/password</h2>
           {profileUpdate(name, email, password)}
           {redirectUser(success)}
+          {goBack()}
     </Layout>
   )
 };

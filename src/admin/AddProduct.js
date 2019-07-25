@@ -86,10 +86,10 @@ const AddProduct = () => {
   };
 
   const newPostForm = () => (
-    <form className="mb-3" onSubmit={clickSubmit}>
+    <form className="mb-3 black-5 text-uppercase" onSubmit={clickSubmit} style={{width: "50%"}}>
       <h4>post photo</h4>
         <div className="form-group">
-          <label className="btn btn-secondary">
+          <label className="btn btn-outline-primary">
             <input
               onChange={handleChange("photo")}
               type="file"
@@ -100,41 +100,41 @@ const AddProduct = () => {
         </div>
 
         <div className="form-group">
-          <label className="text-muted">name</label>
+          <label className="black-5 text-uppercase">name</label>
           <input
             onChange={handleChange("name")}
             type="text"
-            className="form-control"
+            className="form-control border rounded-0"
             value={name}
           />
         </div>
 
         <div className="form-group">
-          <label className="text-muted">description</label>
+          <label className="black-5 text-uppercase">description</label>
           <input
             onChange={handleChange("description")}
-            className="form-control"
+            className="form-control border rounded-0"
             value={description}
           />
         </div>
 
         <div className="form-group">
-          <label className="text-muted">price</label>
+          <label className="black-5 text-uppercase">price</label>
           <input
             onChange={handleChange("price")}
             type="number"
-            className="form-control"
+            className="form-control border rounded-0"
             value={price}
           />
         </div>
 
         <div className="form-group">
-          <label className="text-muted">category</label>
+          <label className="black-5 text-uppercase">category</label>
           <select
             onChange={handleChange("category")}
-            className="form-control"
+            className="form-control border rounded-0"
           >
-            <option>please select</option>
+            <option>Select Category</option>
             {categories && categories.map((c, i) => (
               <option key={i} value={c._id}>
                 {c.name}
@@ -143,29 +143,29 @@ const AddProduct = () => {
           </select>
         </div>
 
-        <div className="form-group">
-          <label className="text-muted">shipping</label>
+        <div className="form-group rounded-0">
+          <label className="black-5 text-uppercase">shipping</label>
           <select
             onChange={handleChange("shipping")}
-            className="form-control"
+            className="form-control border rounded-0"
           >
-            <option>please select</option>
-            <option value="0">no</option>
-            <option value="1">yes</option>
+            <option>Select Shipping Option</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label className="text-muted">quantity</label>
+          <label className="black-5 text-uppercase">quantity</label>
           <input
             onChange={handleChange("quantity")}
             type="number"
-            className="form-control"
+            className="form-control border rounded-0"
             value={quantity}
           />
         </div>
-
-        <button className="btn btn-outline-primary">upload product</button>
+        <br />< br />
+        <button className="btn btn-add text-uppercase">upload product</button>
     </form>
   );
 
@@ -174,13 +174,13 @@ const AddProduct = () => {
       className="alert alert-danger"
       style={{ display: error ? '' : 'none' }}
     >
-      {error}
+      <i class="fas fa-exclamation-triangle"></i> {error}
     </div>
   );
 
   const showSuccess = () => (
     <div
-      className="alert alert-info"
+      className="text-success"
       style={{ display: createdProduct ? '' : 'none'}}
     >
       <h2>{`${createdProduct}`} has been successfully uploaded!</h2>
@@ -196,7 +196,7 @@ const AddProduct = () => {
   
     const goBack = () => (
       <div className="mt-5">
-        <Link to="/admin/dashboard" className="text-warning">
+        <Link to="/admin/dashboard" className="black-5 text-uppercase mt-5">
           go back to dashboard
         </Link>
       </div>
@@ -205,15 +205,18 @@ const AddProduct = () => {
   return (
     <Layout
       title="add a new product"
-      description={`welcome back, ${user.name}! upload a new product`}
+      className="container"
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          {showLoading()}
-          {showSuccess()}
-          {showError()}
-          {newPostForm()}
-          {goBack()}
+      <div className="container-create">
+      <h2 className="mb-4 text-uppercase">{`upload new item`}<hr /></h2>
+        <div className="row">
+          <div className="col-md-8 offset-md-2">
+            {showLoading()}
+            {showSuccess()}
+            {showError()}
+            {newPostForm()}
+            {goBack()}
+          </div>
         </div>
       </div>
     </Layout>

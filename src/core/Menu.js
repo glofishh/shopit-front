@@ -61,7 +61,7 @@ const Menu = ({ history }) => (
                 style={isActive(history, "/user/dashboard")}
                 to="/user/dashboard"
               >
-                dashboard
+                hi, {isAuthenticated().user.name}
               </Link>
             </li>
           )}
@@ -73,7 +73,7 @@ const Menu = ({ history }) => (
                 style={isActive(history, "/admin/dashboard")}
                 to="/admin/dashboard"
               >
-                dashboard
+                hi, {isAuthenticated().user.name}
               </Link>
             </li>
           )}
@@ -96,7 +96,7 @@ const Menu = ({ history }) => (
                   style={isActive(history, "/signup")}
                   to="/signup"
                 >
-                  signup
+                  sign up
                 </Link>
               </li>
             </Fragment>
@@ -113,7 +113,7 @@ const Menu = ({ history }) => (
                   })
                 }
               >
-                hi, {isAuthenticated().user.name}
+                sign out
               </span>
             </li>
           )}
@@ -121,8 +121,8 @@ const Menu = ({ history }) => (
           <li className="nav-item text-uppercase font-weight-bold">
               <Link
                 className="nav-link"
-                style={isActive(history, "/dashboard")}
-                to="/dashboard"
+                style={isActive(history, "/")}
+                to="/"
               >
                 <i className="fas fa-heart"></i>
               </Link>

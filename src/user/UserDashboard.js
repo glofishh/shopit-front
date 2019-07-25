@@ -29,13 +29,13 @@ const Dashboard = () => {
   const userLinks = () => {
     return (
       <div className="card">
-        <h4 className="card-header">user links</h4>
+        <h1 className="card-header">My Links</h1>
         <ul className="list-group">
-          <li className="list-group-item">
-            <Link className="nav-link" to="/cart">my cart</Link>
+          <li className="list-group-item black-5 text-uppercase">
+            <Link to="/cart">my cart</Link>
           </li>
-          <li className="list-group-item">
-          <Link className="nav-link" to={`/profile/${_id}`}>update profile</Link>
+          <li className="list-group-item black-5 text-uppercase">
+          <Link to={`/profile/${_id}`}>update profile</Link>
           </li>
         </ul>
       </div>
@@ -44,12 +44,21 @@ const Dashboard = () => {
 
   const userInfo = () => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header">user info</h3>
+      <div className="card mb-2">
+        <h1 className="card-header">Account Information</h1>
         <ul className="list-group">
-          <li className="list-group-item">Name: {name}</li>
-          <li className="list-group-item">Email: {email}</li>
-          <li className="list-group-item">Role: {role === 1 ? 'admin' : 'user'}</li>
+          <li className="list-group-item">
+            <h5 className="text-uppercase">
+              Name:</h5>
+              {name}</li>
+          <li className="list-group-item">
+            <h5 className="text-uppercase">
+              Email:</h5>
+              {email}</li>
+          <li className="list-group-item">
+            <h5 className="text-uppercase">
+              Role:</h5>
+              {role === 1 ? 'admin' : 'user'}</li>
         </ul>
       </div>
     );
@@ -57,29 +66,37 @@ const Dashboard = () => {
 
   const purchaseHistory = history => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header">purchase history</h3>
-        <ul className="list-group">
-          <li className="list-group-item">history
-            {history.map((h, i) => {
-              return (
-                <div>
-                  <hr />
-                  {h.products.map((p, i) => {
-                    return (
-                      <div key={i}>
-                        <h6>Product name: {p.name}</h6>
-                        <h6>Product price: ${p.price}</h6>
-                        <h6>Purchased date: {moment(p.createdAt).fromNow()}</h6>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </li>
-        </ul>
+
+          <div className="card mb-5">
+            <h1 className="card-header">Past Purchases</h1>
+            <ul className="list-group">
+              <li className="list-group-item"><h2>HISTORY</h2>
+                {history.map((h, i) => {
+                  return (
+                    <div>
+                      <hr />
+                      {h.products.map((p, i) => {
+                        return (
+                          <div key={i}>
+                            <div className="black-5 text-uppercase">
+                              <u>purchased on {moment(p.createdAt).format('L')}:</u>
+                            </div>
+                              <div className="black-6">Item Description:</div>
+                              {p.name}<br />
+                              <div className="black-6">Unit Price:</div>
+                              ${p.price}<br />
+                          <br />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </li>
+            </ul>
+          
       </div>
+
     );
   };
 
@@ -89,12 +106,17 @@ const Dashboard = () => {
       description={`welcome back, ${name}!`}
       className="container"
     >
-      <div className="row">
-        <div className="col-3">{userLinks()}</div>
-        <div className="col-9">
-          {userInfo()}
-          {purchaseHistory(history)}
-        </div>
+      <div className="container-cart"> 
+        <h2 className="mb-4 text-uppercase">{`welcome back, ${name}!`}<hr /></h2>
+          <div className="row">
+            <div className="col-3">
+              {userLinks()}
+            </div>
+            <div className="col-9">
+              {userInfo()}
+              {purchaseHistory(history)}
+            </div>
+          </div>
       </div>
     </Layout>
   );

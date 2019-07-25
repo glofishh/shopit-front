@@ -106,7 +106,7 @@ const Signin = () => {
       description="Sign into Shopit E-commerce App"
       className="container col-md-8 offset-md-2"
     >
-        {showLoading()}
+        {/* {showLoading()} */}
         {showError()}
         {signUpForm()}
         {redirectUser()}

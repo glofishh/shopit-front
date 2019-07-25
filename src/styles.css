@@ -12,7 +12,14 @@
   src: url(../src/assets/fonts/ProximaNova-Semibold.otf);
 }
 
-
+/* hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:#000;
+  height: .5px;
+} */
 
 body {
   font-family: 'ProximaNova-Regular', sans-serif !important;
@@ -59,6 +66,12 @@ h2 {
   letter-spacing: 2px;
 }
 
+h1 {
+  font-family: ProximaNova-Semibold;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
 
 /************************
 ******NAVIGATION/MENU.JS
@@ -79,8 +92,7 @@ h2 {
 
 .navbar {
   background-color: #fff;
-  height: 54px;
-  padding: .75rem .75rem;
+  height: 53px;
 }
 
 .nav-tabs .nav-link{
@@ -88,11 +100,14 @@ h2 {
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
 }
+.nav-link:hover {
+  text-decoration: underline;
+}
 
 /* ICONS */
 
 .fa-heart {
-  color: red;
+  color: #cc0000;
 }
 
 /* cart badge */
@@ -135,8 +150,11 @@ h2 {
   font-family: 'ProximaNova-Regular', sans-serif !important;
 }
 .black-6 {
-  background: #f7fafa;
-  font-family: 'ProximaNova-Regular', sans-serif !important;
+  background: #fff;
+  color: #000;
+  font-family: ProximaNova-Semibold;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 .black-5 {
   background: #fff;
@@ -152,6 +170,9 @@ h2 {
   letter-spacing: 2px;
 }
 
+.body-small {
+  font-size: 10px;
+}
 /**
 * CARDD
 */
@@ -251,13 +272,18 @@ p.details-lead {
   color: #000;
   border-color: #000;
   font-size: 12px;
+  letter-spacing: 1px;
 }
 
 .btn-outline-primary:hover{
-  background-color: #fff;
+  background-color: #000;
+  color: #fff;
+  box-shadow: none;
   border-color: #000;
-  color: #000;
+  outline: none;
   font-size: 12px;
+  letter-spacing: 1px;
+  border-color: #fff;
 }
 
 .btn-outline-primary:focus{
@@ -265,6 +291,7 @@ p.details-lead {
   border-color: #000;
   color: #000;
   font-size: 12px;
+  box-shadow: none;
 }
 
 .btn-outline-primary:active{
@@ -329,8 +356,8 @@ box-shadow: 0 0 5px #fff;
 
 .btn-outline-warning{
   background-color: #fff;
-  border-color: #000;
-  color: #000;
+  border-color: red;
+  color: red;
   font-size: 12px;
 }
 
@@ -424,11 +451,42 @@ box-shadow: 0 0 5px #fff;
   width: 100%;
 }
 
+.btn-purchase:hover {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+
+
 .btn-add {
   font-family: ProximaNova-Semibold;
   background-color: #fff;
   color: #000;
   border-color: #000;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+
+.btn-add:hover {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
   font-size: 16px;
   letter-spacing: 2px;
   flex-grow: 1;
@@ -462,6 +520,39 @@ box-shadow: 0 0 5px #fff;
 *searchbar/dropdown/update
 */
 
+.input-file {
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  font-size: 12px;
+  letter-spacing: 1px;
+
+}
+
+.input-file:focus {
+    background-color: #fff;
+    border-color: #000;
+    color: #000;
+    font-size: 12px;
+    box-shadow: none!important;
+    outline: none!important;
+}
+
+.form-control {
+
+  -webkit-appearance: none;
+}
+
+.form-control:focus {
+  border-radius: 1px solid #000;
+  -webkit-appearance: none;
+}
+
+.input,.input:active {
+  border: 1px solid #000!important;
+  box-shadow: none;
+}
+
 .input-group-md {
   width: 275px;
 }
@@ -477,16 +568,42 @@ checkout buttons
   width: 100%;
 }
 
-.alert {
+.text-success {
+  color: #0c5460;
+  background-color: #fff;
+  font-size: 14px;
+  letter-spacing: 2px;
+  width: 50%;
+  padding: .75rem .75rem;
+  border: 1px solid #0c5460!important;
+  margin-bottom: 3vh;
+  border-radius: 0;
+  width: 100%!important;
+}
+
+.text-danger {
+  color: #cc0000;
+  border: 1px solid #cc0000!important;
+}
+
+.text-loading {
   color: #000;
-    background-color: #fff;
-    border-color: #fff;
-    font-size: 14px;
-    letter-spacing: 2px;
-    width: 50%;
-    padding: .75rem .75rem;
-    border: 1px solid #000!important;
-    margin-bottom: 3vh;
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-family: ProximaNova-Semibold;
+}
+
+.alert {
+  color: #cc0000;
+  background-color: #fff;
+  font-size: 14px;
+  letter-spacing: 2px;
+  width: 50%;
+  padding: .75rem .75rem;
+  border: 1px solid #cc0000!important;
+  margin-bottom: 3vh;
+  border-radius: 0;
+  width: 100%!important;
 }
 
 .input-group-md .border{
@@ -604,6 +721,10 @@ checkout buttons
 }
 
 .container {
+  margin-top: 10vh;
+}
+
+.container-create {
   margin-top: 10vh;
 }
 

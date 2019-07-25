@@ -54,7 +54,7 @@ const Checkout = ({ products }) => {
       <div>{showDropIn()}</div>
     ) : (
       <Link to="/signin">
-        <button className="btn btn-primary">
+        <button className="btn btn-outline-primary text-uppercase">
           sign in to complete checkout
         </button>
       </Link>
@@ -159,7 +159,7 @@ const Checkout = ({ products }) => {
 
   const showError = error => (
     <div
-      className="alert alert-danger"
+      className="alert alert-danger border rounded-0"
       style={{ display: error ? '' : 'none' }}
     >
       {error}
@@ -168,7 +168,7 @@ const Checkout = ({ products }) => {
 
   const showSuccess = success => (
     <div
-      className="alert alert-info"
+      className="text-loading"
       style={{ display: success ? '' : 'none' }}
     >
       Your payment was successful. Thanks for your order!
@@ -176,11 +176,12 @@ const Checkout = ({ products }) => {
   );
 
   const showLoading = loading => loading && 
-    <h2 className="text-danger">loading...</h2>
+    <h2 className="text-lading">loading...</h2>
 
   return (
     <div>
       <h2>ESTIMATED TOTAL: ${getTotal()}</h2>
+      <br/><br />
       {showLoading(data.loading)}
       {showSuccess(data.success)}
       {showError(data.error)}

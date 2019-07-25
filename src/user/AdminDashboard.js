@@ -1,16 +1,17 @@
 import React from 'react';
 import Layout from '../core/Layout';
-import { isAuthenticated } from '../auth';
+import { signout, isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 
 
 const AdminDashboard = () => {
 
   const {user: {_id, name, email, role}} = isAuthenticated();
+
   const adminLinks = () => {
     return (
       <div className="card">
-        <h2 className="text-uppercase">Admin Links</h2>
+        <h1 className="card-header">My Links</h1>
         <ul className="list-group">
 
           <li className="list-group-item black-5 text-uppercase">
@@ -27,7 +28,7 @@ const AdminDashboard = () => {
 
           <li className="list-group-item black-5 text-uppercase">
           <Link to="/admin/orders">
-            view orders
+            manage orders
           </Link>
           </li>
 
@@ -44,17 +45,17 @@ const AdminDashboard = () => {
 
   const adminInfo = () => {
     return (
-      <div className="card-dashboard mb-5">
-        <h2 className="text-uppercase">Admin Info</h2>
+      <div className="card-dashboard mb-2">
+        <h1 className="card-header">Account Information</h1>
         <ul className="list-group">
-          <li className="list-group-item border rounded-0">
-            <div className="black-5 text-uppercase">Name:</div> {name}
+          <li className="list-group-item">
+            <h5 className="text-uppercase">Name:</h5> {name}
           </li>
-          <li className="list-group-item border rounded-0">
-            <div className="black-5 text-uppercase">Email:</div> {email}
+          <li className="list-group-item">
+            <h5 className="text-uppercase">Email:</h5> {email}
           </li>
-          <li className="list-group-item border rounded-0">
-            <div className="black-5 text-uppercase">Role:</div> {role === 1 ? 'admin' : 'user'}
+          <li className="list-group-item">
+            <h5 className="text-uppercase">Role:</h5> {role === 1 ? 'admin' : 'user'}
           </li>
         </ul>
       </div>
@@ -67,29 +68,38 @@ const AdminDashboard = () => {
       description={`welcome back, ${name}!`}
       className="container"
     >
+      <div className="container-create">
+          <h2 className="mb-4 text-uppercase">{`welcome back, ${name}!`}<hr /></h2>
+            <div className="row">
+              <div className="col-3">
+                {adminLinks()}
+              <hr />
+              <br />
+                <h2 className="text-uppercase">
+                  <Link to={`/profile/${_id}`}>update profile</Link>
+                </h2>
+              <br />
+              <hr />
+              <br />
+                <h2 className="text-uppercase">
+                  <Link onClick={() =>
+                          signout(() => {
+                            "/signin";
+                          })
+                        }>switch accounts</Link>
+                </h2>
 
-      <div className="container-cart">
-      <h2 className="mb-4">YOUR DASHBOARD<hr /></h2>
-        <div className="row">
-          <div className="col-3">
-            {adminLinks()}
-          <hr />
-          <br />
-            <h2 className="text-uppercase">update profile</h2>
-          <br />
-          <hr />
-          <br />
-          <h2 className="text-uppercase">switch accounts</h2>
-          <br />
-          <hr />
-          <br />
-          </div>
+                
+              <br />
+              <hr />
+              <br />
+              </div>
 
-          
-            <div className="col-4 ml-5">
-              {adminInfo()}
+              
+                <div className="col-9">
+                  {adminInfo()}
+                </div>
             </div>
-        </div>
       </div>
     </Layout>
   );
