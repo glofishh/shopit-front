@@ -76,8 +76,8 @@ const SearchBar = () => {
     e.preventDefault();
     search(searchValue);
     resetInputField();
-    shouldRedirect(true);
     console.log('results in callsearch function' + results);
+    shouldRedirect(true);
   };
 
   const shouldRedirect = redirect => {
@@ -88,7 +88,7 @@ const SearchBar = () => {
                   search: `?search=${searchValue}`,
                   state: { referrer: results }
                 }}
-              />;
+              /> && <Link to='/search' />;
               }
   };
 
