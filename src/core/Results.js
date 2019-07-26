@@ -2,7 +2,7 @@ import React, { useReducer, useState } from "react";
 import Layout from "./Layout";
 import Card from "./Card";
 import SearchBar from "./SearchBar";
-import { API } from "../config";
+// import { API } from "../config";
 
 
 const initialState = {
@@ -36,7 +36,7 @@ const reducer = (state, action) => {
   }
 };
 
-const Results = () => {
+const Results = ({ search }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [data, setData] = useState({
     categories: [],
@@ -48,21 +48,21 @@ const Results = () => {
   const [limit, setLimit] = useState(8);
   const [size, setSize] = useState(0);
 
-  const search = searchValue => {
-    dispatch({
-      type: "PRODUCT_SEARCH_REQUEST"
-    });
-    // ${API}/products/search?search=cotton
-    fetch(`${API}/products/search?search=${searchValue}`)
-      .then(response => response.json())
-      .then(jsonResponse => {
-        if (jsonResponse.Response === "False") {
-          console.log(jsonResponse.Error);
-        } else {
-          setData({ ...data, results: jsonResponse, searched: true });
-        };
-      });
-  };
+  // const search = searchValue => {
+  //   dispatch({
+  //     type: "PRODUCT_SEARCH_REQUEST"
+  //   });
+  //   // ${API}/products/search?search=cotton
+  //   fetch(`${API}/products/search?search=${searchValue}`)
+  //     .then(response => response.json())
+  //     .then(jsonResponse => {
+  //       if (jsonResponse.Response === "False") {
+  //         console.log(jsonResponse.Error);
+  //       } else {
+  //         setData({ ...data, results: jsonResponse, searched: true });
+  //       };
+  //     });
+  // };
 
 
   const loadMore = () => {
