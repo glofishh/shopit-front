@@ -50,7 +50,6 @@ const Signin = () => {
                 type="email"
                 className="form-control border rounded-0"
                 value={email}
-                style={{width: "50%"}}
               />
         </div>
 
@@ -61,11 +60,10 @@ const Signin = () => {
             type="password"
             className="form-control border rounded-0"
             value={password}
-            style={{width: "50%"}}
           />
         </div>
         <br /><br />
-        <button onClick={clickSubmit} className="btn btn-add text-uppercase" style={{width: "50%"}}>submit</button>
+        <button onClick={clickSubmit} className="btn btn-add text-uppercase">submit</button>
 
     </form>
 
@@ -82,7 +80,7 @@ const Signin = () => {
 
   const showLoading = () => (
     loading && (
-      <div className="alert border rounded-0">
+      <div className="text-loading">
         <h2>Loading...</h2>
       </div>)
   );
@@ -104,12 +102,14 @@ const Signin = () => {
     <Layout
       title="Signin"
       description="Sign into Shopit E-commerce App"
-      className="container col-md-8 offset-md-2"
+      className="container-create"
     >
-        {/* {showLoading()} */}
+      <div className="table-wrapper">
+        {showLoading()}
         {showError()}
         {signUpForm()}
         {redirectUser()}
+        </div>
     </Layout>
   );
 };

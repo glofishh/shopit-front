@@ -43,39 +43,40 @@ const Signup = () => {
   const signUpForm = () => (
     <form>
       <div className="form-group">
-        <label className="black-5 text-uppercase">name</label>
+        <label className="black-5 text-uppercase">username</label>
         <input
           onChange={handleChange('name')}
           type="text"
           className="form-control"
           value={name}
-          style={{width: "50%"}}
         />
       </div>
 
       <div className="form-group">
-        <label className="black-5 text-uppercase">email</label>
+        <label className="black-5 text-uppercase">email </label>
+        <span><i> Must be valid email address containing '@'</i></span>
         <input
           onChange={handleChange('email')}
           type="email"
           className="form-control"
           value={email}
-          style={{width: "50%"}}
         />
       </div>
 
       <div className="form-group">
-        <label className="black-5 text-uppercase">password</label>
+        <label className="black-5 text-uppercase">password </label>
+        <span>
+          <i> Must be min. 6 characters long and include one number and/or symbol ( '!@3$%^&*()'' )</i>
+        </span>
         <input
           onChange={handleChange('password')}
           type="password"
           className="form-control"
           value={password}
-          style={{width: "50%"}}
         />
       </div>
       <br /><br />
-      <button onClick={clickSubmit} className="btn btn-add text-uppercase" style={{width: "50%"}}>submit</button>
+      <button onClick={clickSubmit} className="btn btn-add text-uppercase">submit</button>
 
     </form>
   );
@@ -102,11 +103,13 @@ const Signup = () => {
     <Layout
       title="Signup"
       description="Sign up for Shopit E-commerce App"
-      className="container col-md-8 offset-md-2"
+      className="container-create col-md-8 offset-md-2"
     >
-      {showSucess()}
-      {showError()}
-      {signUpForm()}
+      <div className="table-wrapper">
+        {showSucess()}
+        {showError()}
+        {signUpForm()}
+      </div>
     </Layout>
   );
 };

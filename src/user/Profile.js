@@ -95,7 +95,6 @@ const Profile = ({ match }) => {
           onChange={handleChange('name')}
           className="form-control border rounded-0"
           value={name}
-          style={{width: "50%"}}
         />
       </div>
       <div className="form-group">
@@ -105,7 +104,6 @@ const Profile = ({ match }) => {
           onChange={handleChange('email')}
           className="form-control border rounded-0"
           value={email}
-          style={{width: "50%"}}
         />
       </div>
       <div className="form-group">
@@ -115,11 +113,10 @@ const Profile = ({ match }) => {
           onChange={handleChange('password')}
           className="form-control border rounded-0"
           value={password}
-          style={{width: "50%"}}
         />
       </div>
       <br /><br />
-      <button onClick={clickSubmit} className="btn btn-add text-uppercase" style={{width: "50%"}}>
+      <button onClick={clickSubmit} className="btn btn-add text-uppercase">
         update profile
       </button>
     </form>
@@ -129,13 +126,13 @@ const Profile = ({ match }) => {
     <Layout
       title="My Profile"
       description="Update your profile"
-      className="container"
+      className="container-create"
     >
-  
-      <h2 className="mb-4 text-uppercase">Update Profile/password</h2>
+      <div className="table-wrapper">
           {profileUpdate(name, email, password)}
           {redirectUser(success)}
           {goBack()}
+      </div>
     </Layout>
   )
 };

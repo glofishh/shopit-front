@@ -36,7 +36,7 @@ const AddCategory = () => {
   const newCategoryForm = () => (
     <form onSubmit={clickSubmit}>
       <div className="form-group">
-        <label className="black-5 text-uppercase">name</label>
+        <label className="black-5 text-uppercase">new category name</label>
         <input
           type="text"
           className="form-control border rounded-0"
@@ -44,10 +44,9 @@ const AddCategory = () => {
           value={name}
           autoFocus
           required
-          style={{width: "50%"}}
         />
       </div>
-      <button className="btn btn-add text-uppercase" style={{width: "50%"}}>
+      <button className="btn btn-add text-uppercase">
           create category
       </button>
     </form>
@@ -76,18 +75,20 @@ const AddCategory = () => {
   return (
     <Layout
       title="add a new category"
-      className="container"
+      className="container-create"
     >
-      <div className="container-create">
-      <h2 className="mb-4 text-uppercase">{`add another category`}<hr /></h2>
-        <div className="row">
-          <div className="col-md-8 offset-md-2">
-            {showSuccess()}
-            {showError()}
-            {newCategoryForm()}
-            {goBack()}
+
+      <div class="table-wrapper">
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-8 text-uppercase"><h2>add category</h2>
+                  </div>
+              </div>
           </div>
-        </div>
+          {showSuccess()}
+          {showError()}
+          {newCategoryForm()}
+          {goBack()}
       </div>
     </Layout>
   );

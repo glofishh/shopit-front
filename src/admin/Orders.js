@@ -50,16 +50,23 @@ const Orders = () => {
   };
 
   const showInput = (key, value) => (
-    <div className="input-group mb-2 mr-sm-2">
-      <div className="input-group-prepend">
-        <div className="input-group-text">{key}</div>
-      </div>
-      <input
-        type="text"
-        value={value}
-        className="form-control"
-        readOnly
-      />
+    <div>
+        <span
+          className="text-uppercase "
+          style={{
+            padding: '20px',
+            width: '580px'
+          }}
+        >
+          {key}: 
+        </span>
+        <span
+          style={{
+            "font-family": 'ProximaNova-Regular'
+          }}
+        >
+          {value}
+        </span>
     </div>
   );
 
@@ -77,10 +84,11 @@ const Orders = () => {
 
   const showStatus = o => (
     <div className="form-group">
-      <div className="black-5 mb-4 text-uppercase">Status: {o.status}</div>
+      <div className="black-5 mb-2 text-uppercase" >Status: {o.status}</div>
       <select
-        className="form-control"
+        className="form-control border rounded-0"
         onChange={e => handleStatusChange(e, o._id)}
+        style={{width: '580px'}}>
     >
         <option>Update Status</option>
         {statusValues.map((status, index) => (
@@ -115,7 +123,6 @@ const Orders = () => {
                     </div>
                 </div>
             </div>
-
             <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -123,65 +130,106 @@ const Orders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                
-                  <tr>
-                  <div className="list-group">
+
+                  <div className="form-group black-5 mt-3">
                   {orders.map((o, oIndex) => {
                     return (
-                      <div className="list-group-item" key={oIndex}>
-                        <ul 
+                      <div className="black-5 ml-3" key={oIndex}>
+                        <span 
                           key={oIndex}
-                          className=""
+                          className="text-uppercase"
                         >
                           order ID: {o._id}
-                        </ul>
+                        </span>
 
-
-                  
-                  <ul className="list-group mb-2">
+                  <ul className="list-group">
                   <li className="list-group-item">
                     {showStatus(o)}
                   </li>
-                  <ul>
-                    <li className="list-group-item">
-                      amount: ${o.amount}
-                    </li>
-                    <li className="list-group-item">
-                      order name: {o.user.name}
-                    </li>
-                    <li className="list-group-item">
-                      order date: {" "}
-                      {moment(o.createdAt).fromNow()}
-                    </li>
-                    <li className="list-group-item">
-                      shipped to: {o.address}
-                    </li>
-                    <li className="list-group-item">
-                      total items in order:{" "}
-                      {o.products.length}
-                    </li>
-                  </ul>
-                  </ul>
 
+                  <li className="list-group-item py-0">
+                  <div
+                        className="mb-4"
+                        style={{
+                          padding: '20px',
+                          border: '1px solid gray',
+                          width: '580px'
+                        }}
+                      >
 
-                  <td>
-                    
-                  </td>
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">amount: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.amount}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">order name: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.user.name}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">order date: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={moment(o.createdAt).fromNow()}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">shipped to: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.address}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">total units in order: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.products.length}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                </li>
+                </ul>
 
                   <td>
                     {o.products.map((p, pIndex) => (
                       <div
                         className="mb-4"
                         key={pIndex}
-                        style={{
-                          padding: '20px',
-                          border: '1px solid gray'
-                        }}
                       >
-                        {showInput('Product name', p.name)}
-                        {showInput('Product price', p.price)}
-                        {showInput('Product total', p.count)}
-                        {showInput('Product ID', p._id)}
+                        {showInput('Item name', p.name)}
+                        {showInput('Unit price', `$${p.price}`)}
+                        {showInput('Quantity', p.count)}
+                        {showInput('Item ID', p._id)}
                       </div>
                     ))}
                   </td>
@@ -189,7 +237,7 @@ const Orders = () => {
                   );
                 })}
                 </div>
-                </tr>
+                
                 </tbody>
             </table>
             {goBack()}<br />
@@ -202,65 +250,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-//  <div className="row">
-//  <div className="col-md-8 offset-md-2">
-//    {showOrdersLength()}
-
-//    {orders.map((o, oIndex) => {
-//     return (
-//       <div
-//         className="mt-3"
-//         key={oIndex}
-//         style={{ borderBottom: "1px solid gray" }}
-//       >
-//         <h2 className="mb-5">
-//           <span className="bg-primary">
-//             order ID: {o._id}
-//           </span>
-//         </h2>
-
-//         <ul className="list-group mb-2">
-//           <li className="list-group-item">
-//             {showStatus(o)}
-//           </li>
-//           <li className="list-group-item">
-//             amount: ${o.amount}
-//           </li>
-//           <li className="list-group-item">
-//             order name: {o.user.name}
-//           </li>
-//           <li className="list-group-item">
-//             order date: {" "}
-//             {moment(o.createdAt).fromNow()}
-//           </li>
-//           <li className="list-group-item">
-//             shipped to: {o.address}
-//           </li>
-//         </ul>
-
-//         <h3 className="mt-4 mb-4 font-italic">
-//           total items in order:{" "}
-//           {o.products.length}
-//         </h3>
-
-//         {o.products.map((p, pIndex) => (
-//           <div
-//             className="mb-4"
-//             key={pIndex}
-//             style={{
-//               padding: '20px',
-//               border: '1px solid gray'
-//             }}
-//           >
-//             {showInput('Product name', p.name)}
-//             {showInput('Product price', p.price)}
-//             {showInput('Product total', p.count)}
-//             {showInput('Product ID', p._id)}
-//           </div>
-//         ))}
-//       </div>
-//     );
-//   })}
-// </div>
-// </div>

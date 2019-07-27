@@ -56,7 +56,6 @@ const ManageProducts = () => {
                     </div>
                 </div>
             </div>
-           
 
             <table class="table table-bordered">
                 <thead>
@@ -69,7 +68,7 @@ const ManageProducts = () => {
                   <tr>
                   <td className="list-group">
                     {products.map((p, i) => (
-                      <div className="list-group-item">
+                      <div className="list-group-item py-0">
                         <td 
                           key={i}
                           className="black-5 text-uppercase"
@@ -77,8 +76,10 @@ const ManageProducts = () => {
                           {i+1}. {p.name}
                         </td>
                         <td>
-                            <a class="edit" title="Edit" data-toggle="tooltip" onClick={`/admin/product/update/${p._id}`}>
+                            <a class="edit" title="Edit" data-toggle="tooltip">
+                              <Link to={`/admin/product/update/${p._id}`}>
                                 <i class="far fa-edit"></i>
+                              </Link>
                             </a>
                             <a class="delete" title="Delete" data-toggle="tooltip" onClick={() => destroy(p._id)}>
                                 <i class="far fa-trash-alt"></i>
