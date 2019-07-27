@@ -1,68 +1,21 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import Layout from "./Layout";
 import Card from "./Card";
-import SearchBar from "./SearchBar";
-import { API } from "../config";
+import Search2 from "./Search2";
 
 
-const initialState = {
-  loading: true,
-  items: [],
-  errorMessage: null
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "SEARCH_PRODUCTS_REQUEST":
-      return {
-        ...state,
-        loading: true,
-        errorMessage: null
-      };
-    case "SEARCH_PRODUCTS_SUCCESS":
-      return {
-        ...state,
-        loading: false,
-        PRODUCTS: action.payload
-      };
-    case "SEARCH_PRODUCTS_FAILURE":
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.error
-      };
-    default:
-      return state;
-  }
-};
-
-const Results = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const Results = ({ search }) => {
   const [data, setData] = useState({
-    categories: [],
-    category: '',
     results: [],
-    searched: false
+    searched: false,
+    term: ''
   });
   const { results, searched } = data; //removed search
   const [limit, setLimit] = useState(8);
   const [size, setSize] = useState(0);
 
-  const search = searchValue => {
-    dispatch({
-      type: "PRODUCT_SEARCH_REQUEST"
-    });
-    // ${API}/products/search?search=cotton
-    fetch(`${API}/products/search?search=${searchValue}`)
-      .then(response => response.json())
-      .then(jsonResponse => {
-        if (jsonResponse.Response === "False") {
-          console.log(jsonResponse.Error);
-        } else {
-          setData({ ...data, results: jsonResponse, searched: true });
-        };
-      });
-  };
+useEffect(() => {
+}, [])
 
 
   const loadMore = () => {
@@ -134,7 +87,7 @@ const Results = () => {
               <h2 className="row text-uppercase mt-3">Product search</h2>
             </div>
             <div className="row">
-              <SearchBar search={search} />
+              <Search2 search={search} />
             </div>
               <div className="row">
                 {searchedProducts(results)}

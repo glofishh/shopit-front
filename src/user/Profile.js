@@ -88,7 +88,6 @@ const Profile = ({ match }) => {
 
   const profileUpdate = (name, email, password) => (
     <form>
-
       <div className="form-group">
         <label className="black-5 text-uppercase">Name</label>
         <input
