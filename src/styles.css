@@ -110,6 +110,14 @@ h1 {
   color: #cc0000;
 }
 
+.fa-edit {
+  font-size: 16px;
+}
+
+.fa-trash-alt {
+  font-size: 16px;
+}
+
 /* cart badge */
 
 .cart-badge,
@@ -659,7 +667,7 @@ checkout buttons
 .list-group-item {
   position: relative;
   display: block;
-  padding: .75rem 1.25rem;
+  /* padding: .25rem .5rem; */
   margin-bottom: -1px;
   background-color: #fff;
   border: 0!important;
@@ -670,9 +678,88 @@ checkout buttons
 * AND THE RADIO BOOXXX
 */
 
+/**
+* TABLE
+*/
 
+/* th {
+  border-bottom: 1px solid !important;
+} */
+.table-wrapper {
+  width: 700px;
+  margin: 30px auto;
+  /* background: #fff; */
+  padding: 20px;	
+  /* box-shadow: 0 1px 1px rgba(0,0,0,.05); */
+}
+.table-title {
+  padding-bottom: 10px;
+  margin: 0 0 10px;
+  border-bottom: 0;
+}
+.table-title h2 {
+  margin: 6px 0 0;
+  font-size: 22px;
+}
+.table-title .add-new {
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+}
+/* .table-title .add-new i {
+  margin-right: 4px;
+} */
+table.table {
+  table-layout: fixed;
+}
+/* table.table tr th, table.table tr td {
+  border-color: #fff !important;
+} */
+/* table.table th i {
+  font-size: 13px;
+  margin: 0 5px;
+  cursor: pointer;
+} */
+/* table.table th:last-child {
+  width: 100px;
+} */
+table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}    
 
+table.table td i {
+  font-size: 19px;
+} 
+table.table td a.add i {
+  font-size: 24px;
+  margin-right: -1px;
+  position: relative;
+  top: 3px;
+}     
+/* table.table .form-control {
+  height: 32px;
+  line-height: 32px;
+  box-shadow: none;
+  border-radius: 0px;
+} */
+table.table .form-control.error {
+  border-color: #cc0000;
+}
+table.table td .add {
+  display: none;
+}
 
+.table-bordered td {
+  border: 1px solid #fff !important;
+}
 /**
  * border radius
  */
@@ -726,6 +813,28 @@ checkout buttons
 
 .container-create {
   margin-top: 10vh;
+}
+
+.container-search-result {
+  display: flex;
+  background: #fff;
+  margin-left: 9px;
+  overflow-x: hidden;
+  height: 500px;
+  width: 400px;
+  overflow-y: scroll !important;
+}
+
+.navbar-collapse {
+  /* overflow-y: scroll !important; */
+  /* align-items: flex-start;
+  max-height: 1000px !important; */
+  /* width: auto !important; */
+}
+
+.window {
+  justify-content: space-between;
+  
 }
 
 .related {

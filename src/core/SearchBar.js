@@ -1,7 +1,6 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-
 import { API } from "../config";
 
 const initialState = {
@@ -37,15 +36,22 @@ const reducer = (state, action) => {
 
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [mounted, setMounted] = useState(true);
   const [redirect, setRedirect] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [data, setData] = useState({
-    categories: [],
-    category: '',
     results: [],
-    searched: false
+    searched: false,
+    term: ''
   });
-  const { results, searched } = data; //removed search
+  const [toResults, setToResults] = useState(false);
+  const { results, searched, term } = data; //removed search
+
+  useEffect(() => {
+    return () => console.log('unmounting....');
+  }, []);
+
+  const toggle = () => setMounted(!mounted);
 
   const handleSearchInputChanges = e => {
     setSearchValue(e.target.value);
@@ -62,10 +68,10 @@ const SearchBar = () => {
         if (jsonResponse.Response === "False") {
           console.log(jsonResponse.Error);
         } else {
-          setData({ ...data, results: jsonResponse, searched: true });
+          setData({ ...data, results: jsonResponse, searched: true, term: searchValue });
         };
       });
-      console.log('new results ' + results.length)
+      console.log('new results ' + results.length, term)
   };
 
   const resetInputField = () => {
@@ -76,24 +82,27 @@ const SearchBar = () => {
     e.preventDefault();
     search(searchValue);
     resetInputField();
-    console.log('results in callsearch function' + results);
+    console.log('results in callsearch function' + results, searched, term);
+    setToResults(true);
+    toggle();
     shouldRedirect(true);
+    console.log('how i get this *** ' + redirect.referrer)
   };
 
   const shouldRedirect = redirect => {
     if (redirect) {
-      return {results} && <Redirect
-                to={{
-                  pathname: "/search",
-                  search: `?search=${searchValue}`,
-                  state: { referrer: results }
-                }}
-              /> && <Link to='/search' />;
-              }
+      return <Redirect to={{
+                pathname: "/search",
+                search: `?search=${searchValue}`,
+                state: { referrer: results }
+              }}
+            />;
+    }
   };
 
   return (
     <div className="container-search">
+      {toResults ? <Redirect to="/search" /> : null}
       <form className="search">
         <span className="input-group-search">
           <div className="input-group input-group-md">
@@ -122,6 +131,7 @@ const SearchBar = () => {
           </div>
         </span>
       </form>
+
     </div>
   );
 };
