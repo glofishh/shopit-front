@@ -99,37 +99,3 @@ const ManageProducts = () => {
 };
 
 export default ManageProducts;
-
-    // </div>
-    //   <h2 className="mb-4 text-uppercase">{`manage products in system`}<hr /></h2>
-    //     <div className="row">
-    //       <div className="col-12">
-    //         <div className="text-left">
-    //           There are {products.length} products total.
-    //         </div>
-    //         <br />
-    //         <div className="col-8">
-    //             <ul className="list-group">
-    //               {products.map((p, i) => (
-    //                 <li
-    //                   key={i}
-    //                   className="list-group-item d-flex justify-content-space-between align-items-center"
-    //                 >
-    //                   <div className="black-5 text-uppercase">{i+1}. {p.name}</div>...........
-    //                   <Link to={`/admin/product/update/${p._id}`}>
-    //                     Edit Item <i class="far fa-edit"></i>
-    //                   </Link>...............
-    //                   <Link
-    //                     onClick={() => destroy(p._id)}
-    //                   >
-    //                     Delete Item <i class="far fa-trash-alt"></i>
-    //                   </Link>
-
-    //                 </li>
-    //               ))}
-    //             </ul>
-                
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div> 
