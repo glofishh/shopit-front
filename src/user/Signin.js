@@ -5,12 +5,20 @@ import { signin, authenticate, isAuthenticated } from '../auth';
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: 'gloria@glerbs.com',
-    password: 'pass1word',
+    email: 'flerbs@theflerbs.com',
+    password: 'yyyyy1',
     error: '',
     loading: false,
     redirectToReferrer: false,
   });
+
+  // const [values, setValues] = useState({
+  //   email: 'gloria@glerbs.com',
+  //   password: 'pass1word',
+  //   error: '',
+  //   loading: false,
+  //   redirectToReferrer: false,
+  // });
 
   const { email, password, error, loading, redirectToReferrer } = values;
   const { user } = isAuthenticated();

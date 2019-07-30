@@ -84,7 +84,7 @@ useEffect(() => {
 
           <div className="col-8">
             <div className="row">
-              <h2 className="row text-uppercase mt-3">Product search</h2>
+              <h2 className="row text-uppercase mt-3">search</h2>
             </div>
             <div className="row">
               <Search2 search={search} />

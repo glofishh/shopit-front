@@ -113,6 +113,18 @@ h1 {
   color: #cc0000;
 }
 
+.far {
+  color: #000;
+  font-size: 18px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+}
+
 .fa-edit {
   font-size: 16px;
 }
@@ -498,7 +510,7 @@ box-shadow: 0 0 5px #fff;
   font-family: ProximaNova-Semibold;
   background-color: #000;
   color: #fff;
-  border-color: #fff;
+  border-color: #000;
   font-size: 16px;
   letter-spacing: 2px;
   flex-grow: 1;

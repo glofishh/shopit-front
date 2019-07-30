@@ -92,7 +92,7 @@ const Signup = () => {
 
   const showSucess = () => (
     <div
-      className="alert alert-info"
+      className="text-success"
       style={{ display: success ? '' : 'none' }}
     >
       New account has been created! <Link to ="/signin">Sign in</Link> to continue.
