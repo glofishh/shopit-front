@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers';
+import { addToFavorites } from '../user/apiUser';
 
 
 const ProductDetails = ({ 
@@ -13,6 +14,7 @@ const ProductDetails = ({
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
+  const [favorites, setFavorites] = useState([]);
 
 
   const showViewButton = showViewProductButton => {
@@ -33,9 +35,17 @@ const ProductDetails = ({
     });
   };
 
+  const makeFavorite = () => {
+    addToFavorites(product, () => {
+      setRedirect(true);
+    });
+  };
+
   const shouldRedirect = redirect => {
-    if (redirect) {
+    if (redirect && addToCart) {
       return <Redirect to="/cart" />;
+    } else if (redirect && makeFavorite) {
+      return <Redirect to="/user/favorites" />
     }
   };
 
@@ -45,7 +55,7 @@ const ProductDetails = ({
       showAddToCartButton && (
         <button
           onClick={addToCart}
-          className="btn btn-add text-uppercase"
+          className="btn btn-add text-uppercase mb-3"
         >
           add to cart
         </button>
@@ -53,14 +63,14 @@ const ProductDetails = ({
     );
   };
 
-  const showRemoveButton = showRemoveProductButton => {
+  const showAddToFavorites = showAddToFavoritesButton => {
     return (
-      showRemoveProductButton && (
+      showAddToFavoritesButton && (
         <button
-          onClick={() => removeItem(product._id)}
-          className="btn btn-outline-danger mt-2 mb-2"
+          onClick={makeFavorite}
+          className="btn btn-add text-uppercase"
         >
-            remove item
+          add to loves
         </button>
       )
     );
@@ -116,7 +126,7 @@ const ProductDetails = ({
 
               {showViewButton(showViewProductButton)}
               {showAddToCart(showAddToCartButton)}
-              {showRemoveButton(showRemoveProductButton)}
+              {showAddToFavorites(showAddToFavorites)}
               {showCartUpdateOptions(cartUpdate)}
               <br /><br />
               <hr />

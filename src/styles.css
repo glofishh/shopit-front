@@ -1,4 +1,3 @@
-
 /** 
 * ALL THE FONTS
 */
@@ -72,6 +71,10 @@ h1 {
   letter-spacing: 2px;
 }
 
+.bg-primary {
+  background-color: #f7fafa!important;
+}
+
 
 /************************
 ******NAVIGATION/MENU.JS
@@ -108,6 +111,18 @@ h1 {
 
 .fa-heart {
   color: #cc0000;
+}
+
+.far {
+  color: #000;
+  font-size: 18px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 5px;
+  right: 6px;
 }
 
 .fa-edit {
@@ -300,6 +315,7 @@ p.details-lead {
   color: #000;
   font-size: 12px;
   box-shadow: none;
+  outline: none;
 }
 
 .btn-outline-primary:active{
@@ -494,7 +510,7 @@ box-shadow: 0 0 5px #fff;
   font-family: ProximaNova-Semibold;
   background-color: #000;
   color: #fff;
-  border-color: #fff;
+  border-color: #000;
   font-size: 16px;
   letter-spacing: 2px;
   flex-grow: 1;
@@ -544,16 +560,6 @@ box-shadow: 0 0 5px #fff;
     font-size: 12px;
     box-shadow: none!important;
     outline: none!important;
-}
-
-.form-control {
-
-  -webkit-appearance: none;
-}
-
-.form-control:focus {
-  border-radius: 1px solid #000;
-  -webkit-appearance: none;
 }
 
 .input,.input:active {
@@ -649,8 +655,17 @@ checkout buttons
 }
 
 .form-control:focus {
-  border: none;
+  /* border: none; */
   box-shadow: none;
+  border: 1px solid #000!important;
+  -webkit-appearance: none;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: none!important;
+}
+
+.form-control {
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 .input-group:focus {
@@ -661,6 +676,11 @@ checkout buttons
 .form-check-label {
   font-family: ProximaNova-Regular;
   font-size: 12px;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #f7fafa!important;
+  opacity: 1;
 }
 
 /*ADMIN USER DASHBOARD LINKS*/
@@ -813,6 +833,10 @@ table.table td .add {
 
 .container-create {
   margin-top: 10vh;
+}
+
+.container-search {
+  width: 100%;
 }
 
 .container-search-result {

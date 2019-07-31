@@ -50,16 +50,23 @@ const Orders = () => {
   };
 
   const showInput = (key, value) => (
-    <div className="input-group mb-2 mr-sm-2">
-      <div className="input-group-prepend">
-        <div className="input-group-text">{key}</div>
-      </div>
-      <input
-        type="text"
-        value={value}
-        className="form-control"
-        readOnly
-      />
+    <div>
+        <span
+          className="text-uppercase "
+          style={{
+            padding: '20px',
+            width: '580px'
+          }}
+        >
+          {key}: 
+        </span>
+        <span
+          style={{
+            "font-family": 'ProximaNova-Regular'
+          }}
+        >
+          {value}
+        </span>
     </div>
   );
 
@@ -77,10 +84,11 @@ const Orders = () => {
 
   const showStatus = o => (
     <div className="form-group">
-      <h3 className="mark mb-4">Status: {o.status}</h3>
+      <div className="black-5 mb-2 text-uppercase" >Status: {o.status}</div>
       <select
-        className="form-control"
+        className="form-control border rounded-0"
         onChange={e => handleStatusChange(e, o._id)}
+        style={{width: '580px'}}>
     >
         <option>Update Status</option>
         {statusValues.map((status, index) => (
@@ -92,73 +100,151 @@ const Orders = () => {
     </div>
   );
 
+  const goBack = () => (
+    <div className="black-5 text-uppercase mt-5">
+      <Link to="/admin/dashboard">
+        go back to dashboard
+      </Link>
+    </div>
+  );
 
   return (
     <Layout
       title='orders'
       description={`welcome, ${user.name}! manage orders here`}
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          {showOrdersLength()}
+    {showOrdersLength()}
+<div className="container-create">
+      <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8 text-uppercase"><h2>manage orders</h2></div>
+                    <div class="col-sm-4">
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th><div className="black-5 text-uppercase">{orders.length} orders total</div></th>
+                    </tr>
+                </thead>
+                <tbody>
 
-          {orders.map((o, oIndex) => {
-            return (
-              <div
-                className="mt-3"
-                key={oIndex}
-                style={{ borderBottom: "1px solid gray" }}
-              >
-                <h2 className="mb-5">
-                  <span className="bg-primary">
-                    order ID: {o._id}
-                  </span>
-                </h2>
+                  <div className="form-group black-5 mt-3">
+                  {orders.map((o, oIndex) => {
+                    return (
+                      <div className="black-5 ml-3" key={oIndex}>
+                        <span 
+                          key={oIndex}
+                          className="text-uppercase"
+                        >
+                          order ID: {o._id}
+                        </span>
 
-                <ul className="list-group mb-2">
+                  <ul className="list-group">
                   <li className="list-group-item">
                     {showStatus(o)}
                   </li>
-                  <li className="list-group-item">
-                    amount: ${o.amount}
-                  </li>
-                  <li className="list-group-item">
-                    order name: {o.user.name}
-                  </li>
-                  <li className="list-group-item">
-                    order date: {" "}
-                    {moment(o.createdAt).fromNow()}
-                  </li>
-                  <li className="list-group-item">
-                    shipped to: {o.address}
-                  </li>
+
+                  <li className="list-group-item py-0">
+                  <div
+                        className="mb-4"
+                        style={{
+                          padding: '20px',
+                          border: '1px solid gray',
+                          width: '580px'
+                        }}
+                      >
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">amount: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.amount}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">order name: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.user.name}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">order date: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={moment(o.createdAt).fromNow()}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">shipped to: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.address}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+
+                    <div className="black-5 text-uppercase">
+                      <div className="input-group-prepend">
+                        <div className="">total units in order: </div>
+                      </div>
+                      <input
+                        type="text"
+                        value={o.products.length}
+                        className="form-control border rounded-0"
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                </li>
                 </ul>
 
-                <h3 className="mt-4 mb-4 font-italic">
-                  total items in order:{" "}
-                  {o.products.length}
-                </h3>
-
-                {o.products.map((p, pIndex) => (
-                  <div
-                    className="mb-4"
-                    key={pIndex}
-                    style={{
-                      padding: '20px',
-                      border: '1px solid gray'
-                    }}
-                  >
-                    {showInput('Product name', p.name)}
-                    {showInput('Product price', p.price)}
-                    {showInput('Product total', p.count)}
-                    {showInput('Product ID', p._id)}
+                  <td>
+                    {o.products.map((p, pIndex) => (
+                      <div
+                        className="mb-4"
+                        key={pIndex}
+                      >
+                        {showInput('Item name', p.name)}
+                        {showInput('Unit price', `$${p.price}`)}
+                        {showInput('Quantity', p.count)}
+                        {showInput('Item ID', p._id)}
+                      </div>
+                    ))}
+                  </td>
                   </div>
-                ))}
-              </div>
-            );
-          })}
+                  );
+                })}
+                </div>
+                
+                </tbody>
+            </table>
+            {goBack()}<br />
+          </div>
         </div>
-      </div>
+
+
     </Layout>
   );
 };

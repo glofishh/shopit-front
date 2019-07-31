@@ -56,3 +56,59 @@ export const getPurchaseHistory = (userId, token) => {
   })
   .catch(err => console.log(err));
 };
+
+export const getFavoritesList = (userId, token) => {
+  return fetch(`${API}/favorites/by/user/${userId}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch(err => console.log(err));
+};
+
+export const addToFavorites = (userId, token, product) => {
+  return fetch(`${API}/favorites/by/user/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: product
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch(err => console.log(err));
+};
+
+export const deleteFavoriteProduct = (productId, userId, token) => {
+  return fetch(`${API}/user/favorites/${productId}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+  })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getFavoriteProduct = (productId) => {
+  return fetch(`${API}/product/${productId}`, {
+    method: 'GET'
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch(err => console.log(err));
+};

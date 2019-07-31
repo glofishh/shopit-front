@@ -22,7 +22,7 @@ const AdminDashboard = () => {
 
           <li className="list-group-item black-5 text-uppercase">
           <Link to="/create/product">
-            upload new product
+            upload new item
           </Link>
           </li>
 
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
 
           <li className="list-group-item black-5 text-uppercase">
           <Link to="/admin/products">
-            manage products
+            manage items
           </Link>
           </li>
 

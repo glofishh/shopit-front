@@ -86,8 +86,8 @@ const AddProduct = () => {
   };
 
   const newPostForm = () => (
-    <form className="mb-3 black-5 text-uppercase" onSubmit={clickSubmit} style={{width: "50%"}}>
-      <h4>post photo</h4>
+    <form className="mb-3 black-5 text-uppercase" onSubmit={clickSubmit}>
+      <h4>item photo</h4>
         <div className="form-group">
           <label className="btn btn-outline-primary">
             <input
@@ -100,7 +100,7 @@ const AddProduct = () => {
         </div>
 
         <div className="form-group">
-          <label className="black-5 text-uppercase">name</label>
+          <label className="black-5 text-uppercase">item name</label>
           <input
             onChange={handleChange("name")}
             type="text"
@@ -110,7 +110,7 @@ const AddProduct = () => {
         </div>
 
         <div className="form-group">
-          <label className="black-5 text-uppercase">description</label>
+          <label className="black-5 text-uppercase">item description</label>
           <input
             onChange={handleChange("description")}
             className="form-control border rounded-0"
@@ -119,7 +119,7 @@ const AddProduct = () => {
         </div>
 
         <div className="form-group">
-          <label className="black-5 text-uppercase">price</label>
+          <label className="black-5 text-uppercase">item price</label>
           <input
             onChange={handleChange("price")}
             type="number"
@@ -129,7 +129,7 @@ const AddProduct = () => {
         </div>
 
         <div className="form-group">
-          <label className="black-5 text-uppercase">category</label>
+          <label className="black-5 text-uppercase">item category</label>
           <select
             onChange={handleChange("category")}
             className="form-control border rounded-0"
@@ -150,13 +150,13 @@ const AddProduct = () => {
             className="form-control border rounded-0"
           >
             <option>Select Shipping Option</option>
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+            <option value="0">Pick-up only</option>
+            <option value="1">Can be shipped</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label className="black-5 text-uppercase">quantity</label>
+          <label className="black-5 text-uppercase">item quantity</label>
           <input
             onChange={handleChange("quantity")}
             type="number"
@@ -165,7 +165,7 @@ const AddProduct = () => {
           />
         </div>
         <br />< br />
-        <button className="btn btn-add text-uppercase">upload product</button>
+        <button className="btn btn-add text-uppercase">upload item</button>
     </form>
   );
 
@@ -183,7 +183,7 @@ const AddProduct = () => {
       className="text-success"
       style={{ display: createdProduct ? '' : 'none'}}
     >
-      <h2>{`${createdProduct}`} has been successfully uploaded!</h2>
+      <h2>{`${createdProduct}`} has been successfully uploaded.</h2>
     </div>
   );
 
@@ -205,19 +205,20 @@ const AddProduct = () => {
   return (
     <Layout
       title="add a new product"
-      className="container"
+      className="container-create"
     >
-      <div className="container-create">
-      <h2 className="mb-4 text-uppercase">{`upload new item`}<hr /></h2>
-        <div className="row">
-          <div className="col-md-8 offset-md-2">
-            {showLoading()}
-            {showSuccess()}
-            {showError()}
-            {newPostForm()}
-            {goBack()}
+      <div class="table-wrapper">
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-8 text-uppercase"><h2>add new item</h2>
+                  </div>
+              </div>
           </div>
-        </div>
+          {showLoading()}
+          {showSuccess()}
+          {showError()}
+          {newPostForm()}
+          {goBack()}
       </div>
     </Layout>
   )

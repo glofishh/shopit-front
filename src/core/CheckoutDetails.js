@@ -101,12 +101,15 @@ const CheckoutDetails = ({
                 {product.name}
               {/* </Link> */}
             </div>
+            <div className="">
+                ${product.price}
+            </div>
             {/* <p className="details-lead"> */}
               <Link to={`/product/${product._id}`}>
                 {product.description}
               </Link>
             {/* </p> */}
-              <div className="black-9">
+              <div className="">
                 In: {product.category && product.category.name}
               </div>
               <br />

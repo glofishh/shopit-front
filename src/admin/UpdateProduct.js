@@ -109,10 +109,10 @@ const UpdateProduct = ({ match }) => {
   };
 
   const newPostForm = () => (
-    <form className="mb-3" onSubmit={clickSubmit}>
-      <h4>post photo</h4>
+    <form className="mb-3 black-5 text-uppercase" onSubmit={clickSubmit}>
+      <h4>upload new photo</h4>
         <div className="form-group">
-          <label className="btn btn-secondary">
+          <label className="btn btn-outline-primary">
             <input
               onChange={handleChange("photo")}
               type="file"
@@ -123,41 +123,41 @@ const UpdateProduct = ({ match }) => {
         </div>
 
         <div className="form-group">
-          <label className="text-muted">name</label>
+          <label className="black-5 text-uppercase">new item name</label>
           <input
             onChange={handleChange("name")}
             type="text"
-            className="form-control"
+            className="form-control border rounded-0"
             value={name}
           />
         </div>
 
         <div className="form-group">
-          <label className="text-muted">description</label>
+          <label className="black-5 text-uppercase">new item description</label>
           <input
             onChange={handleChange("description")}
-            className="form-control"
+            className="form-control border rounded-0"
             value={description}
           />
         </div>
 
         <div className="form-group">
-          <label className="text-muted">price</label>
+          <label className="black-5 text-uppercase">new item price</label>
           <input
             onChange={handleChange("price")}
             type="number"
-            className="form-control"
+            className="form-control border rounded-0"
             value={price}
           />
         </div>
 
         <div className="form-group">
-          <label className="text-muted">category</label>
+          <label className="black-5 text-uppercase">new item category</label>
           <select
             onChange={handleChange("category")}
-            className="form-control"
+            className="form-control border rounded-0"
           >
-            <option>please select</option>
+            <option>Select Category</option>
             {categories && categories.map((c, i) => (
               <option key={i} value={c._id}>
                 {c.name}
@@ -166,29 +166,29 @@ const UpdateProduct = ({ match }) => {
           </select>
         </div>
 
-        <div className="form-group">
-          <label className="text-muted">shipping</label>
+        <div className="form-group border rounded-0">
+          <label className="black-5 text-uppercase">shipping</label>
           <select
             onChange={handleChange("shipping")}
-            className="form-control"
+            className="form-control border rounded-0"
           >
-            <option>please select</option>
-            <option value="0">no</option>
-            <option value="1">yes</option>
+            <option>Select Shipping Option</option>
+            <option value="0">Pick-up only</option>
+            <option value="1">Can be shipped</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label className="text-muted">quantity</label>
+          <label className="black-5 text-uppercase">item quantity</label>
           <input
             onChange={handleChange("quantity")}
             type="number"
-            className="form-control"
+            className="form-control border rounded-0"
             value={quantity}
           />
         </div>
 
-        <button className="btn btn-outline-primary">update product</button>
+        <button className="btn btn-add text-uppercase">update item</button>
     </form>
   );
 
@@ -197,16 +197,16 @@ const UpdateProduct = ({ match }) => {
       className="alert alert-danger"
       style={{ display: error ? '' : 'none' }}
     >
-      {error}
+      <i class="fas fa-exclamation-triangle"></i> {error}
     </div>
   );
 
   const showSuccess = () => (
     <div
-      className="alert alert-info"
+      className="text-success"
       style={{ display: createdProduct ? '' : 'none'}}
     >
-      <h2>{`${createdProduct}`} has been successfully updated!</h2>
+      <h2>{`${createdProduct}`} has been successfully updated.</h2>
     </div>
   );
 
@@ -225,20 +225,43 @@ const UpdateProduct = ({ match }) => {
       }
     };
 
+    const goBackToDashboard = () => (
+      <div>
+        <Link to="/admin/dashboard" className="black-5 text-uppercase mt-5">
+          go back to dashboard
+        </Link>
+      </div>
+    );
+
+    const goBackToProducts = () => (
+      <div className="mt-5">
+        <Link to="/admin/products" className="black-5 text-uppercase mt-5">
+          go back to manage products
+        </Link>
+      </div>
+    );
+
   return (
     <Layout
       title="add a new product"
       description={`welcome back, ${user.name}! upload a new product`}
+      className="container-create"
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
+      <div class="table-wrapper">
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-8 text-uppercase"><h2>update item</h2>
+                  </div>
+              </div>
+          </div>
           {showLoading()}
           {showSuccess()}
           {showError()}
           {newPostForm()}
           {redirectUser()}
+          {goBackToProducts()}
+          {goBackToDashboard()}
         </div>
-      </div>
     </Layout>
   );
 };
