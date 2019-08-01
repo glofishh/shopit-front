@@ -72,15 +72,15 @@ export const getFavoritesList = (userId, token) => {
   .catch(err => console.log(err));
 };
 
-export const addToFavorites = (userId, token, product) => {
-  return fetch(`${API}/favorites/by/user/${userId}`, {
-    method: "PUT",
+export const addFavorite = (userId, token, product) => {
+  return fetch(`${API}/favorites/add/${userId}`, {
+    method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: product
+    body: JSON.stringify(product)
   })
   .then(response => {
     return response.json();
@@ -88,9 +88,9 @@ export const addToFavorites = (userId, token, product) => {
   .catch(err => console.log(err));
 };
 
-export const deleteFavoriteProduct = (productId, userId, token) => {
-  return fetch(`${API}/user/favorites/${productId}/${userId}`, {
-    method: "DELETE",
+export const removeFavorite = (favoriteItemId, token, userId) => {
+  return fetch(`${API}/favorites/remove/${favoriteItemId}/${userId}`, {
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -101,14 +101,4 @@ export const deleteFavoriteProduct = (productId, userId, token) => {
         return response.json();
     })
     .catch(err => console.log(err));
-};
-
-export const getFavoriteProduct = (productId) => {
-  return fetch(`${API}/product/${productId}`, {
-    method: 'GET'
-  })
-  .then(response => {
-    return response.json();
-  })
-  .catch(err => console.log(err));
 };
