@@ -17,6 +17,7 @@ import Profile from './user/Profile';
 import ManageProducts from './admin/ManageProducts';
 import UpdateProduct from './admin/UpdateProduct';
 import Results from './core/Results';
+import Results2 from './core/Results2';
 import Favorites from './user/Favorites';
 
 
@@ -26,7 +27,7 @@ const Routes = () => {
       <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/shop" exact component={Shop}/>
-        <Route path="/search" exact component={Results}/>
+        <Route path="/search/" exact component={Results2}/>
         <Route path="/signin" exact component={Signin}/>
         <Route path="/signup" exact component={Signup}/>
         <PrivateRoute path ="/user/dashboard" exact component={Dashboard} />

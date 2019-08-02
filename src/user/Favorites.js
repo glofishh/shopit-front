@@ -6,7 +6,7 @@ import { getFavoritesList, removeFavorite } from './apiUser';
 import moment from 'moment';
 
 
-const Favorites = (props) => {
+const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [favorite, setFavorite] = useState(true);
   const [redirect, setRedirect] = useState(false);

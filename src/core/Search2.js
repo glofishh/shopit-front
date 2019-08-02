@@ -37,7 +37,7 @@ const Search = () => {
         } else {
           setData({ ...data, results: response, searched: true });
         };
-        console.log('**SEARCHJS** ' + typeof results);
+        console.log('**SEARCHJS** ' + search);
       });
     };
   };

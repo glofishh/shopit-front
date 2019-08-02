@@ -20,7 +20,7 @@ const ProductDetails = ({
   const [count, setCount] = useState(product.count);
 
   useEffect(() => {
-  }, [favorite])
+  }, [])
 
   const showViewButton = showViewProductButton => {
     return (
