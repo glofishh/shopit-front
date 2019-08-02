@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link, Redirect } from 'react-router-dom';
+import { addItem, updateItem, removeItem } from '../core/cartHelpers';
 import { getFavoritesList, removeFavorite } from './apiUser';
 import moment from 'moment';
 
@@ -9,7 +10,6 @@ import moment from 'moment';
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [favorite, setFavorite] = useState(true);
-  const [itemIdToRemove, setItemIdToRemove] = useState("")
   const [redirect, setRedirect] = useState(false);
   const {user: {_id, name, email, role}} = isAuthenticated();
   const token = isAuthenticated().token;
@@ -59,6 +59,19 @@ const Favorites = () => {
     })
   }
 
+  const addToCart = item => {
+    addItem(item, () => {
+      callRemoveFunction(item._id);
+      setRedirect(true);
+    });
+  };
+
+  const shouldRedirectToCart = redirect => {
+    if (redirect && addToCart) {
+      return <Redirect to="/cart" />;
+    }
+  };
+
   const goBack = () => (
     <div className="black-5 text-uppercase mt-5">
       <Link to="/user/dashboard">
@@ -98,6 +111,7 @@ const Favorites = () => {
                                   </button>
                                   <button
                                     className="col-5 btn btn-add text-uppercase"
+                                    onClick={() => addToCart(f)}
                                   >
                                     add to cart
                                   </button>
@@ -123,6 +137,7 @@ const Favorites = () => {
       >
   
       <div class="table-wrapper">
+        {shouldRedirectToCart(redirect)}
           <div class="table-title">
               <div class="row">
                   <div class="col-sm-8 text-uppercase"><h2>my favorites</h2>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers';
+import { addFavorite } from '../user/apiUser';
+import { isAuthenticated } from '../auth';
 
 
 const CheckoutDetails = ({ 
@@ -9,23 +11,26 @@ const CheckoutDetails = ({
   showViewProductButton = true,
   showAddToCartButton = true,
   cartUpdate = false,
-  showRemoveProductButton = false
+  showRemoveProductButton = false,
+  showMoveProductButton = false
 }) => {
   const [redirect, setRedirect] = useState(false);
+  const [redirectToFavorites, setRedirectToFavorites] = useState(false);
   const [count, setCount] = useState(product.count);
+  const { user, token } = isAuthenticated();
 
 
-  const showViewButton = showViewProductButton => {
-    return (
-      showViewProductButton && (
-        <Link to={`/product/${product._id}`} className="">
-          <button className="btn btn-outline-primary text-uppercase">
-            view product
-          </button>
-        </Link>
-      )
-    );
-  };
+  // const showViewButton = showViewProductButton => {
+  //   return (
+  //     showViewProductButton && (
+  //       <Link to={`/product/${product._id}`} className="">
+  //         <button className="btn btn-outline-primary text-uppercase">
+  //           view product
+  //         </button>
+  //       </Link>
+  //     )
+  //   );
+  // };
 
   const addToCart = () => {
     addItem(product, () => {
@@ -33,9 +38,15 @@ const CheckoutDetails = ({
     });
   };
 
-  const shouldRedirect = redirect => {
-    if (redirect) {
-      return <Redirect to="/cart" />;
+  // const shouldRedirect = redirect => {
+  //   if (redirect) {
+  //     return <Redirect to="/cart" />;
+  //   }
+  // };
+
+  const shouldRedirectToFavorites = redirectToFavorites => {
+    if (redirectToFavorites) {
+      return <Redirect to="/user/favorites" />;
     }
   };
 
@@ -65,6 +76,32 @@ const CheckoutDetails = ({
     );
   };
 
+  const showMoveButton = showMoveProductButton => {
+    return (
+      showMoveProductButton && (
+        <button
+          onClick={() => makeFavorite(product)}
+          className="btn btn-outline-primary text-uppercase ml-2"
+        >
+            move to favorites
+        </button>
+      )
+    );
+  };
+
+  const makeFavorite = product => {
+    addFavorite(user._id, token, product)
+      .then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          removeItem(product._id);
+          // NEED TO MAKE ASYNC IF USING:
+          //setRedirectToFavorites(true);
+        }
+    });
+  };
+
   // const showStock = quantity => {
   //   return quantity > 0 ? (
   //     <span className="badge badge-primary badge-pill">in stock</span>
@@ -81,10 +118,10 @@ const CheckoutDetails = ({
   }
 
   const showCartUpdateOptions = cartUpdate => {
-    return cartUpdate && <div>
+    return cartUpdate && <div style={{width: "120px"}}>
       <div className="input-group mr-3">
-        <div className="input-group-prepend">
-          <span className="input-group-text bg-transparent border-right-0 border rounded-0 text-uppercase">update</span>
+        <div className="input-group-prepend" style={{width: "50%"}}>
+          <span className="input-group-text bg-transparent border-right-0 border rounded-0 text-uppercase">QTY</span>
         </div>
         <input type="number" className="form-control py-2 border rounded-0" value={count} onChange={handleChange(product._id)}/>
       </div>
@@ -93,6 +130,7 @@ const CheckoutDetails = ({
 
   return (
     <div className="details-group">
+      {shouldRedirectToFavorites(redirectToFavorites)}
       <div className="details">
         {/* <div className="card-header name">{product.name}</div> */}
         <div className="details-body">
@@ -113,20 +151,17 @@ const CheckoutDetails = ({
                 In: {product.category && product.category.name}
               </div>
               <br />
-              {/* <br /><br />
-
-              <div className="black-8 mb-2">
-                uploaded {moment(product.createdAt).fromNow()}
-              </div>
-
-              {showStock(product.quantity)}
-              <br /> */}
 
               <div className="checkout-buttons-container">
                 {showCartUpdateOptions(cartUpdate)}
-                {/* {showViewButton(showViewProductButton)} */}
                 {showAddToCart(showAddToCartButton)}
                 {showRemoveButton(showRemoveProductButton)}
+                <button
+                  onClick={() => makeFavorite(product)}
+                  className="btn btn-outline-primary text-uppercase ml-2"
+                >
+                    move to favorites
+                </button>
               </div>
               <br />
               <hr />
