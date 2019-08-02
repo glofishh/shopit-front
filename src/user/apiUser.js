@@ -89,6 +89,7 @@ export const addFavorite = (userId, token, product) => {
 };
 
 export const removeFavorite = (favoriteItemId, token, userId) => {
+  console.log('ID OF ITEM IS ' + favoriteItemId)
   return fetch(`${API}/favorites/remove/${favoriteItemId}/${userId}`, {
     method: "PUT",
     headers: {

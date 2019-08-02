@@ -9,6 +9,7 @@ import moment from 'moment';
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [favorite, setFavorite] = useState(true);
+  const [itemIdToRemove, setItemIdToRemove] = useState("")
   const [redirect, setRedirect] = useState(false);
   const {user: {_id, name, email, role}} = isAuthenticated();
   const token = isAuthenticated().token;
@@ -29,16 +30,34 @@ const Favorites = () => {
   }, []);
 
 
-  const removeItem = productId => {
-    removeFavorite(productId, token, _id).then(data => {
+  // const removeItem = productId => {
+  //   removeFavorite(productId, token, _id).then(data => {
+  //     if (data.error) {
+  //       console.log(data.error);
+  //     } else {
+  //       setFavorite(false);
+  //       init();
+  //     }
+  //   });
+  // };
+  
+  const callRemoveFunction = favoriteItemId => {
+    console.log('removing favorite...')
+    removeFavorite(favoriteItemId, token, _id).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
-        setFavorite(false);
-        init();
+        console.log('successfully removed item!')
+        getFavoritesList(_id, token).then(data => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            setFavorites(data);
+          }
+        });
       }
-    });
-  };
+    })
+  }
 
   const goBack = () => (
     <div className="black-5 text-uppercase mt-5">
@@ -54,7 +73,8 @@ const Favorites = () => {
           <div className="card mb-5">
             {/* <h1 className="card-header">My Favorites</h1> */}
             <ul className="list-group">
-              <li className="list-group-item"><h2>{`${favorites.length}`} {`${favorites.length === 1 ? `ITEM` : `ITEMS`}`} SAVED</h2>
+              <li className="list-group-item" >
+                <h2>{`${favorites.length}`} {`${favorites.length === 1 ? `ITEM` : `ITEMS`}`} SAVED</h2>
                 {favorites.map((f, i) => {
                   return (
                     <div>
@@ -71,13 +91,12 @@ const Favorites = () => {
                             <div className="mt-2 row">
                               <div className="col-12">
                                   <button
-                                    onClick={() => removeItem(f._id)}
                                     className="col-5 mr-2 btn btn-add text-uppercase"
+                                    onClick={() => callRemoveFunction(f._id)}
                                   >
                                     remove
                                   </button>
                                   <button
-                                    onClick={removeItem(f._id)}
                                     className="col-5 btn btn-add text-uppercase"
                                   >
                                     add to cart
