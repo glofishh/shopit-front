@@ -37,7 +37,7 @@ const Search = () => {
         } else {
           setData({ ...data, results: response, searched: true });
         };
-        console.log('**SEARCHJS** ' + typeof results);
+        console.log('**SEARCHJS** ' + search);
       });
     };
   };
@@ -85,7 +85,7 @@ const Search = () => {
 
       <form onSubmit={searchSubmit}>
         <span className="input-group">
-          <div className="input-group input-group-md">
+          <div className="input-group input-group-md" style={{width: "500px"}}>
             <div className="input-group-prepend">
               <div className="input-group-text bg-transparent border-right-0 rounded-0">
             

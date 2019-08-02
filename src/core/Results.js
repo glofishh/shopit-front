@@ -1,22 +1,42 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
+import { list } from "./apiCore";
 import Card from "./Card";
-import Search2 from "./Search2";
+import queryString from 'query-string';
+// import { Search } from "./Search";
 
 
-const Results = ({ search }) => {
+const Results = ({ search, match, location }) => {
+  const values = queryString.parse(window.location.search);
   const [data, setData] = useState({
     results: [],
     searched: false,
-    term: ''
+    term: values.search,
+    search: ""
   });
-  const { results, searched } = data; //removed search
+  const { results, searched, term } = data; //removed search
   const [limit, setLimit] = useState(8);
   const [size, setSize] = useState(0);
 
-useEffect(() => {
-}, [])
 
+  useEffect(() => {
+    // console.log(JSON.stringify(window.location));
+    // console.log(JSON.stringify(match));
+    searchData();
+  }, []);
+
+  const searchData = () => {
+    if (term) {
+      list({ search: term || undefined })
+      .then(response => {
+        if (response.error) {
+          console.log(response.error);
+        } else {
+          setData({ ...data, results: response, searched: true });
+        };
+      });
+    }
+  };
 
   const loadMore = () => {
     setSize(results.length);
@@ -33,7 +53,6 @@ useEffect(() => {
     );
   };
 
-
   const searchMessage = (searched, results) => {
     if (searched && results.length === 1) {
       return `Your search returned ${results.length} product`;
@@ -45,7 +64,6 @@ useEffect(() => {
       return `No products found`;
     }
   };
-
 
   const searchedProducts = (results = []) => {
     return (
@@ -73,25 +91,18 @@ useEffect(() => {
         >
 
         <div className="row">
-          <div className="col-3 mb-3">
-            <h4> </h4>
-
-            <h4> </h4>
-            <div>
-
-            </div>
-          </div>
+          <div className="col-3 mb-3"></div>
 
           <div className="col-8">
             <div className="row">
-              <h2 className="row text-uppercase mt-3">search</h2>
+              <h2 className="row text-uppercase mt-3">product search</h2>
             </div>
             <div className="row">
-              <Search2 search={search} />
+              {/* <Search search={search} /> */}
             </div>
-              <div className="row">
-                {searchedProducts(results)}
-              </div>
+            <div className="row">
+              {searchedProducts(results)}
+            </div>
             {loadMoreButton()}
             <hr />  
           </div>

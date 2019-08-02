@@ -1,49 +1,37 @@
-import React, { useReducer, useEffect, useState } from "react";
-import { Link, Redirect } from 'react-router-dom';
-import { API } from "../config";
+import React, { useState } from "react";
 
 
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [redirect, setRedirect] = useState(false);
-
-  const [data, setData] = useState({
-    results: [],
-    searched: false,
-    search: ''
-  });
-  const [toResults, setToResults] = useState(false);
-  const { results, searched, search } = data;
-
-  useEffect(() => {
-  }, []);
 
 
   const handleSearchInputChanges = e => {
     setSearchValue(e.target.value);
   };
 
-  const resetInputField = () => {
-    setSearchValue(searchValue);
-  };
-
   const callSearchFunction = e => {
     e.preventDefault();
-    resetInputField();
     routeToResults();
   };
 
   const routeToResults = () => {
-    window.location.assign(`/search/?search=${searchValue}`);
-  }
+  /**
+  * Assign and replace look similar, but have a different constraints. The 
+  * assign method loads the resource at the new URL and preserves the 
+  * previous entry in the browser's navigation history.
 
+  * This means the user can hit the back button and go to the original page.
+  * The replace method does the same thing, except the original or 'current' 
+  * resource is not retained in the browser's history.
+  */
+  window.location.assign(`/search/?search=${searchValue}`);
+  }
 
   return (
     <div className="container-search">
       <form className="search">
         <span className="input-group-search">
           <div className="input-group input-group-md">
-
               <input
                 type="text"
                 className="form-control py-2 border rounded-0"
@@ -51,7 +39,6 @@ const SearchBar = () => {
                 onChange={handleSearchInputChanges}
                 placeholder=""
               />
-              
               <div className="input-group-append">
                   <button
                     className="btn btn-outline-secondary border-left-0 border text-uppercase"
@@ -60,12 +47,10 @@ const SearchBar = () => {
                   >
                     <i className="fas fa-search"></i>
                 </button>
-
               </div>
           </div>
         </span>
       </form>
-
     </div>
   );
 };
