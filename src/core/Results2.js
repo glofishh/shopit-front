@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import Layout from "./Layout";
 import { list } from "./apiCore";
 import Card from "./Card";
@@ -11,7 +12,8 @@ const Results = ({ search, match, location }) => {
   const [data, setData] = useState({
     results: [],
     searched: false,
-    term: values.search
+    term: values.search,
+    search: ""
   });
   const { results, searched, term } = data; //removed search
   const [limit, setLimit] = useState(8);
@@ -30,24 +32,34 @@ const Results = ({ search, match, location }) => {
   // }
 
   useEffect(() => {
-    // init();
+    console.log(JSON.stringify(window.location));
+    console.log(JSON.stringify(match));
     searchData();
   }, []);
 
   const searchData = () => {
     console.log('searchData starting')
+    if (search) {
+      list({ search: search || undefined })
+      .then(response => {
+        if (response.error) {
+          console.log(response.error);
+        } else {
+          setData({ ...data, results: response, searched: true });
+        };
+      });
+    };
     if (term) {
       list({ search: term || undefined })
       .then(response => {
         if (response.error) {
           console.log(response.error);
         } else {
-          console.log('**SEARCH TERM IN RESULTS** ' + search);
+          // console.log('**SEARCH TERM IN RESULTS** ' + search);
           setData({ ...data, results: response, searched: true });
         };
-        
       });
-    };
+    }
   };
 
   const loadMore = () => {
@@ -115,15 +127,16 @@ const Results = ({ search, match, location }) => {
           <div className="col-8">
             <div className="row">
               <h2 className="row text-uppercase mt-3">
-                <code>{JSON.stringify(match, null, 2)}</code>
+                product search
               </h2>
               <h2 className="row text-uppercase mt-3">
-                <code>{JSON.stringify(location, null, 2)}</code>
+                <code>{JSON.stringify(location)}</code>
+                <code>{JSON.stringify(match)}</code>
               </h2>
 
             </div>
             <div className="row">
-              <Search2 search={search} />
+              {/* <Search2 search={search} /> */}
             </div>
               <div className="row">
                 {searchedProducts(results)}

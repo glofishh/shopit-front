@@ -35,16 +35,9 @@ const Favorites = () => {
         console.log(data.error);
       } else {
         setFavorite(false);
-        // newFavorites();
         init();
       }
     });
-  };
-
-  const refresh = redirect => {
-    if (redirect && removeItem) {
-      return <Redirect to="/user/favorites" />;
-    }
   };
 
   const goBack = () => (
@@ -59,7 +52,6 @@ const Favorites = () => {
     return (
 
           <div className="card mb-5">
-            {refresh(redirect)}
             {/* <h1 className="card-header">My Favorites</h1> */}
             <ul className="list-group">
               <li className="list-group-item"><h2>{`${favorites.length}`} {`${favorites.length === 1 ? `ITEM` : `ITEMS`}`} SAVED</h2>
