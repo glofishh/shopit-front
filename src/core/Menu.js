@@ -122,7 +122,7 @@ const Menu = ({ history }) => (
               <Link
                 className="nav-link"
                 style={isActive(history, "/")}
-                to="/"
+                to="/user/favorites"
               >
                 <i className="fas fa-heart"></i>
               </Link>

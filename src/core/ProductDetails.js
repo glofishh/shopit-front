@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers';
-import { addToFavorites } from '../user/apiUser';
+import { addFavorite } from '../user/apiUser';
+import { isAuthenticated } from '../auth';
 
 
 const ProductDetails = ({ 
@@ -12,10 +13,14 @@ const ProductDetails = ({
   cartUpdate = false,
   showRemoveProductButton = false
 }) => {
-  const [redirect, setRedirect] = useState(false);
+  const { user, token } = isAuthenticated();
+  const [redirectToCart, setRedirectToCart] = useState(false);
+  const [redirectToFavorites, setRedirectToFavorites] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const [count, setCount] = useState(product.count);
-  const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+  }, [])
 
   const showViewButton = showViewProductButton => {
     return (
@@ -31,20 +36,30 @@ const ProductDetails = ({
 
   const addToCart = () => {
     addItem(product, () => {
-      setRedirect(true);
+      setRedirectToCart(true);
     });
   };
 
   const makeFavorite = () => {
-    addToFavorites(product, () => {
-      setRedirect(true);
+    addFavorite(user._id, token, product)
+      .then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setFavorite(true);
+          setRedirectToFavorites(true);
+        }
     });
   };
 
-  const shouldRedirect = redirect => {
-    if (redirect && addToCart) {
+  const shouldRedirectToCart = redirectToCart => {
+    if (redirectToCart && addToCart) {
       return <Redirect to="/cart" />;
-    } else if (redirect && makeFavorite) {
+    }
+  };
+
+  const shouldRedirectToFavorites = redirectToFavorites => {
+    if (redirectToFavorites && makeFavorite) {
       return <Redirect to="/user/favorites" />
     }
   };
@@ -107,7 +122,8 @@ const ProductDetails = ({
       <div className="details">
         {/* <div className="card-header name">{product.name}</div> */}
         <div className="details-body">
-        {shouldRedirect(redirect)}
+        {shouldRedirectToCart(redirectToCart)}
+        {shouldRedirectToFavorites(redirectToFavorites)}
             <div className="black-4 text-uppercase">
               {/* <Link to={`/product/${product._id}`}> */}
                 {product.name}
