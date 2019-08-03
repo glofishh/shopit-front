@@ -96,9 +96,14 @@ const Favorites = () => {
                             <div className="black-6">Item Id:</div>
                             {f._id}<br />
                             <div className="black-6">Item Name:</div>
-                            {f.name}<br />
+                              <Link to={`/product/${f._id}`}>
+                                {f.name}
+                              </Link>
+                            <br />
                             <div className="black-6">Item Description:</div>
-                            {f.description}<br />
+                              <Link to={`/product/${f._id}`}>
+                                {f.description}
+                              </Link><br />
                             <div className="black-6">Item Price:</div> 
                             ${f.price}<br />
                             <div className="mt-2 row">

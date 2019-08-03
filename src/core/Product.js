@@ -45,7 +45,7 @@ const Product = props => {
   return (
     <Layout
       title={product && product.name}
-      description={product && product.description && product.description.substring(0, 100)}
+      description={product && product._id && product.description && product.description.substring(0, 100)}
       className="container"
   >
     {/* {goBack()} */}

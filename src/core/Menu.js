@@ -124,7 +124,7 @@ const Menu = ({ history }) => (
                 style={isActive(history, "/")}
                 to="/user/favorites"
               >
-                <i className="fas fa-heart"></i>
+                <i style={{fontSize: "12px"}} className="fas fa-heart"></i>
               </Link>
           </li>
 
