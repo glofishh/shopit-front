@@ -4,6 +4,7 @@ import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers';
 import { addFavorite } from '../user/apiUser';
 import { isAuthenticated } from '../auth';
+import ShowImageThumb from './ShowImageThumb';
 
 
 const CheckoutDetails = ({ 
@@ -135,6 +136,7 @@ const CheckoutDetails = ({
         {/* <div className="card-header name">{product.name}</div> */}
         <div className="details-body">
             <div className="black-5 text-uppercase">
+              <ShowImageThumb item={product} url="product" />
               {/* <Link to={`/product/${product._id}`}> */}
                 {product.name}
               {/* </Link> */}

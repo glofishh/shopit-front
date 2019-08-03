@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link, Redirect } from 'react-router-dom';
+import ShowImageThumb from '../core/ShowImageThumb';
 import { addItem, updateItem, removeItem } from '../core/cartHelpers';
 import { getFavoritesList, removeFavorite } from './apiUser';
 import moment from 'moment';
@@ -29,17 +30,6 @@ const Favorites = () => {
     init(_id, token);
   }, []);
 
-
-  // const removeItem = productId => {
-  //   removeFavorite(productId, token, _id).then(data => {
-  //     if (data.error) {
-  //       console.log(data.error);
-  //     } else {
-  //       setFavorite(false);
-  //       init();
-  //     }
-  //   });
-  // };
   
   const callRemoveFunction = favoriteItemId => {
     console.log('removing favorite...')
@@ -93,17 +83,13 @@ const Favorites = () => {
                     <div>
                       <hr />
                           <div key={i}>
-                            <div className="black-6">Item Id:</div>
+                            <div className="black-6">
+                              <ShowImageThumb item={f} url="product" /></div>
                             {f._id}<br />
                             <div className="black-6">Item Name:</div>
-                              <Link to={`/product/${f._id}`}>
-                                {f.name}
-                              </Link>
-                            <br />
+                            {f.name}<br />
                             <div className="black-6">Item Description:</div>
-                              <Link to={`/product/${f._id}`}>
-                                {f.description}
-                              </Link><br />
+                            {f.description}<br />
                             <div className="black-6">Item Price:</div> 
                             ${f.price}<br />
                             <div className="mt-2 row">
