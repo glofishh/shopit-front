@@ -4,7 +4,6 @@ import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers';
 import { addFavorite } from '../user/apiUser';
 import { isAuthenticated } from '../auth';
-import ShowImageThumb from './ShowImageThumb';
 
 
 const CheckoutDetails = ({ 
@@ -21,17 +20,6 @@ const CheckoutDetails = ({
   const { user, token } = isAuthenticated();
 
 
-  // const showViewButton = showViewProductButton => {
-  //   return (
-  //     showViewProductButton && (
-  //       <Link to={`/product/${product._id}`} className="">
-  //         <button className="btn btn-outline-primary text-uppercase">
-  //           view product
-  //         </button>
-  //       </Link>
-  //     )
-  //   );
-  // };
 
   const addToCart = () => {
     addItem(product, () => {
@@ -39,11 +27,6 @@ const CheckoutDetails = ({
     });
   };
 
-  // const shouldRedirect = redirect => {
-  //   if (redirect) {
-  //     return <Redirect to="/cart" />;
-  //   }
-  // };
 
   const shouldRedirectToFavorites = redirectToFavorites => {
     if (redirectToFavorites) {
@@ -81,7 +64,7 @@ const CheckoutDetails = ({
     return (
       showMoveProductButton && (
         <button
-          onClick={() => makeFavorite(product)}
+          onClick={() => moveToFavorites(product)}
           className="btn btn-outline-primary text-uppercase ml-2"
         >
             move to favorites
@@ -90,10 +73,11 @@ const CheckoutDetails = ({
     );
   };
 
-  const makeFavorite = product => {
+  const moveToFavorites = product => {
     addFavorite(user._id, token, product)
       .then(data => {
         if (data.error) {
+          setRedirectToFavorites(true);
           console.log(data.error);
         } else {
           removeItem(product._id);
@@ -103,13 +87,6 @@ const CheckoutDetails = ({
     });
   };
 
-  // const showStock = quantity => {
-  //   return quantity > 0 ? (
-  //     <span className="badge badge-primary badge-pill">in stock</span>
-  //   ) : (
-  //     <span className="badge badge-primary badge-pill">currently out of stock</span>
-  //   );
-  // };
 
   const handleChange = productId => event => {
     setCount(event.target.value < 1 ? 1 : event.target.value);
@@ -119,8 +96,8 @@ const CheckoutDetails = ({
   }
 
   const showCartUpdateOptions = cartUpdate => {
-    return cartUpdate && <div style={{width: "120px"}}>
-      <div className="input-group mr-3">
+    return cartUpdate && <div style={{width: "125px", float: "right"}}>
+      <div className="input-group pt-5">
         <div className="input-group-prepend" style={{width: "50%"}}>
           <span className="input-group-text bg-transparent border-right-0 border rounded-0 text-uppercase">QTY</span>
         </div>
@@ -133,35 +110,44 @@ const CheckoutDetails = ({
     <div className="details-group">
       {shouldRedirectToFavorites(redirectToFavorites)}
       <div className="details">
-        <div className="details-body">
+        <div className="details-body" style={{width: "400px"}}>
             <div className="black-5 text-uppercase">
-              <ShowImageThumb item={product} url="product" />
               <Link to={`/product/${product._id}`}>
                 {product.name}
               </Link>
             </div>
+            {/* <div>
+              <Link to={`/product/${product._id}`}>
+                {product.description}
+              </Link>
+            </div> */}
             <div className="">
                 ${product.price}
             </div>
-              {/* <Link to={`/product/${product._id}`}>
-                {product.description}
-              </Link> */}
-              <br />
+            <div>
+              {showCartUpdateOptions(cartUpdate)}
+            </div>
               <div className="checkout-buttons-container">
-                {showCartUpdateOptions(cartUpdate)}
-                {showAddToCart(showAddToCartButton)}
-                {showRemoveButton(showRemoveProductButton)}
-                <button
-                  onClick={() => makeFavorite(product)}
-                  className="btn btn-outline-primary text-uppercase ml-2"
-                >
-                    move to favorites
-                </button>
+                <div className="col-12">
+                  <div className="row">
+                    <button
+                      onClick={() => moveToFavorites(product)}
+                      className="btn btn-add text-uppercase"
+                      style={{width: "130px"}}
+                    >
+                        move to <i className="fas fa-heart" style={{fontSize: "14px"}}></i>
+                    </button>
+                    <button
+                      onClick={() => removeItem(product._id)}
+                      className="btn btn-add text-uppercase ml-2"
+                      style={{width: "130px"}}
+                    >
+                        remove
+                    </button>
+                  </div>
+                </div>
               </div>
               <br />
-              <hr />
-  
-  
         </div>
       </div>
     </div>

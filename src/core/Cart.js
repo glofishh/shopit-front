@@ -4,7 +4,7 @@ import Layout from './Layout';
 import { getCart } from './cartHelpers';
 import CheckoutDetails from './CheckoutDetails';
 import Checkout from './Checkout';
-
+import ShowImageThumb from './ShowImageThumb';
 
 
 const Cart = () => {
@@ -23,6 +23,12 @@ const Cart = () => {
         <hr />
         
         {items.map((product, i) => (
+          <div className="row">
+            <div className="col-3">
+              <Link to={`/product/${product._id}`}>
+                <ShowImageThumb item={product} url="product" />
+              </Link>
+            </div>
           <CheckoutDetails 
             key={i}
             product={product}
@@ -30,7 +36,9 @@ const Cart = () => {
             cartUpdate={true}
             showRemoveProductButton={true}
           />
+          </div>
         ))}
+        <hr />
       </div>
     );
   };

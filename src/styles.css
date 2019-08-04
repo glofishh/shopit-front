@@ -270,7 +270,7 @@ p.details-lead {
 
 .product-img {
   min-height: 100px;
-  align-items: center;
+  align-content: center;
 }
 
 .product-img-thumb {
@@ -597,9 +597,8 @@ box-shadow: 0 0 5px #fff;
 checkout buttons
 */
 .checkout-buttons-container {
-  justify-content: flex-start;
-  display: flex;
-  flex-direction: row;
+  float: right;
+  margin-top: 8px;
   /* border: 1px solid #000; */
   width: 100%;
 }

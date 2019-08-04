@@ -65,7 +65,7 @@ const Favorites = () => {
   const goBack = () => (
     <div className="black-5 text-uppercase mt-3">
       <a href="javascript: history.go(-1)">
-        go back to previous page
+        go back
       </a>
     </div>
   );
@@ -82,39 +82,42 @@ const Favorites = () => {
                   return (
                     <div>
                       <hr />
-  
                       <div className="row m-0">
                         <div className="col-3">
-                          <ShowImageThumb item={f} url="product" />
+                          <Link to={`/product/${f._id}`}>
+                            <ShowImageThumb item={f} url="product" />
+                          </Link>
                         </div>
 
                         <div className="row">
                           <div key={i} style={{width: "460px"}}>
                             <div className="black-6">Item Name:</div>
-                              {f.name}<br />
+                              <Link to={`/product/${f._id}`}>
+                                {f.name}</Link><br />
                             <div className="black-6">Item Description:</div>
-                              {f.description}<br />
+                              <Link to={`/product/${f._id}`}>
+                                {f.description}</Link><br />
                             <div className="black-6">Item Price:</div> 
                               ${f.price}<br />
   
-                                    <div className="mt-2 row">
-                                      <div className="col-12">
-                                          <button
-                                            className="col-5 mr-2 btn btn-add text-uppercase"
-                                            onClick={() => callRemoveFunction(f._id)}
-                                          >
-                                            remove
-                                          </button>
-                                          <button
-                                            className="col-6 btn btn-add text-uppercase"
-                                            onClick={() => addToCart(f)}
-                                          >
-                                            add to cart
-                                          </button>
-                                      </div>
-                                    </div>
-                        </div>
-                        <div/>
+                                <div className="mt-2 row">
+                                  <div className="col-12">
+                                      <button
+                                        className="col-5 mr-2 btn btn-add text-uppercase"
+                                        onClick={() => callRemoveFunction(f._id)}
+                                      >
+                                        remove
+                                      </button>
+                                      <button
+                                        className="col-6 btn btn-add text-uppercase"
+                                        onClick={() => addToCart(f)}
+                                      >
+                                        add to cart
+                                      </button>
+                                  </div>
+                                </div>
+                          </div>
+                      <div/>
                       </div>
                       <br />
                       </div>
