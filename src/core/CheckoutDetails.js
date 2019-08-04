@@ -133,27 +133,20 @@ const CheckoutDetails = ({
     <div className="details-group">
       {shouldRedirectToFavorites(redirectToFavorites)}
       <div className="details">
-        {/* <div className="card-header name">{product.name}</div> */}
         <div className="details-body">
             <div className="black-5 text-uppercase">
               <ShowImageThumb item={product} url="product" />
-              {/* <Link to={`/product/${product._id}`}> */}
+              <Link to={`/product/${product._id}`}>
                 {product.name}
-              {/* </Link> */}
+              </Link>
             </div>
             <div className="">
                 ${product.price}
             </div>
-            {/* <p className="details-lead"> */}
-              <Link to={`/product/${product._id}`}>
+              {/* <Link to={`/product/${product._id}`}>
                 {product.description}
-              </Link>
-            {/* </p> */}
-              <div className="">
-                In: {product.category && product.category.name}
-              </div>
+              </Link> */}
               <br />
-
               <div className="checkout-buttons-container">
                 {showCartUpdateOptions(cartUpdate)}
                 {showAddToCart(showAddToCartButton)}
@@ -167,8 +160,8 @@ const CheckoutDetails = ({
               </div>
               <br />
               <hr />
-
-
+  
+  
         </div>
       </div>
     </div>

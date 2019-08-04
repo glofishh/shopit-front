@@ -63,18 +63,18 @@ const Favorites = () => {
   };
 
   const goBack = () => (
-    <div className="black-5 text-uppercase mt-5">
-      <Link to="/user/dashboard">
-        go back to dashboard
-      </Link>
+    <div className="black-5 text-uppercase mt-3">
+      <a href="javascript: history.go(-1)">
+        go back to previous page
+      </a>
     </div>
   );
 
+
   const favoritesList = favorites => {
     return (
-
-          <div className="card mb-5">
-            {/* <h1 className="card-header">My Favorites</h1> */}
+  
+          <div className="card mb-2">
             <ul className="list-group">
               <li className="list-group-item" >
                 <h2>{`${favorites.length}`} {`${favorites.length === 1 ? `ITEM` : `ITEMS`}`} SAVED</h2>
@@ -82,34 +82,42 @@ const Favorites = () => {
                   return (
                     <div>
                       <hr />
-                          <div key={i}>
-                            <div className="black-6">
-                              <ShowImageThumb item={f} url="product" /></div>
-                            {f._id}<br />
+  
+                      <div className="row m-0">
+                        <div className="col-3">
+                          <ShowImageThumb item={f} url="product" />
+                        </div>
+
+                        <div className="row">
+                          <div key={i} style={{width: "460px"}}>
                             <div className="black-6">Item Name:</div>
-                            {f.name}<br />
+                              {f.name}<br />
                             <div className="black-6">Item Description:</div>
-                            {f.description}<br />
+                              {f.description}<br />
                             <div className="black-6">Item Price:</div> 
-                            ${f.price}<br />
-                            <div className="mt-2 row">
-                              <div className="col-12">
-                                  <button
-                                    className="col-5 mr-2 btn btn-add text-uppercase"
-                                    onClick={() => callRemoveFunction(f._id)}
-                                  >
-                                    remove
-                                  </button>
-                                  <button
-                                    className="col-5 btn btn-add text-uppercase"
-                                    onClick={() => addToCart(f)}
-                                  >
-                                    add to cart
-                                  </button>
-                              </div>
-                            </div>
-                          <br />
-                          </div>
+                              ${f.price}<br />
+  
+                                    <div className="mt-2 row">
+                                      <div className="col-12">
+                                          <button
+                                            className="col-5 mr-2 btn btn-add text-uppercase"
+                                            onClick={() => callRemoveFunction(f._id)}
+                                          >
+                                            remove
+                                          </button>
+                                          <button
+                                            className="col-6 btn btn-add text-uppercase"
+                                            onClick={() => addToCart(f)}
+                                          >
+                                            add to cart
+                                          </button>
+                                      </div>
+                                    </div>
+                        </div>
+                        <div/>
+                      </div>
+                      <br />
+                      </div>
                     </div>
                   );
                 })}
@@ -117,7 +125,7 @@ const Favorites = () => {
             </ul>
           
       </div>
-
+  
     );
   };
 
