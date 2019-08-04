@@ -35,7 +35,7 @@ const Dashboard = () => {
             <Link to="/cart">my cart</Link>
           </li>
           <li className="list-group-item black-5 text-uppercase">
-            <Link to="/user/favorites">my favorites <i class="fas fa-heart"></i></Link>
+            <Link to="/user/favorites">my favorites <i className="fas fa-heart" style={{fontSize: "12px"}}></i></Link>
           </li>
           <li className="list-group-item black-5 text-uppercase">
           <Link to={`/profile/${_id}`}>update profile</Link>

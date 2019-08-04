@@ -528,7 +528,21 @@ box-shadow: 0 0 5px #fff;
 }
 
 .btn-added {
-  pointer-events: none;
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+
+.btn-added:hover {
   font-family: ProximaNova-Semibold;
   background-color: #000;
   color: #fff;
