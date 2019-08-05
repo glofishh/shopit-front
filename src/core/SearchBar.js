@@ -4,7 +4,6 @@ import React, { useState } from "react";
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
 
-
   const handleSearchInputChanges = e => {
     setSearchValue(e.target.value);
   };

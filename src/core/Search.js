@@ -129,9 +129,3 @@ const Search = () => {
 };
 
 export default Search;
-
-  // const shouldRedirect = redirect => {
-  //   if (redirect) {
-  //     return <Redirect to="/shop/search" />;
-  //   }
-  // };

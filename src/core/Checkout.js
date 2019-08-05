@@ -10,6 +10,7 @@ import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import DropIn from "braintree-web-drop-in-react";
 import { emptyCart } from "./cartHelpers";
+import { getPurchaseHistory } from '../user/apiUser';
 
 
 const Checkout = ({ products }) => {
@@ -21,7 +22,7 @@ const Checkout = ({ products }) => {
     instance: {},
     address: ''
   });
-
+  const [history, setHistory] = useState([]);
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
 
@@ -54,7 +55,7 @@ const Checkout = ({ products }) => {
       <div>{showDropIn()}</div>
     ) : (
       <Link to="/signin">
-        <button className="btn btn-outline-primary text-uppercase">
+        <button className="btn btn-add text-uppercase">
           sign in to complete checkout
         </button>
       </Link>
@@ -166,14 +167,31 @@ const Checkout = ({ products }) => {
     </div>
   );
 
-  const showSuccess = success => (
-    <div
-      className="text-loading"
-      style={{ display: success ? '' : 'none' }}
-    >
-      Your payment was successful. Thanks for your order!
-    </div>
-  );
+  const showSuccess = success => {
+    getPurchaseHistory(userId, token).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        console.log(data)
+        setHistory(data).then(data => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            return (
+              <div
+                className="text-loading"
+                style={{ display: success ? '' : 'none' }}
+              >
+                Your payment was successful. <br />
+                Your order ID is {data._id}<br/>
+                Thanks for your order!
+              </div>
+            )
+          }
+        })
+      }
+    });
+  };
 
   const showLoading = loading => loading && 
     <h2 className="text-lading">loading...</h2>

@@ -3,16 +3,14 @@ import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link, Redirect } from 'react-router-dom';
 import ShowImageThumb from '../core/ShowImageThumb';
-import { addItem, updateItem, removeItem } from '../core/cartHelpers';
+import { addItem } from '../core/cartHelpers';
 import { getFavoritesList, removeFavorite } from './apiUser';
-import moment from 'moment';
 
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
-  const [favorite, setFavorite] = useState(true);
   const [redirect, setRedirect] = useState(false);
-  const {user: {_id, name, email, role}} = isAuthenticated();
+  const {user: {_id}} = isAuthenticated();
   const token = isAuthenticated().token;
 
 
@@ -30,10 +28,9 @@ const Favorites = () => {
     init(_id, token);
   }, []);
 
-  
-  const callRemoveFunction = favoriteItemId => {
+  const callRemoveFunction = item => {
     console.log('removing favorite...')
-    removeFavorite(favoriteItemId, token, _id).then(data => {
+    removeFavorite(item, token, _id).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -51,7 +48,7 @@ const Favorites = () => {
 
   const addToCart = item => {
     addItem(item, () => {
-      callRemoveFunction(item._id);
+      callRemoveFunction(item);
       setRedirect(true);
     });
   };
@@ -70,10 +67,8 @@ const Favorites = () => {
     </div>
   );
 
-
   const favoritesList = favorites => {
     return (
-  
           <div className="card mb-2">
             <ul className="list-group">
               <li className="list-group-item" >
@@ -88,34 +83,32 @@ const Favorites = () => {
                             <ShowImageThumb item={f} url="product" />
                           </Link>
                         </div>
-
                         <div className="row">
                           <div key={i} style={{width: "460px"}}>
-                            <div className="black-6">Item Name:</div>
+                            <div className="black-6 text-uppercase">
                               <Link to={`/product/${f._id}`}>
                                 {f.name}</Link><br />
-                            <div className="black-6">Item Description:</div>
-                              <Link to={`/product/${f._id}`}>
-                                {f.description}</Link><br />
-                            <div className="black-6">Item Price:</div> 
-                              ${f.price}<br />
-  
-                                <div className="mt-2 row">
-                                  <div className="col-12">
-                                      <button
-                                        className="col-5 mr-2 btn btn-add text-uppercase"
-                                        onClick={() => callRemoveFunction(f._id)}
-                                      >
-                                        remove
-                                      </button>
-                                      <button
-                                        className="col-6 btn btn-add text-uppercase"
-                                        onClick={() => addToCart(f)}
-                                      >
-                                        add to cart
-                                      </button>
-                                  </div>
-                                </div>
+                                <div className="black-6 text-uppercase">${f.price}</div>
+                            </div>
+                            <Link to={`/product/${f._id}`}>
+                              {f.description.substring(0,70)}...</Link><br /><br />
+                            <br /><br />
+                            <div className="row mt-3">
+                              <div className="col-12">
+                                <button
+                                  className="col-5 mr-2 btn btn-add text-uppercase"
+                                  onClick={() => callRemoveFunction(f)}
+                                >
+                                  remove
+                                </button>
+                                <button
+                                  className="col-6 btn btn-add text-uppercase"
+                                  onClick={() => addToCart(f)}
+                                >
+                                  add to cart
+                                </button>
+                              </div>
+                            </div>
                           </div>
                       <div/>
                       </div>
@@ -134,10 +127,8 @@ const Favorites = () => {
 
   return (
     <Layout
-      title="dashboard"
       className="container-create"
       >
-  
       <div class="table-wrapper">
         {shouldRedirectToCart(redirect)}
           <div class="table-title">

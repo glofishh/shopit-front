@@ -85,7 +85,6 @@ const Profile = ({ match }) => {
       </div>
     );
 
-
   const profileUpdate = (name, email, password) => (
     <form>
       <div className="form-group">
@@ -124,8 +123,6 @@ const Profile = ({ match }) => {
 
   return (
     <Layout
-      title="My Profile"
-      description="Update your profile"
       className="container-create"
     >
       <div className="table-wrapper">

@@ -43,20 +43,12 @@ const Cart = () => {
     );
   };
 
-
   const noItemsMessage = () => (
     <div>
       Your cart is currently empty.
       <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
     </div>
   );
-
-  const oneItemMessage = () => (
-    <div>
-      You have 1 item in your bag.
-      <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
-    </div>
-  )
 
   return (
     <Layout

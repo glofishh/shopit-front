@@ -100,8 +100,6 @@ const Shop = () => {
 
   return (
     <Layout
-        title="shop page"
-        description="browse through items"
         className="container"
         >
 

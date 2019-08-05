@@ -64,8 +64,6 @@ const AdminDashboard = () => {
 
   return (
     <Layout
-      title="admin dashboard"
-      description={`welcome back, ${name}!`}
       className="container"
     >
       <div className="container-create">
@@ -88,14 +86,10 @@ const AdminDashboard = () => {
                           })
                         }>switch accounts</Link>
                 </h2>
-
-                
               <br />
               <hr />
               <br />
               </div>
-
-              
                 <div className="col-9">
                   {adminInfo()}
                 </div>

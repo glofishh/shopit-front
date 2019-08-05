@@ -3,7 +3,6 @@ import Layout from "./Layout";
 import { list } from "./apiCore";
 import Card from "./Card";
 import queryString from 'query-string';
-// import { Search } from "./Search";
 
 
 const Results = ({ search, match, location }) => {
@@ -14,7 +13,7 @@ const Results = ({ search, match, location }) => {
     term: values.search,
     search: ""
   });
-  const { results, searched, term } = data; //removed search
+  const { results, searched, term } = data;
   const [limit, setLimit] = useState(8);
   const [size, setSize] = useState(0);
 
@@ -98,7 +97,6 @@ const Results = ({ search, match, location }) => {
               <h2 className="row text-uppercase mt-3">product search</h2>
             </div>
             <div className="row">
-              {/* <Search search={search} /> */}
             </div>
             <div className="row">
               {searchedProducts(results)}

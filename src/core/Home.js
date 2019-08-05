@@ -34,8 +34,6 @@ const Home = () => {
     loadProductsBySell();
   }, [])
 
-
-
   return (
     <LayoutHome
         title="Home Page"
@@ -64,6 +62,5 @@ const Home = () => {
     </LayoutHome>
   );
 };
-
 
 export default Home;

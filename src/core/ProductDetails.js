@@ -11,23 +11,36 @@ const ProductDetails = ({
   showViewProductButton = true,
   showAddToCartButton = true,
   cartUpdate = false,
-  showRemoveProductButton = false
+  showAddToFavoritesButton = true
 }) => {
-  const { user, token } = isAuthenticated();
+
   const [redirectToCart, setRedirectToCart] = useState(false);
-  const [redirectToFavorites, setRedirectToFavorites] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const [count, setCount] = useState(product.count);
 
+  const userId = isAuthenticated() && isAuthenticated().user._id;
+  const token = isAuthenticated() && isAuthenticated().token;
 
+  const showFavorites = () => {
+    return isAuthenticated() ? (
+      <div>{showAddToFavorites(showAddToFavoritesButton)}</div>
+    ) : (
+      <Link to="/signin">
+        <button className="btn btn-add text-uppercase">
+          sign in to see <i className="fas fa-heart" style={{fontSize: "15px"}}></i>'s
+        </button>
+      </Link>
+    );
+  };
 
   const init = (userId, token) => {
     getFavoritesList(userId, token).then(data => {
+      console.log(data);
       if (data.error) {
         console.log(data.error);
       } else {
         for (var i = 0; i < data.length; i++) {
-          // console.log(data[i])
+          console.log(data[i])
           if (data[i]._id === product._id) {
               setFavorite(true);
               return;
@@ -41,7 +54,7 @@ const ProductDetails = ({
   };
 
   useEffect(() => {
-    init(user._id, token);
+    init(userId, token);
   }, [product._id])
 
 
@@ -79,25 +92,23 @@ const ProductDetails = ({
   };
 
   const makeFavorite = () => {
-    addFavorite(user._id, token, product)
+    addFavorite(userId, token, product)
       .then(data => {
         if (data.error) {
           console.log(data.error);
         } else {
           setFavorite(true);
-          // setRedirectToFavorites(true);
         }
     });
   };
 
   const undoFavorite = () => {
-    removeFavorite(product._id, token, user._id)
+    removeFavorite(product, token, userId)
       .then(data => {
         if (data.error) {
           console.log(data.error);
         } else {
           setFavorite(false);
-          // setRedirectToFavorites(true);
         }
     });
   };
@@ -105,12 +116,6 @@ const ProductDetails = ({
   const shouldRedirectToCart = redirectToCart => {
     if (redirectToCart && addToCart) {
       return <Redirect to="/cart" />;
-    }
-  };
-
-  const shouldRedirectToFavorites = redirectToFavorites => {
-    if (redirectToFavorites && makeFavorite) {
-      return <Redirect to="/user/favorites" />
     }
   };
 
@@ -181,10 +186,8 @@ const ProductDetails = ({
       <div className="details">
         <div className="details-body">
           {shouldRedirectToCart(redirectToCart)}
-          {shouldRedirectToFavorites(redirectToFavorites)}
             <div className="black-4 text-uppercase">
-                {product.name} 
-                {/* {setIconDisplay(favorite)} */}
+                {product.name} {setIconDisplay(favorite)}
             </div>
             <p className="details-lead">
                 {product.description}
@@ -194,10 +197,9 @@ const ProductDetails = ({
               <br /><br/>
               {showStock(product.quantity)}
               <br /><br/>
-
               {showViewButton(showViewProductButton)}
               {showAddToCart(showAddToCartButton)}
-              {showAddToFavorites(showAddToFavorites)}
+              {showFavorites()}
               {showCartUpdateOptions(cartUpdate)}
               <br /><br />
               <hr />
@@ -207,8 +209,6 @@ const ProductDetails = ({
               <div className="in-category mb-2">
                 Uploaded {moment(product.createdAt).fromNow()}
               </div>
-
-
         </div>
       </div>
     </div>

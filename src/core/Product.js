@@ -3,8 +3,7 @@ import Layout from "./Layout";
 import { read, listRelated } from "./apiCore";
 import Card from "./Card";
 import ProductDetails from "./ProductDetails";
-import ShowImage from "./ShowImage";
-// import { Link } from 'react-router-dom';
+import ShowImageProductDetails from "./ShowImageProductDetails";
 
 const Product = props => {
   const [product, setProduct] = useState({});
@@ -34,25 +33,14 @@ const Product = props => {
     loadSingleProduct(productId);
   }, [props]);
 
-  // const goBack = () => (
-  //   <div className="mt-5">
-  //     <Link to="/admin/dashboard">
-  //       go back to dashboard
-  //     </Link>
-  //   </div>
-  // );
-
   return (
     <Layout
-      title={product && product.name}
-      description={product && product._id && product.description && product.description.substring(0, 100)}
       className="container"
   >
-    {/* {goBack()} */}
     <div className="row no-gutters">
         <div className="col-8">
           <div className="details-img">
-            <ShowImage item={product} url="product" />
+            <ShowImageProductDetails item={product} url="product" />
           </div>
         </div>
 
@@ -75,39 +63,8 @@ const Product = props => {
         </div>
         <br /><br />
     </div>
-
-
     </Layout>
   );
 };
 
 export default (Product);
-
-
-// return (
-//   <Layout
-//     title={product && product.name}
-//     description={product && product.description && product.description.substring(0, 100)}
-//     className="container"
-// >
-//     <div className="row">
-//       <div className="col-8">
-//         {product && product.description && ( 
-//         <Card product={product} showViewProductButton={false} />
-//         )}
-//       </div>
-
-//       <div className="col-4">
-//         <h4>other recommended items</h4>
-//           {relatedProduct.map((p, i) => (
-//             <div className="mb-3">
-//               <Card key={i} product={p} />
-//             </div>
-//           ))}
-//       </div>
-
-//     </div>
-//   </Layout>
-// );
-
-// {product.description.substring(0, 100)}...

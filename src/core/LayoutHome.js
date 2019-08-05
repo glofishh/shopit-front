@@ -3,7 +3,7 @@ import Menu from './Menu';
 import ControlledCarousel from './ControlledCarousel';
 import '../styles.css';
 
-const LayoutHome = ({ title = 'Title', description = 'Description', className, children }) => (
+const LayoutHome = ({ className, children }) => (
 
   <div className="splash">
     <div className="carousel-container">

@@ -116,11 +116,6 @@ const CheckoutDetails = ({
                 {product.name}
               </Link>
             </div>
-            {/* <div>
-              <Link to={`/product/${product._id}`}>
-                {product.description}
-              </Link>
-            </div> */}
             <div className="">
                 ${product.price}
             </div>

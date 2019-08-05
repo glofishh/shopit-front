@@ -39,7 +39,6 @@ const Signup = () => {
     })
   };
 
-
   const signUpForm = () => (
     <form>
       <div className="form-group">
@@ -77,7 +76,6 @@ const Signup = () => {
       </div>
       <br /><br />
       <button onClick={clickSubmit} className="btn btn-add text-uppercase">submit</button>
-
     </form>
   );
   
@@ -101,8 +99,6 @@ const Signup = () => {
 
   return (
     <Layout
-      title="Signup"
-      description="Sign up for Shopit E-commerce App"
       className="container-create col-md-8 offset-md-2"
     >
       <div className="table-wrapper">

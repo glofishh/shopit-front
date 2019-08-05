@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { API } from '../config';
-import { Link, Redirect } from 'react-router-dom';
-import { getFavoritesList, addFavorite, removeFavorite } from '../user/apiUser';
+import { Link } from 'react-router-dom';
+import { getFavoritesList } from '../user/apiUser';
 import { isAuthenticated } from '../auth';
 
 
 const ShowImage = ({ item, url }) => {
-  const [redirect, setRedirect] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
-  const { user, token } = isAuthenticated();
+  const userId = isAuthenticated() && isAuthenticated().user._id;
+  const token = isAuthenticated() && isAuthenticated().token;
+
+  const showFavorites = () => {
+    return isAuthenticated() ? (
+      <div>{setIconDisplay(favorite)}</div>
+    ) : (
+      <Link to="/signin">
+        <i className="far fa-heart"></i>
+      </Link>
+    );
+  };
 
   const init = (userId, token) => {
     getFavoritesList(userId, token).then(data => {
@@ -29,58 +39,24 @@ const ShowImage = ({ item, url }) => {
     )
   };
 
-  const makeFavorite = () => {
-    addFavorite(user._id, token, item)
-      .then(data => {
-        if (data.error) {
-          console.log(data.error);
-        } else {
-          setFavorite(true);
-          // setRedirectToFavorites(true);
-        }
-    });
-  };
-
-  const undoFavorite = () => {
-    removeFavorite(item._id, token, user._id)
-      .then(data => {
-        if (data.error) {
-          console.log(data.error);
-        } else {
-          setFavorite(false);
-          // setRedirectToFavorites(true);
-        }
-    });
-  };
+  useEffect(() => {
+    init(userId, token);
+  }, [item._id])
 
   const setIconDisplay = favorite => {
     if (favorite) {
       return (
-        // <Link to="/user/favorites">
-          <i className="fas fa-heart" onClick={() => undoFavorite()}></i>
-        // </Link>
+        <Link to="/user/favorites">
+          <i className="fas fa-heart"></i>
+        </Link>
       )
     }
     return (
-      // <Link to="/user/favorites">
-        <i className="far fa-heart" onClick={() => makeFavorite()}></i>
-      // </Link>
+      <Link to="/user/favorites">
+        <i className="far fa-heart"></i>
+      </Link>
     )
   }
-
-  useEffect(() => {
-    init(user._id, token);
-  }, [item._id])
-
-  useEffect(() => {
-    setIconDisplay(favorite);
-  }, [])
-
-  const shouldRedirect = redirect => {
-    if (redirect) {
-      return <Redirect to="/user/favorites" />
-    }
-  };
 
   return (
     <div className="product-img">
@@ -92,9 +68,7 @@ const ShowImage = ({ item, url }) => {
         style={{ maxHeight: "100%", maxWidth: "100%"}}
       />
       <div className="top-right">
-        {/* <Link to="/user/favorites"> */}
-          {setIconDisplay(favorite)}
-        {/* </Link> */}
+          {showFavorites()}
       </div>
     </div>
   )

@@ -21,7 +21,6 @@ const Menu = ({ history }) => (
             <li className="nav-item text-uppercase font-weight-bold">
               <SearchBar />
             </li>
-
           </ul>
       </ul>
     </div>
@@ -41,8 +40,7 @@ const Menu = ({ history }) => (
           </div>
           </ul>
         </div>
-    
-
+        
     <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul className="navbar-nav ml-auto">
             <li className="nav-item text-uppercase font-weight-bold">
@@ -135,18 +133,12 @@ const Menu = ({ history }) => (
                 to="/cart"
               >
                 cart{' '}
-
-                  {/* <small className="cart-badge"> */}
-                    {itemTotal()}
-                  {/* </small> */}
-
+                {itemTotal()}
               </Link>
           </li>
-
         </ul>
     </div>
   </nav>
-
 );
 
 export default withRouter(Menu);

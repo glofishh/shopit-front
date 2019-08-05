@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-import { getPurchaseHistory, getFavoritesList } from './apiUser';
+import { getPurchaseHistory } from './apiUser';
+import ShowImageThumb from '../core/ShowImageThumb';
 import moment from 'moment';
 
 
@@ -20,7 +21,6 @@ const Dashboard = () => {
       }
     });
   };
-
 
   useEffect(() => {
     init(_id, token);
@@ -51,15 +51,15 @@ const Dashboard = () => {
         <h1 className="card-header">Account Information</h1>
         <ul className="list-group">
           <li className="list-group-item">
-            <h5 className="text-uppercase">
+            <h5 className="text-uppercase mb-0">
               Name:</h5>
               {name}</li>
           <li className="list-group-item">
-            <h5 className="text-uppercase">
+            <h5 className="text-uppercase mb-0">
               Email:</h5>
               {email}</li>
           <li className="list-group-item">
-            <h5 className="text-uppercase">
+            <h5 className="text-uppercase mb-0">
               Role:</h5>
               {role === 1 ? 'admin' : 'user'}</li>
         </ul>
@@ -69,26 +69,37 @@ const Dashboard = () => {
 
   const purchaseHistory = history => {
     return (
-
           <div className="card mb-5">
             <h1 className="card-header">Past Purchases</h1>
             <ul className="list-group">
-              <li className="list-group-item"><h2>HISTORY</h2>
+              <li className="list-group-item">
                 {history.map((h, i) => {
                   return (
                     <div>
+                      <h2 className="mb-0">{moment(h.createdAt).format('L')} - Order ID: {h._id}</h2>
                       <hr />
+                      <div className="black-6 mb-0 text-uppercase">Order Status: {h.status}</div>
+                      <div className="black-6 text-uppercase">Shipping To: {h.address}</div>
+                      <div className="black-6 text-uppercase mb-4">Total: ${h.amount}</div>
                       {h.products.map((p, i) => {
                         return (
-                          <div key={i}>
-                            <div className="black-5 text-uppercase">
-                              <u>purchased on {moment(p.createdAt).format('L')}:</u>
+                          <div className="row m-0">
+                            <div className="col-2 px-1 ">
+                              <Link to={`/product/${p._id}`}>
+                                <ShowImageThumb item={p} url="product" style={{height: "50px"}}/>
+                              </Link>
                             </div>
-                              <div className="black-6">Item Description:</div>
-                              {p.name}<br />
-                              <div className="black-6">Unit Price:</div>
-                              ${p.price}<br />
-                          <br />
+                            <div className="row">
+                              <div key={i}>
+                              <div className="ml-2"><i>(Item {i+1} of {h.products.length})</i></div><br/>
+                                <div className="black-6 text-uppercase ml-2">Item Name:</div>
+                                  <div className="ml-4">{p.name}</div>
+                                <div className="black-6 text-uppercase ml-2">Unit Price:</div>
+                                  <div className="ml-4">${p.price}</div>
+                                <div className="black-6 text-uppercase ml-2">Quantity:</div>
+                                  <div className="ml-4 mb-4">{p.count}</div><br/>
+                              </div>
+                            </div>
                           </div>
                         );
                       })}
@@ -97,15 +108,12 @@ const Dashboard = () => {
                 })}
               </li>
             </ul>
-          
       </div>
     );
   };
 
   return (
     <Layout
-      title="dashboard"
-      description={`welcome back, ${name}!`}
       className="container"
     >
       <div className="container-cart"> 
