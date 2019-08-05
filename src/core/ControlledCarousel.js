@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 
@@ -23,10 +23,7 @@ const ControlledCarousel = () => {
           src="https://source.unsplash.com/random/1602x600"
           alt="First slide"
           position="relative"
-          // top="0"
-          // left="0"
           min-width="100%"
-          // max-width="none"
           height="600"
           object-fit="cover"
         />
@@ -41,8 +38,6 @@ const ControlledCarousel = () => {
           src="https://source.unsplash.com/random/1600x600"
           alt="Third slide"
           position="relative"
-          // top="0"
-          // left="0"
           min-width="100%"
           max-width="none"
           height="600"
@@ -59,8 +54,6 @@ const ControlledCarousel = () => {
           src="https://source.unsplash.com/random/1601x600"
           alt="Third slide"
           position="relative"
-          // top="0"
-          // left="0"
           min-width="100%"
           max-width="none"
           height="600"

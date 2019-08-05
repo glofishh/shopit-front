@@ -4,7 +4,7 @@ import Layout from './Layout';
 import { getCart } from './cartHelpers';
 import CheckoutDetails from './CheckoutDetails';
 import Checkout from './Checkout';
-
+import ShowImageThumb from './ShowImageThumb';
 
 
 const Cart = () => {
@@ -23,6 +23,12 @@ const Cart = () => {
         <hr />
         
         {items.map((product, i) => (
+          <div className="row">
+            <div className="col-3">
+              <Link to={`/product/${product._id}`}>
+                <ShowImageThumb item={product} url="product" />
+              </Link>
+            </div>
           <CheckoutDetails 
             key={i}
             product={product}
@@ -30,11 +36,12 @@ const Cart = () => {
             cartUpdate={true}
             showRemoveProductButton={true}
           />
+          </div>
         ))}
+        <hr />
       </div>
     );
   };
-
 
   const noItemsMessage = () => (
     <div>
@@ -42,13 +49,6 @@ const Cart = () => {
       <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
     </div>
   );
-
-  const oneItemMessage = () => (
-    <div>
-      You have 1 item in your bag.
-      <br/> <h4><Link to="/shop">CONTINUE SHOPPING</Link></h4>
-    </div>
-  )
 
   return (
     <Layout

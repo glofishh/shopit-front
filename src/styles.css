@@ -1,6 +1,7 @@
-/** 
-* ALL THE FONTS
-*/
+/*****************************
+****** FONTS AND HEADERS *****
+******************************/
+
 @font-face {
   font-family: ProximaNova-Regular;
   src: url(../src/assets/fonts/ProximaNova-Regular.otf);
@@ -10,15 +11,6 @@
   font-family: ProximaNova-Semibold;
   src: url(../src/assets/fonts/ProximaNova-Semibold.otf);
 }
-
-/* hr {
-  border: 0;
-  clear:both;
-  display:block;
-  width: 100%;               
-  background-color:#000;
-  height: .5px;
-} */
 
 body {
   font-family: 'ProximaNova-Regular', sans-serif !important;
@@ -70,92 +62,6 @@ h1 {
   font-size: 30px;
   letter-spacing: 2px;
 }
-
-.bg-primary {
-  background-color: #f7fafa!important;
-}
-
-
-/************************
-******NAVIGATION/MENU.JS
-*************************/
-
-/**
-* menu headers
-*/
-
-.menu-header{
-  font-size: 14px;
-  font-family: ProximaNova-Semibold;
-}
-
-/**
-*background of navigationtab
-*/
-
-.navbar {
-  background-color: #fff;
-  height: 53px;
-}
-
-.nav-tabs .nav-link{
-  border: 0px solid transparent;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
-}
-.nav-link:hover {
-  text-decoration: underline;
-}
-
-/* ICONS */
-
-.fa-heart {
-  color: #cc0000;
-}
-
-.far {
-  color: #000;
-  font-size: 18px;
-}
-
-/* Top right text */
-.top-right {
-  position: absolute;
-  top: 5px;
-  right: 6px;
-}
-
-.fa-edit {
-  font-size: 16px;
-}
-
-.fa-trash-alt {
-  font-size: 16px;
-}
-
-/* cart badge */
-
-.cart-badge,
-.cart-badge:hover {
-    border: radius 0%;
-    padding: 1px;
-    font-size: 10px;
-    font-style: normal;
-    color: #fff;
-    background: #c9dce1;
-}
-
-.nav-item {
-  font-size: 12px;
-  font-family: ProximaNova-Semibold;
-}
-
-.nav-item-main {
-  font-size: 16px;
-  font-family: ProximaNova-Semibold;
-}
-
-/* black shade form 10-1 */
 .black-10 {
   background: #f7fafa;
   font-family: 'ProximaNova-Regular', sans-serif !important;
@@ -196,9 +102,90 @@ h1 {
 .body-small {
   font-size: 10px;
 }
-/**
-* CARDD
-*/
+
+.bg-primary {
+  background-color: #f7fafa!important;
+}
+
+/*****************************
+******NAVIGATION/MENU.JS******
+******************************/
+
+.menu-header{
+  font-size: 14px;
+  font-family: ProximaNova-Semibold;
+}
+
+.navbar {
+  background-color: #fff;
+  height: 53px;
+}
+
+.nav-tabs .nav-link{
+  border: 0px solid transparent;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-item {
+  font-size: 12px;
+  font-family: ProximaNova-Semibold;
+}
+
+.nav-item-main {
+  font-size: 16px;
+  font-family: ProximaNova-Semibold;
+}
+
+/*****************************
+********** FA ICONS **********
+******************************/
+
+.fa-heart {
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.far {
+  color: #000;
+  font-size: 18px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+}
+
+.fa-edit {
+  font-size: 16px;
+}
+
+.fa-trash-alt {
+  font-size: 16px;
+}
+
+/*****************************
+****** cart +badges **********
+******************************/
+
+.cart-badge,
+.cart-badge:hover {
+    border: radius 0%;
+    padding: 1px;
+    font-size: 10px;
+    font-style: normal;
+    color: #fff;
+    background: #c9dce1;
+}
+
+/*****************************
+********** CARD **************
+******************************/
 
 .card{
   border: none;
@@ -247,20 +234,15 @@ p.details-lead {
 .in-category {
   font-size: 12px;
 }
-/**
- * signin
- */
 
-
-/**
- * single product page - product name
- */
+/*****************************
+*** PRODUCT DETAILS **********
+******************************/
 
 .name {
   background: #c9dce1;
   color: #000;
   font-weight: bold;
-
 }
 
 .lead{
@@ -270,6 +252,11 @@ p.details-lead {
 
 .product-img {
   min-height: 100px;
+  align-content: center;
+}
+
+.product-img-thumb {
+  min-height: 50px;
 }
 
 .payment-module {
@@ -280,9 +267,13 @@ p.details-lead {
   width: 100%;
 }
 
-/**
-* view product/add to cart buttons
-*/
+.details-img{
+  vertical-align: left;
+}
+
+/*****************************
+********** BUTTONS ***********
+******************************/
 
 .btn{
   border-radius:1px;
@@ -295,6 +286,7 @@ p.details-lead {
   color: #000;
   border-color: #000;
   font-size: 12px;
+  font-family: ProximaNova-Semibold;
   letter-spacing: 1px;
 }
 
@@ -323,59 +315,8 @@ p.details-lead {
   border-color: #000;
   color: #000;
   font-size: 12px;
-  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
-  outline: 0 none;
-}
-.btn-outline-primary:not(:disabled):not(.disabled):active{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-  outline: 0 none;
-}
-
-.btn-outline-primary:not(:disabled):not(.disabled):focus{
-box-shadow: 0 0 5px #fff;
-}
-
-.btn-outline-secondary{
-  background-color: #fff;
-  color: #000;
-  border-color: #000;
-}
-
-.btn-outline-secondary:hover{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-}
-
-.btn-outline-secondary:focus{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-}
-
-.btn-outline-secondary:active{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
-  outline: 0 none;
-}
-.btn-outline-secondary:not(:disabled):not(.disabled):active{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-  outline: 0 none;
-}
-
-.btn-outline-secondary:not(:disabled):not(.disabled):focus{
-box-shadow: 0 0 5px #fff;
+  box-shadow: none;
+  outline: none;
 }
 
 .btn-outline-warning{
@@ -404,19 +345,8 @@ box-shadow: 0 0 5px #fff;
   border-color: #000;
   color: #000;
   font-size: 12px;
-  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
+  box-shadow: none;
   outline: 0 none;
-}
-.btn-outline-warning:not(:disabled):not(.disabled):active{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-outline: 0 none;
-}
-
-.btn-outline-warning:not(:disabled):not(.disabled):focus{
-box-shadow: 0 0 5px #fff;
 }
 
 .btn-outline-danger{
@@ -445,19 +375,8 @@ box-shadow: 0 0 5px #fff;
   border-color: #000;
   color: #000;
   font-size: 12px;
-  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(114, 96, 153, 0.6);
-  outline: 0 none;
-}
-.btn-outline-danger:not(:disabled):not(.disabled):active{
-  background-color: #fff;
-  border-color: #000;
-  color: #000;
-  font-size: 12px;
-outline: 0 none;
-}
-
-.btn-outline-danger:not(:disabled):not(.disabled):focus{
-box-shadow: 0 0 5px #fff;
+  box-shadow: none;
+  outline: none;
 }
 
 .btn-purchase {
@@ -490,6 +409,22 @@ box-shadow: 0 0 5px #fff;
   width: 100%;
 }
 
+.btn-purchase:active {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+  box-shadow: none;
+  outline: 0 none;
+}
 
 .btn-add {
   font-family: ProximaNova-Semibold;
@@ -521,28 +456,84 @@ box-shadow: 0 0 5px #fff;
   width: 100%;
 }
 
+.btn-add:active {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+  box-shadow: none;
+  outline: 0 none;
+}
 
-/**
-* instock badge
-*/
+.btn-added {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+
+.btn-added:hover {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+
+.btn-added:active {
+  font-family: ProximaNova-Semibold;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  flex-grow: 1;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+
+/*****************************
+**** BADGE: instock **********
+******************************/
+
 .badge-primary {
   background-color: #f7fafa;
   color: #000;
   font-size: 12px;
 }
 
-/**
-* PRODUCT DETAILS
-*/
-
-.details-img{
-  vertical-align: left;
-}
-
-
-/**
-*searchbar/dropdown/update
-*/
+/*****************************
+**** SEARCHBAR ***************
+******************************/
 
 .input-file {
   background-color: #fff;
@@ -550,7 +541,6 @@ box-shadow: 0 0 5px #fff;
   border-color: #000;
   font-size: 12px;
   letter-spacing: 1px;
-
 }
 
 .input-file:focus {
@@ -571,13 +561,13 @@ box-shadow: 0 0 5px #fff;
   width: 275px;
 }
 
-/*
-checkout buttons
-*/
+/*****************************
+******** CHECKOUT ************
+******************************/
+
 .checkout-buttons-container {
-  justify-content: flex-start;
-  display: flex;
-  flex-direction: row;
+  float: right;
+  margin-top: 8px;
   /* border: 1px solid #000; */
   width: 100%;
 }
@@ -619,11 +609,6 @@ checkout buttons
   border-radius: 0;
   width: 100%!important;
 }
-
-.input-group-md .border{
-  /* border: 1px solid #000!important; */
-}
-
 
 .btn-group.show, .dropdown-menu.show {
   background-color: #4b4b4b;
@@ -693,18 +678,10 @@ checkout buttons
   border: 0!important;
 }
 
-/**
-* THE CHECKBOX 
-* AND THE RADIO BOOXXX
-*/
+/*****************************
+******** TABLE ***************
+******************************/
 
-/**
-* TABLE
-*/
-
-/* th {
-  border-bottom: 1px solid !important;
-} */
 .table-wrapper {
   width: 700px;
   margin: 30px auto;
@@ -737,23 +714,13 @@ checkout buttons
 table.table {
   table-layout: fixed;
 }
-/* table.table tr th, table.table tr td {
-  border-color: #fff !important;
-} */
-/* table.table th i {
-  font-size: 13px;
-  margin: 0 5px;
-  cursor: pointer;
-} */
-/* table.table th:last-child {
-  width: 100px;
-} */
+
 table.table td a {
   cursor: pointer;
   display: inline-block;
   margin: 0 5px;
   min-width: 24px;
-}    
+}
 
 table.table td i {
   font-size: 19px;
@@ -764,12 +731,7 @@ table.table td a.add i {
   position: relative;
   top: 3px;
 }     
-/* table.table .form-control {
-  height: 32px;
-  line-height: 32px;
-  box-shadow: none;
-  border-radius: 0px;
-} */
+
 table.table .form-control.error {
   border-color: #cc0000;
 }
@@ -780,31 +742,15 @@ table.table td .add {
 .table-bordered td {
   border: 1px solid #fff !important;
 }
-/**
- * border radius
- */
 
 .btn,
-.jumbotron,
 .nav :hover {
     border-radius: 0px;
 }
 
-
-.jumbotron h2 {
-    margin-top: 20px;
-}
-
-@media only screen and (max-width: 600px) {
-    .jumbotron h2 {
-        margin-top: 10px;
-    }
-}
-
-
-/**
- * jumbotron animation
- */
+/*****************************
+**** SPLASH/CAROUSEL *********
+******************************/
 
 .splash {
   margin: auto;
@@ -849,13 +795,6 @@ table.table td .add {
   overflow-y: scroll !important;
 }
 
-.navbar-collapse {
-  /* overflow-y: scroll !important; */
-  /* align-items: flex-start;
-  max-height: 1000px !important; */
-  /* width: auto !important; */
-}
-
 .window {
   justify-content: space-between;
   
@@ -863,51 +802,4 @@ table.table td .add {
 
 .related {
   margin-top: 5vh;
-}
-
-.jumbotron {
-    width: 30wh;
-    height: 10vh;
-    color: #000;
-    background: linear-gradient(-45deg, #f9fbfc, #f4f8f9, #eef4f6, #e9f1f3, #e4edf0);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
-    animation: Gradient 15s ease infinite;
-}
-
-@-webkit-keyframes Gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes Gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
 }

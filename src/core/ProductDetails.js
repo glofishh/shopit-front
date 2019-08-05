@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import moment from 'moment';
-import { addItem, updateItem, removeItem } from './cartHelpers';
-import { addFavorite } from '../user/apiUser';
+import { addItem, updateItem } from './cartHelpers';
+import { getFavoritesList, addFavorite, removeFavorite } from '../user/apiUser';
 import { isAuthenticated } from '../auth';
 
 
@@ -11,16 +11,67 @@ const ProductDetails = ({
   showViewProductButton = true,
   showAddToCartButton = true,
   cartUpdate = false,
-  showRemoveProductButton = false
+  showAddToFavoritesButton = true
 }) => {
-  const { user, token } = isAuthenticated();
+
   const [redirectToCart, setRedirectToCart] = useState(false);
-  const [redirectToFavorites, setRedirectToFavorites] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const [count, setCount] = useState(product.count);
 
+  const userId = isAuthenticated() && isAuthenticated().user._id;
+  const token = isAuthenticated() && isAuthenticated().token;
+
+  const showFavorites = () => {
+    return isAuthenticated() ? (
+      <div>{showAddToFavorites(showAddToFavoritesButton)}</div>
+    ) : (
+      <Link to="/signin">
+        <button className="btn btn-add text-uppercase">
+          sign in to see <i className="fas fa-heart" style={{fontSize: "15px"}}></i>'s
+        </button>
+      </Link>
+    );
+  };
+
+  const init = (userId, token) => {
+    getFavoritesList(userId, token).then(data => {
+      console.log(data);
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        for (var i = 0; i < data.length; i++) {
+          console.log(data[i])
+          if (data[i]._id === product._id) {
+              setFavorite(true);
+              return;
+            }
+            setFavorite(false);
+          }
+          setIconDisplay(data);
+        }
+      }
+    )
+  };
+
   useEffect(() => {
-  }, [])
+    init(userId, token);
+  }, [product._id])
+
+
+  const setIconDisplay = favorite => {
+    if (favorite) {
+      return (
+        // <Link to="/user/favorites">
+          <i className="fas fa-heart" onClick={() => undoFavorite()}></i>
+        // </Link>
+      )
+    }
+    return (
+      // <Link to="/user/favorites">
+        <i className="far fa-heart" onClick={() => makeFavorite()}></i>
+      // </Link>
+    )
+  }
 
   const showViewButton = showViewProductButton => {
     return (
@@ -41,13 +92,23 @@ const ProductDetails = ({
   };
 
   const makeFavorite = () => {
-    addFavorite(user._id, token, product)
+    addFavorite(userId, token, product)
       .then(data => {
         if (data.error) {
           console.log(data.error);
         } else {
           setFavorite(true);
-          setRedirectToFavorites(true);
+        }
+    });
+  };
+
+  const undoFavorite = () => {
+    removeFavorite(product, token, userId)
+      .then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setFavorite(false);
         }
     });
   };
@@ -57,13 +118,6 @@ const ProductDetails = ({
       return <Redirect to="/cart" />;
     }
   };
-
-  const shouldRedirectToFavorites = redirectToFavorites => {
-    if (redirectToFavorites && makeFavorite) {
-      return <Redirect to="/user/favorites" />
-    }
-  };
-
 
   const showAddToCart = showAddToCartButton => {
     return (
@@ -79,16 +133,26 @@ const ProductDetails = ({
   };
 
   const showAddToFavorites = showAddToFavoritesButton => {
+    if (!favorite) {
+      return (
+        showAddToFavoritesButton && (
+          <button
+            onClick={makeFavorite}
+            className="btn btn-add text-uppercase"
+          >
+            add to favorites
+          </button>
+        )
+      );
+    }
     return (
-      showAddToFavoritesButton && (
-        <button
-          onClick={makeFavorite}
-          className="btn btn-add text-uppercase"
-        >
-          add to loves
-        </button>
-      )
-    );
+      <button
+      className="btn btn-added text-uppercase"
+      onClick={undoFavorite}
+    >
+      remove from favorites
+    </button>
+    )
   };
 
   const showStock = quantity => {
@@ -120,29 +184,22 @@ const ProductDetails = ({
   return (
     <div className="details-group">
       <div className="details">
-        {/* <div className="card-header name">{product.name}</div> */}
         <div className="details-body">
-        {shouldRedirectToCart(redirectToCart)}
-        {shouldRedirectToFavorites(redirectToFavorites)}
+          {shouldRedirectToCart(redirectToCart)}
             <div className="black-4 text-uppercase">
-              {/* <Link to={`/product/${product._id}`}> */}
-                {product.name}
-              {/* </Link> */}
+                {product.name} {setIconDisplay(favorite)}
             </div>
             <p className="details-lead">
-              {/* <Link to={`/product/${product._id}`}> */}
                 {product.description}
-              {/* </Link> */}
               <br /><br />
                 ${product.price}
             </p>
               <br /><br/>
               {showStock(product.quantity)}
               <br /><br/>
-
               {showViewButton(showViewProductButton)}
               {showAddToCart(showAddToCartButton)}
-              {showAddToFavorites(showAddToFavorites)}
+              {showFavorites()}
               {showCartUpdateOptions(cartUpdate)}
               <br /><br />
               <hr />
@@ -152,8 +209,6 @@ const ProductDetails = ({
               <div className="in-category mb-2">
                 Uploaded {moment(product.createdAt).fromNow()}
               </div>
-
-
         </div>
       </div>
     </div>

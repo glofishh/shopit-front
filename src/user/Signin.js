@@ -5,15 +5,17 @@ import { signin, authenticate, isAuthenticated } from '../auth';
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: 'glerbs@thederbs.com',
+    //--USER CREDENTIALS------------------
+    email: 'glerbs@theflerbs.com',
     password: 'yyyyy1',
     error: '',
     loading: false,
     redirectToReferrer: false,
   });
 
+  //--ADMIN CREDENTIALS-------------------
   // const [values, setValues] = useState({
-  //   email: 'gloria@glerbs.com',
+  //   email: 'flerbs@theglerbs.com',
   //   password: 'pass1word',
   //   error: '',
   //   loading: false,
@@ -26,7 +28,6 @@ const Signin = () => {
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
-
 
   const clickSubmit = (event) => {
     event.preventDefault();
@@ -46,11 +47,8 @@ const Signin = () => {
     })
   };
 
-
   const signUpForm = () => (
-
     <form>
-
         <div className="form-group">
               <label className="black-5 text-uppercase">email</label>
               <input
@@ -60,7 +58,6 @@ const Signin = () => {
                 value={email}
               />
         </div>
-
         <div className="form-group">
           <label className="black-5 text-uppercase">password</label>
           <input
@@ -72,11 +69,9 @@ const Signin = () => {
         </div>
         <br /><br />
         <button onClick={clickSubmit} className="btn btn-add text-uppercase">submit</button>
-
     </form>
-
   );
-  
+
   const showError = () => (
     <div
       className="alert border rounded-0"
@@ -108,8 +103,6 @@ const Signin = () => {
 
   return (
     <Layout
-      title="Signin"
-      description="Sign into Shopit E-commerce App"
       className="container-create"
     >
       <div className="table-wrapper">

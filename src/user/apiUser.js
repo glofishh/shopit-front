@@ -88,14 +88,15 @@ export const addFavorite = (userId, token, product) => {
   .catch(err => console.log(err));
 };
 
-export const removeFavorite = (favoriteItemId, token, userId) => {
-  return fetch(`${API}/favorites/remove/${favoriteItemId}/${userId}`, {
+export const removeFavorite = (product, token, userId) => {
+  return fetch(`${API}/favorites/remove/${userId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
+    body: JSON.stringify(product)
   })
     .then(response => {
         return response.json();
