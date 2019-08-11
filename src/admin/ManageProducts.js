@@ -60,7 +60,7 @@ const ManageProducts = () => {
             <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th><div className="black-5 text-uppercase">{products.length} products total</div></th>
+                    <th><div className="black-5 text-uppercase">products total: {products.length}</div></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -166,7 +166,7 @@ const UpdateProduct = ({ match }) => {
           </select>
         </div>
 
-        <div className="form-group border rounded-0">
+        <div className="form-group">
           <label className="black-5 text-uppercase">shipping</label>
           <select
             onChange={handleChange("shipping")}

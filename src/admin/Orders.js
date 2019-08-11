@@ -3,6 +3,7 @@ import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link, Redirect } from 'react-router-dom';
 import { listOrders, getStatusValues, updateOrderStatus } from './apiAdmin';
+import ShowImageThumb from '../core/ShowImageThumb'
 import moment from 'moment';
 
 
@@ -58,9 +59,9 @@ const Orders = () => {
   const showInput = (key, value) => (
     <div>
         <span
-          className="text-uppercase "
+          className="text-uppercase pl-3"
           style={{
-            padding: '20px',
+            padding: '10px',
             width: '580px'
           }}
         >
@@ -223,17 +224,28 @@ const Orders = () => {
                       </li>
                       </ul>
 
-                        <td>
+                        <td style={{width: '580px'}}>
                           {o.products.map((p, pIndex) => (
-                            <div
-                              className="mb-4"
-                              key={pIndex}
-                            >
-                              {showInput('Item name', p.name)}
-                              {showInput('Unit price', `$${p.price}`)}
-                              {showInput('Quantity', p.count)}
-                              {/* {showInput('Item ID', p._id)} */}
+                            <div className="row pl-4">
+                              <div className="col-3 px-1">
+                                <ShowImageThumb item={p} url="product"/>
+                              </div>
+                            <div className="row">
+                              <div key={pIndex}>
+                                <div
+                                  className="pl-3" 
+                                  style={{"font-family": 'ProximaNova-Regular', "font-size": "12px"}}
+                                >
+                                  <i>Item {pIndex+1} of {o.products.length}</i>
+                                </div>
+                                <br/>
+                                {showInput(`Item name`, ` ${p.name}`)}
+                                {showInput(`Unit price`, ` $${p.price}`)}
+                                {showInput(`Quantity`, ` ${p.count}`)}
+                                {/* {showInput('Item ID', p._id)} */}
+                              </div>
                             </div>
+                          </div>
                           ))}
                         </td>
                         </div>

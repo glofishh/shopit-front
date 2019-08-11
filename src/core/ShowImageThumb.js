@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { API } from '../config';
-import { Link, Redirect } from 'react-router-dom';
 
 
-const ShowImage = ({ item, url }, props) => {
-  const [redirect, setRedirect] = useState(false);
+const ShowImage = ({ item, url }) => {
 
   return (
     <div className="product-img-thumb">
-
       <img
         src={`${API}/${url}/photo/${item._id}`}
         alt={item.name}
