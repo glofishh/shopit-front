@@ -4,6 +4,7 @@ import { read, listRelated } from "./apiCore";
 import Card from "./Card";
 import ProductDetails from "./ProductDetails";
 import ShowImageProductDetails from "./ShowImageProductDetails";
+import { NodePath } from "@babel/core";
 
 const Product = props => {
   const [product, setProduct] = useState({});
@@ -40,19 +41,21 @@ const Product = props => {
     <div className="row no-gutters">
         <div className="col-8">
           <div className="details-img">
+            {product && product.description && (
             <ShowImageProductDetails item={product} url="product" />
+            )}
           </div>
         </div>
 
         <div className="col-4">
             {product && product.description && ( 
-            <ProductDetails product={product} showViewProductButton={false} />
+            <ProductDetails product={product} />
             )}
         </div>
 
         
         <div className="related">
-        <h2 className="mb-3">RECOMMENDED</h2>
+        <h2 className="mb-3 text-uppercase">Other items in similar category</h2>
           <div className="row">
             {relatedProduct.map((p, i) => (
               <div className="col-3">

@@ -183,14 +183,14 @@ const AddProduct = () => {
       className="text-success"
       style={{ display: createdProduct ? '' : 'none'}}
     >
-      <h2>{`${createdProduct}`} has been successfully uploaded.</h2>
+      <h2>Item has been successfully uploaded.</h2>
     </div>
   );
 
-  const showLoading = () => 
+  const showLoading = () =>
     loading && (
-      <div className="alert alert-success">
-        <h2>loading...</h2>
+      <div className="text-success" style={{color: 'black'}}>
+        <h2>Loading...</h2>
       </div>
     );
   

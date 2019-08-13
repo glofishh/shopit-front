@@ -67,6 +67,27 @@ const Dashboard = () => {
     );
   };
 
+  const showInput = (key, value) => (
+    <div>
+        <span
+          className="black-6 text-uppercase"
+          style={{
+            padding: '10px',
+            width: '580px'
+          }}
+        >
+          {key}: 
+        </span>
+        <span
+          style={{
+            "font-family": 'ProximaNova-Regular'
+          }}
+        >
+          {value}
+        </span>
+    </div>
+  );
+
   const purchaseHistory = history => {
     return (
           <div className="card mb-5">
@@ -91,13 +112,14 @@ const Dashboard = () => {
                             </div>
                             <div className="row">
                               <div key={i}>
-                              <div className="ml-2"><i>(Item {i+1} of {h.products.length})</i></div><br/>
-                                <div className="black-6 text-uppercase ml-2">Item Name:</div>
-                                  <div className="ml-4">{p.name}</div>
-                                <div className="black-6 text-uppercase ml-2">Unit Price:</div>
-                                  <div className="ml-4">${p.price}</div>
-                                <div className="black-6 text-uppercase ml-2">Quantity:</div>
-                                  <div className="ml-4 mb-4">{p.count}</div><br/>
+                                <div className="ml-2">
+                                  <i>(Item {i+1} of {h.products.length})</i>
+                                </div>
+                                <br/>
+                                {showInput(`Item name`, ` ${p.name}`)}
+                                {showInput(`Unit price`, ` $${p.price}`)}
+                                {showInput(`quantity`, ` ${p.count}`)}
+                                <br/>
                               </div>
                             </div>
                           </div>
