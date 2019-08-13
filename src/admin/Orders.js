@@ -239,8 +239,8 @@ const Orders = () => {
                                   <i>Item {pIndex+1} of {o.products.length}</i>
                                 </div>
                                 <br/>
-                                {showInput(`Item name`, ` ${p.name}`)}
-                                {showInput(`Unit price`, ` $${p.price}`)}
+                                {showInput(`Item name`, `${p.name}`)}
+                                {showInput(`Unit price`, `$${p.price}`)}
                                 {showInput(`Quantity`, ` ${p.count}`)}
                                 {/* {showInput('Item ID', p._id)} */}
                               </div>

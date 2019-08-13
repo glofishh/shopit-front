@@ -187,10 +187,10 @@ const AddProduct = () => {
     </div>
   );
 
-  const showLoading = () => 
+  const showLoading = () =>
     loading && (
       <div className="text-success" style={{color: 'black'}}>
-        <h2>loading...</h2>
+        <h2>Loading...</h2>
       </div>
     );
   

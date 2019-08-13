@@ -8,7 +8,7 @@ import { isAuthenticated } from '../auth';
 
 const ProductDetails = ({ 
   product,
-  showViewProductButton = true,
+  // showViewProductButton = true,
   showAddToCartButton = true,
   cartUpdate = false,
   showAddToFavoritesButton = true
@@ -17,7 +17,6 @@ const ProductDetails = ({
   const [redirectToCart, setRedirectToCart] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const [count, setCount] = useState(product.count);
-
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
 
@@ -35,12 +34,10 @@ const ProductDetails = ({
 
   const init = (userId, token) => {
     getFavoritesList(userId, token).then(data => {
-      console.log(data);
       if (data.error) {
         console.log(data.error);
       } else {
         for (var i = 0; i < data.length; i++) {
-          console.log(data[i])
           if (data[i]._id === product._id) {
               setFavorite(true);
               return;
@@ -72,18 +69,6 @@ const ProductDetails = ({
       // </Link>
     )
   }
-
-  const showViewButton = showViewProductButton => {
-    return (
-      showViewProductButton && (
-        <Link to={`/product/${product._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mt-2 mb-2">
-            view product
-          </button>
-        </Link>
-      )
-    );
-  };
 
   const addToCart = () => {
     addItem(product, () => {
@@ -156,11 +141,15 @@ const ProductDetails = ({
   };
 
   const showStock = quantity => {
-    return quantity > 0 ? (
-      <span className="badge badge-primary badge-pill">in stock</span>
-    ) : (
-      <span className="badge badge-primary badge-pill">currently out of stock</span>
-    );
+    if (quantity > 21) {
+      return <span className="badge badge-primary badge-pill">In stock</span>
+    } else if (quantity > 1) {
+      return <span className="badge badge-primary badge-pill">Low stock</span>
+    } else if (quantity === 1) {
+      return <span style={{"fontFamily": "ProximaNova-Semibold"}}>Last one left</span>
+    } else {
+      return <span className="badge badge-primary badge-pill">Currently out of stock</span>
+    }
   };
 
   const handleChange = productId => event => {
@@ -187,28 +176,30 @@ const ProductDetails = ({
         <div className="details-body">
           {shouldRedirectToCart(redirectToCart)}
             <div className="black-4 text-uppercase">
-                {product.name} {setIconDisplay(favorite)}
+                {product.name}
             </div>
             <p className="details-lead">
-                {product.description}
+              {product.description}
               <br /><br />
-                ${product.price}
+              {setIconDisplay(favorite)}
+              <br />
+              ${product.price}
             </p>
-              <br /><br/>
-              {showStock(product.quantity)}
-              <br /><br/>
-              {showViewButton(showViewProductButton)}
-              {showAddToCart(showAddToCartButton)}
-              {showFavorites()}
-              {showCartUpdateOptions(cartUpdate)}
-              <br /><br />
-              <hr />
-              <div className="in-category">
-                In: {product.category && product.category.name}
-              </div>
-              <div className="in-category mb-2">
-                Uploaded {moment(product.createdAt).fromNow()}
-              </div>
+            <br /><br/>
+            {showStock(product.quantity)}
+            <br /><br/>
+            {/* {showViewButton(showViewProductButton)} */}
+            {showAddToCart(showAddToCartButton)}
+            {showFavorites()}
+            {showCartUpdateOptions(cartUpdate)}
+            <br /><br />
+            <hr />
+            <div className="in-category">
+              In: {product.category && product.category.name}
+            </div>
+            <div className="in-category mb-2">
+              Uploaded {moment(product.createdAt).fromNow()}
+            </div>
         </div>
       </div>
     </div>
