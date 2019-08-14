@@ -4,7 +4,6 @@ import { read, listRelated } from "./apiCore";
 import Card from "./Card";
 import ProductDetails from "./ProductDetails";
 import ShowImageProductDetails from "./ShowImageProductDetails";
-import { NodePath } from "@babel/core";
 
 const Product = props => {
   const [product, setProduct] = useState({});

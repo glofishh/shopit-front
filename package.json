@@ -2,11 +2,13 @@
   "name": "shopit-front",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "braintree-web-drop-in-react": "^1.0.9",
+    "concurrently": "^4.1.1",
     "dotenv": "^8.0.0",
     "moment": "^2.24.0",
     "query-string": "^6.8.1",
@@ -20,12 +22,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "proxy": "http://localhost:8000"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:8000",
   "browserslist": {
     "production": [
       ">0.2%",

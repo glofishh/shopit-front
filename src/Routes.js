@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Signup from './user/Signup';
 import Signin from './user/Signin';
@@ -21,6 +21,16 @@ import Favorites from './user/Favorites';
 
 
 const Routes = () => {
+
+  const connectToServer = () => {
+    fetch('/');
+  }
+
+  useEffect(() => {
+    connectToServer();
+  }, []);
+
+
   return (
     <BrowserRouter>
       <Switch>
