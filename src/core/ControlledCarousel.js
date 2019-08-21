@@ -29,7 +29,7 @@ const ControlledCarousel = () => {
         />
         <Carousel.Caption>
           <h3>PRE-FALL '19 COLLECTION</h3>
-          <h6>Nulla vitae elit libero, a pharetra augue mollis interdum.</h6>
+          <h6>Luxurious Subtelty: Understated outerwear in the most restrained and exceptional of fabrics.</h6>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -44,8 +44,8 @@ const ControlledCarousel = () => {
           object-fit="cover"
         />
         <Carousel.Caption>
-          <h3>SUMMER SALE</h3>
-          <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h6>
+          <h3>SHOP BEST SELLERS</h3>
+          <h6>Shop for our best-selling designer ready to wear collections for women and men.</h6>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -60,9 +60,9 @@ const ControlledCarousel = () => {
           object-fit="cover"
         />
         <Carousel.Caption>
-          <h3>SHOP NEW ARRIVALS</h3>
+          <h3>DISCOVER NEW ARRIVALS</h3>
           <h6>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            See latest styles of the season for women's and men's designer ready to wear.
           </h6>
         </Carousel.Caption>
       </Carousel.Item>

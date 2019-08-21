@@ -14,7 +14,7 @@ const isActive = (history, path) => {
 };
 
 const Menu = ({ history }) => (
-    <nav className="navbar navbar-expand-md align-items-lg-start fixed-top">
+    <nav className="navbar navbar-expand-md align-items-lg-center fixed-top">
       <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul className="nav nav-tabs border-bottom-0">
           <ul className="navbar-nav mr-auto nav nav-tabs border-bottom-0">
@@ -34,7 +34,7 @@ const Menu = ({ history }) => (
                 style={isActive(history, "/")}
                 to="/"
               >
-                home
+                <h1 className="m-0">idol</h1>
               </Link>
             </li>
           </div>
